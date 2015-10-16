@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+	<meta title="Ilha" package="com.sample.ilha" version="1.0.0" company="Company Name" />
+	<app main="Main" path="Export" file="Ilha" />
+
+	<source path="Source" />
+
+	<haxelib name="openfl" />
+
+	<assets path="Assets" rename="assets" />
+	<window background="#333333" fps="30" />
+	<window width="800" height="500" unless="mobile" />
+</project>

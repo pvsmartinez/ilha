@@ -1,0 +1,4 @@
+HXCPP_CLANG=1
+HXCPP_M64=1
+hxcpp_api_level=321
+hxcpp=/Users/pedromartinez/haxelib/hxcpp/3,2,180/

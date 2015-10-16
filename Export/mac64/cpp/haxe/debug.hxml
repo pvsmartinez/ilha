@@ -1,0 +1,23 @@
+-main ApplicationMain 
+-cp /Users/pedromartinez/haxelib/openfl/3,3,8
+-D openfl=3.3.8
+-cp /Users/pedromartinez/haxelib/lime/2,6,8
+-D lime=2.6.8
+-cp Source
+-D lime-openal
+-D openfl-next
+-D tools=2.6.8
+-D lime-cairo
+-D no-compilation
+-D lime-opengl
+-D native
+-D lime-native
+-D lime-curl
+-D openfl-native
+-D mac
+-D desktop
+--remap flash:openfl
+-cpp Export/mac64/cpp/obj/
+-cp Export/mac64/cpp/haxe
+--macro keep("Main")
+-debug
