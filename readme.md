@@ -1,9 +1,9 @@
-# ILHA - Nome do jogo aqui
+# ILHA - Nome do jogo aqui   
 Descrição do jogo aqui - Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis nibh neque. Pellentesque eget eros sed mi vehicula facilisis. Curabitur porttitor urna magna, vel hendrerit leo fermentum vitae.
 ---
 ### Direitos Autorais:
 * Pedro Vicente Martinez   
-(Coloquem o nome de vocês aqui)
+(Coloquem o nome de vocês aqui)   
 ---
 ### Dados técnicos:
 * Jogo criado com o framework openfl, na linguagem haxe.
@@ -23,7 +23,7 @@ haxelib install openfl-tools
 haxelib install openfl-native   
 haxelib run openfl setup`   
 Para confirmar se o openfl está funcionando, digite no terminal:   
-`openfl`
+`openfl`   
 ---
 ### Estrutura do Jogo:
 * Assets
@@ -32,11 +32,11 @@ Para confirmar se o openfl está funcionando, digite no terminal:
   O Jogo compilado vai parar aqui.
 * Source
   Onde todo o jogo será salvo
-ilha.hxproj e project.xml são arquivos para configurações do projeto
+ilha.hxproj e project.xml são arquivos para configurações do projeto   
 ---
 ### Como testar o jogo:
 Basta você abrir o terminal na pasta do jogo e digitar:   
-`openfl test <plataforma>` as plataformas podem ser: neko, flash, windows, mac, html5, sendo que neko é a plataforma mais rápida para testar.
+`openfl test <plataforma>` as plataformas podem ser: neko, flash, windows, mac, html5, sendo que neko é a plataforma mais rápida para testar.   
 #### Docs relevantes:
 http://docs.openfl.org/   
 http://www.openfl.org/learn/
