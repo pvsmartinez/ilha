@@ -1,14 +1,14 @@
-# ILHA - Nome do jogo aqui
+# ILHA - Nome do jogo aqui #
   Descrição do jogo aqui - Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis nibh neque. Pellentesque eget eros sed mi vehicula facilisis. Curabitur porttitor urna magna, vel hendrerit leo fermentum vitae.
 ---
-### Direitos Autorais:
+### Direitos Autorais: ###
 * Pedro Vicente Martinez
 ---
-### Dados técnicos:
+### Dados técnicos: ###
 * Jogo criado com o framework openfl, na linguagem haxe.
 * Jogo compilado e exportado para: Windows, Mac, Flash e Html5
 ---
-### Dependencias:
+### Dependencias: ###
 1. Instalar Haxe + Neko.
   A página http://www.openfl.org/download/ possui bons links para baixar o Haxe e o Neko juntos.   
   O único caso que da erro é para o __Mac OSX - El Captain__ (versões anteriores funcionam bem)   
@@ -30,7 +30,7 @@ haxelib run openfl setup
 openfl
 `
 ---
-### Estrutura do Jogo:
+### Estrutura do Jogo: ###
 * Assets
   Todas imagens, músicas e animações vão aqui. Temos que definir o formato delas.
 * Export
@@ -39,10 +39,10 @@ openfl
   Onde todo o jogo será salvo
 ilha.hxproj e project.xml são arquivos para configurações do projeto
 ---
-### Como testar o jogo:
+### Como testar o jogo: ###
   Basta você abrir o terminal na pasta do jogo e digitar:
 `openfl test <plataforma>`
   as plataformas podem ser: neko, flash, windows, mac, html5, sendo que neko é a plataforma mais rápida para testar.
-#### Docs relevantes:
+#### Docs relevantes: ####
 * http://docs.openfl.org/   
 * http://www.openfl.org/learn/
