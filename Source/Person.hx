@@ -7,12 +7,12 @@ class Person extends Body {
 		this.speed = 5;
 	}
 
-	public function action(stuff:Array<Source>):Void {
+	public function action(stuff:Array<Source>):Resource {
 		for (st in stuff) {
 			if(this.hitTestObject(st)){
-				st.extract();
-				return;
+				return st.extract();
 			}
 		}
+		return null;
 	}
 }

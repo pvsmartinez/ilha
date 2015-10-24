@@ -1,6 +1,7 @@
 package;
 
 import openfl.display.Sprite;
+import openfl.display.FPS;
 import openfl.Lib;
 
 class Game extends Sprite {
@@ -8,6 +9,7 @@ class Game extends Sprite {
 	public var player:Person;
 	public var sources:Array<Source> = [];
 	public var resources:Array<Resource> = [];
+	//public var timerToGameOver:Int;
 
 	public function new () {
 		super ();
@@ -47,6 +49,13 @@ class Game extends Sprite {
 			source.x = Math.random() * Lib.current.stage.stageWidth;
 			source.y = Math.random() * Lib.current.stage.stageHeight;
 		}
+	}
+
+	public function createResource(resource:Resource) {
+		resources.push(resource);
+		this.addChild(resource);
+		resource.x = player.x;
+		resource.y = player.y;
 	}
 
 	public function newResource(kind) {

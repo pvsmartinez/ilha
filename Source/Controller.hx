@@ -25,7 +25,8 @@ class Controller extends Sprite
   public function everyFrame():Void {
     game.player.move(keys[Keyboard.LEFT], keys[Keyboard.UP], keys[Keyboard.RIGHT], keys[Keyboard.DOWN]);
     if (keys[actionKey]) {
-      game.player.action(game.sources);
+      var resource:Resource = game.player.action(game.sources);
+      game.createResource(resource);
       keys[actionKey] = false;
     }
   }

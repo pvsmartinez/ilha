@@ -26,12 +26,12 @@ class Source extends Stuff {
     }
   }
 
-  public function extract() {
-    if (this.respaw == -1) {
+  public function extract():Resource {
+    //if (this.respaw == -1) {
       this.removeChild(this.bitmap);
       this.respaw = this.respawTime;
-      //this.parent.newResource(resource);
-    }
+      return new Resource(wood);
+    //}
   }
 
   public function reapear() {
