@@ -9,7 +9,6 @@
 #include <openfl/display/Sprite.h>
 #endif
 HX_DECLARE_CLASS0(Body)
-HX_DECLARE_CLASS0(Component)
 HX_DECLARE_CLASS0(Controller)
 HX_DECLARE_CLASS2(openfl,display,DisplayObject)
 HX_DECLARE_CLASS2(openfl,display,DisplayObjectContainer)
@@ -47,9 +46,6 @@ class HXCPP_CLASS_ATTRIBUTES  Controller_obj : public ::openfl::display::Sprite_
 		::String __ToString() const { return HX_HCSTRING("Controller","\xbc","\x9c","\x6f","\xfb"); }
 
 		Array< bool > keys;
-		virtual Void interact( ::Body target,Array< ::Dynamic > stuff);
-		Dynamic interact_dyn();
-
 		virtual Void move( ::Body target);
 		Dynamic move_dyn();
 

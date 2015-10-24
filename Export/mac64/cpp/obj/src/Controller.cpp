@@ -3,9 +3,6 @@
 #ifndef INCLUDED_Body
 #include <Body.h>
 #endif
-#ifndef INCLUDED_Component
-#include <Component.h>
-#endif
 #ifndef INCLUDED_Controller
 #include <Controller.h>
 #endif
@@ -92,25 +89,6 @@ Dynamic Controller_obj::__Create(hx::DynamicArray inArgs)
 	_result_->__construct();
 	return _result_;}
 
-Void Controller_obj::interact( ::Body target,Array< ::Dynamic > stuff){
-{
-		HX_STACK_FRAME("Controller","interact",0x463a55a8,"Controller.interact","Controller.hx",19,0x2da14382)
-		HX_STACK_THIS(this)
-		HX_STACK_ARG(target,"target")
-		HX_STACK_ARG(stuff,"stuff")
-		HX_STACK_LINE(20)
-		bool tmp = this->keys->__get((int)32);		HX_STACK_VAR(tmp,"tmp");
-		HX_STACK_LINE(20)
-		bool tmp1 = this->keys->__get((int)9);		HX_STACK_VAR(tmp1,"tmp1");
-		HX_STACK_LINE(20)
-		target->interact(Array_obj< bool >::__new().Add(tmp).Add(tmp1),stuff);
-	}
-return null();
-}
-
-
-HX_DEFINE_DYNAMIC_FUNC2(Controller_obj,interact,(void))
-
 Void Controller_obj::move( ::Body target){
 {
 		HX_STACK_FRAME("Controller","move",0xce624c03,"Controller.move","Controller.hx",23,0x2da14382)
@@ -190,9 +168,6 @@ Dynamic Controller_obj::__Field(const ::String &inName,hx::PropertyAccess inCall
 	case 7:
 		if (HX_FIELD_EQ(inName,"onKeyUp") ) { return onKeyUp_dyn(); }
 		break;
-	case 8:
-		if (HX_FIELD_EQ(inName,"interact") ) { return interact_dyn(); }
-		break;
 	case 9:
 		if (HX_FIELD_EQ(inName,"onKeyDown") ) { return onKeyDown_dyn(); }
 	}
@@ -224,7 +199,6 @@ static hx::StaticInfo *sStaticStorageInfo = 0;
 
 static ::String sMemberFields[] = {
 	HX_HCSTRING("keys","\xf4","\xe1","\x06","\x47"),
-	HX_HCSTRING("interact","\xb6","\x8b","\x6c","\x28"),
 	HX_HCSTRING("move","\x11","\xe3","\x60","\x48"),
 	HX_HCSTRING("onKeyDown","\x42","\x22","\xf2","\x73"),
 	HX_HCSTRING("onKeyUp","\x3b","\x58","\x3c","\x75"),

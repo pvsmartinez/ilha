@@ -165,6 +165,12 @@
 #ifndef INCLUDED_Kinds
 #include <Kinds.h>
 #endif
+#ifndef INCLUDED_Sources
+#include <Sources.h>
+#endif
+#ifndef INCLUDED_Shapes
+#include <Shapes.h>
+#endif
 #ifndef INCLUDED_sys_io_FileOutput
 #include <sys/io/FileOutput.h>
 #endif
@@ -188,6 +194,9 @@
 #endif
 #ifndef INCLUDED_openfl_system_SecurityDomain
 #include <openfl/system/SecurityDomain.h>
+#endif
+#ifndef INCLUDED_openfl_filters_BitmapFilterQuality
+#include <openfl/filters/BitmapFilterQuality.h>
 #endif
 #ifndef INCLUDED_openfl_events_TouchEvent
 #include <openfl/events/TouchEvent.h>
@@ -542,6 +551,9 @@
 #endif
 #ifndef INCLUDED_openfl_geom_Matrix3D
 #include <openfl/geom/Matrix3D.h>
+#endif
+#ifndef INCLUDED_openfl_filters_GlowFilter
+#include <openfl/filters/GlowFilter.h>
 #endif
 #ifndef INCLUDED_openfl_filters_BitmapFilter
 #include <openfl/filters/BitmapFilter.h>
@@ -1224,8 +1236,17 @@
 #ifndef INCLUDED_Std
 #include <Std.h>
 #endif
+#ifndef INCLUDED_Source
+#include <Source.h>
+#endif
+#ifndef INCLUDED_Stuff
+#include <Stuff.h>
+#endif
 #ifndef INCLUDED_Reflect
 #include <Reflect.h>
+#endif
+#ifndef INCLUDED_Person
+#include <Person.h>
 #endif
 #ifndef INCLUDED_NMEPreloader
 #include <NMEPreloader.h>
@@ -1235,6 +1256,9 @@
 #endif
 #ifndef INCLUDED_Lambda
 #include <Lambda.h>
+#endif
+#ifndef INCLUDED_Game
+#include <Game.h>
 #endif
 #ifndef INCLUDED_cpp_Lib
 #include <cpp/Lib.h>
@@ -1251,14 +1275,8 @@
 #ifndef INCLUDED_Controller
 #include <Controller.h>
 #endif
-#ifndef INCLUDED_Collectable
-#include <Collectable.h>
-#endif
 #ifndef INCLUDED_Body
 #include <Body.h>
-#endif
-#ifndef INCLUDED_Component
-#include <Component.h>
 #endif
 #ifndef INCLUDED_DocumentClass
 #include <DocumentClass.h>
@@ -1349,6 +1367,8 @@ hx::RegisterResources( hx::GetResources() );
 ::haxe::io::Error_obj::__register();
 ::haxe::StackItem_obj::__register();
 ::Kinds_obj::__register();
+::Sources_obj::__register();
+::Shapes_obj::__register();
 ::sys::io::FileOutput_obj::__register();
 ::sys::io::File_obj::__register();
 ::sys::FileSystem_obj::__register();
@@ -1357,6 +1377,7 @@ hx::RegisterResources( hx::GetResources() );
 ::openfl::ui::GameInput_obj::__register();
 ::openfl::text::Font_obj::__register();
 ::openfl::_system::SecurityDomain_obj::__register();
+::openfl::filters::BitmapFilterQuality_obj::__register();
 ::openfl::events::TouchEvent_obj::__register();
 ::openfl::events::SecurityErrorEvent_obj::__register();
 ::openfl::events::ProgressEvent_obj::__register();
@@ -1475,6 +1496,7 @@ hx::RegisterResources( hx::GetResources() );
 ::openfl::geom::Vector3D_obj::__register();
 ::openfl::geom::Transform_obj::__register();
 ::openfl::geom::Matrix3D_obj::__register();
+::openfl::filters::GlowFilter_obj::__register();
 ::openfl::filters::BitmapFilter_obj::__register();
 ::openfl::events::_EventDispatcher::Listener_obj::__register();
 ::openfl::errors::TypeError_obj::__register();
@@ -1702,18 +1724,20 @@ hx::RegisterResources( hx::GetResources() );
 ::StringTools_obj::__register();
 ::StringBuf_obj::__register();
 ::Std_obj::__register();
+::Source_obj::__register();
+::Stuff_obj::__register();
 ::Reflect_obj::__register();
+::Person_obj::__register();
 ::NMEPreloader_obj::__register();
 ::List_obj::__register();
 ::Lambda_obj::__register();
+::Game_obj::__register();
 ::cpp::Lib_obj::__register();
 ::DefaultAssetLibrary_obj::__register();
 ::lime::AssetLibrary_obj::__register();
 ::Date_obj::__register();
 ::Controller_obj::__register();
-::Collectable_obj::__register();
 ::Body_obj::__register();
-::Component_obj::__register();
 ::DocumentClass_obj::__register();
 ::Main_obj::__register();
 ::openfl::display::Sprite_obj::__register();
@@ -1778,6 +1802,8 @@ hx::RegisterResources( hx::GetResources() );
 ::haxe::io::Error_obj::__boot();
 ::haxe::StackItem_obj::__boot();
 ::Kinds_obj::__boot();
+::Sources_obj::__boot();
+::Shapes_obj::__boot();
 ::lime::math::color::_RGBA::RGBA_Impl__obj::__init__();
 ::lime::_system::CFFI_obj::__init__();
 ::EReg_obj::__boot();
@@ -1881,6 +1907,7 @@ hx::RegisterResources( hx::GetResources() );
 ::openfl::events::ProgressEvent_obj::__boot();
 ::openfl::events::SecurityErrorEvent_obj::__boot();
 ::openfl::events::TouchEvent_obj::__boot();
+::openfl::filters::BitmapFilterQuality_obj::__boot();
 ::openfl::_system::SecurityDomain_obj::__boot();
 ::openfl::text::Font_obj::__boot();
 ::openfl::ui::GameInput_obj::__boot();

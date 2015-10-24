@@ -56,30 +56,44 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
 		#end
 		
 		#if flash
 		
-		className.set ("assets/bush.png", __ASSET__assets_bush_png);
-		type.set ("assets/bush.png", AssetType.IMAGE);
-		className.set ("assets/cherry.png", __ASSET__assets_cherry_png);
-		type.set ("assets/cherry.png", AssetType.IMAGE);
-		className.set ("assets/yoshi.png", __ASSET__assets_yoshi_png);
-		type.set ("assets/yoshi.png", AssetType.IMAGE);
+		className.set ("assets/images/resources/cherry.png", __ASSET__assets_images_resources_cherry_png);
+		type.set ("assets/images/resources/cherry.png", AssetType.IMAGE);
+		className.set ("assets/images/resources/wood.png", __ASSET__assets_images_resources_wood_png);
+		type.set ("assets/images/resources/wood.png", AssetType.IMAGE);
+		className.set ("assets/images/sources/bush.png", __ASSET__assets_images_sources_bush_png);
+		type.set ("assets/images/sources/bush.png", AssetType.IMAGE);
+		className.set ("assets/images/sources/tree.png", __ASSET__assets_images_sources_tree_png);
+		type.set ("assets/images/sources/tree.png", AssetType.IMAGE);
+		className.set ("assets/images/yoshi.png", __ASSET__assets_images_yoshi_png);
+		type.set ("assets/images/yoshi.png", AssetType.IMAGE);
 		
 		
 		#elseif html5
 		
 		var id;
-		id = "assets/bush.png";
+		id = "assets/images/resources/cherry.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
-		id = "assets/cherry.png";
+		id = "assets/images/resources/wood.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
-		id = "assets/yoshi.png";
+		id = "assets/images/sources/bush.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/sources/tree.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/yoshi.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
@@ -101,14 +115,20 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		var useManifest = false;
 		
-		className.set ("assets/bush.png", __ASSET__assets_bush_png);
-		type.set ("assets/bush.png", AssetType.IMAGE);
+		className.set ("assets/images/resources/cherry.png", __ASSET__assets_images_resources_cherry_png);
+		type.set ("assets/images/resources/cherry.png", AssetType.IMAGE);
 		
-		className.set ("assets/cherry.png", __ASSET__assets_cherry_png);
-		type.set ("assets/cherry.png", AssetType.IMAGE);
+		className.set ("assets/images/resources/wood.png", __ASSET__assets_images_resources_wood_png);
+		type.set ("assets/images/resources/wood.png", AssetType.IMAGE);
 		
-		className.set ("assets/yoshi.png", __ASSET__assets_yoshi_png);
-		type.set ("assets/yoshi.png", AssetType.IMAGE);
+		className.set ("assets/images/sources/bush.png", __ASSET__assets_images_sources_bush_png);
+		type.set ("assets/images/sources/bush.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/sources/tree.png", __ASSET__assets_images_sources_tree_png);
+		type.set ("assets/images/sources/tree.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/yoshi.png", __ASSET__assets_images_yoshi_png);
+		type.set ("assets/images/yoshi.png", AssetType.IMAGE);
 		
 		
 		if (useManifest) {
@@ -827,12 +847,16 @@ class DefaultAssetLibrary extends AssetLibrary {
 #if !display
 #if flash
 
-@:keep @:bind #if display private #end class __ASSET__assets_bush_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep @:bind #if display private #end class __ASSET__assets_cherry_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep @:bind #if display private #end class __ASSET__assets_yoshi_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_resources_cherry_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_resources_wood_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_sources_bush_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_sources_tree_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_yoshi_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 
 
 #elseif html5
+
+
 
 
 
@@ -846,9 +870,11 @@ class DefaultAssetLibrary extends AssetLibrary {
 #if (windows || mac || linux || cpp)
 
 
-@:image("Assets/bush.png") #if display private #end class __ASSET__assets_bush_png extends lime.graphics.Image {}
-@:image("Assets/cherry.png") #if display private #end class __ASSET__assets_cherry_png extends lime.graphics.Image {}
-@:image("Assets/yoshi.png") #if display private #end class __ASSET__assets_yoshi_png extends lime.graphics.Image {}
+@:image("Assets/images/resources/cherry.png") #if display private #end class __ASSET__assets_images_resources_cherry_png extends lime.graphics.Image {}
+@:image("Assets/images/resources/wood.png") #if display private #end class __ASSET__assets_images_resources_wood_png extends lime.graphics.Image {}
+@:image("Assets/images/sources/bush.png") #if display private #end class __ASSET__assets_images_sources_bush_png extends lime.graphics.Image {}
+@:image("Assets/images/sources/tree.png") #if display private #end class __ASSET__assets_images_sources_tree_png extends lime.graphics.Image {}
+@:image("Assets/images/yoshi.png") #if display private #end class __ASSET__assets_images_yoshi_png extends lime.graphics.Image {}
 
 
 

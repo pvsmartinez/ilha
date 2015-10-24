@@ -9,6 +9,8 @@ class Controller extends Sprite
 {
 
   private var keys:Array<Bool> = [];
+  private var actionKey:Int = Keyboard.SPACE;
+  private var game:Game;
 
 	public function new() {
     super();
@@ -16,12 +18,16 @@ class Controller extends Sprite
     Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
 	}
 
-  public function interact(target:Body, stuff:Array<Component>) {
-    target.interact([keys[Keyboard.SPACE], keys[Keyboard.TAB]],stuff);
+  public function setGame(game:Game) {
+    this.game = game;
   }
 
-  public function move(target:Body):Void {
-    target.move(keys[Keyboard.LEFT], keys[Keyboard.UP], keys[Keyboard.RIGHT], keys[Keyboard.DOWN]);
+  public function everyFrame():Void {
+    game.player.move(keys[Keyboard.LEFT], keys[Keyboard.UP], keys[Keyboard.RIGHT], keys[Keyboard.DOWN]);
+    if (keys[actionKey]) {
+      game.player.action(game.sources);
+      keys[actionKey] = false;
+    }
   }
 
   private function onKeyDown(evt:KeyboardEvent):Void {

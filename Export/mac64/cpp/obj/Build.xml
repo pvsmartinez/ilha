@@ -261,6 +261,13 @@
    <depend name="include/openfl/geom/Orientation3D.h"/>
    <depend name="include/openfl/geom/Vector3D.h"/>
   </file>
+  <file name="src/openfl/filters/GlowFilter.cpp">
+   <depend name="include/openfl/filters/BitmapFilter.h"/>
+   <depend name="include/openfl/filters/GlowFilter.h"/>
+  </file>
+  <file name="src/openfl/filters/BitmapFilterQuality.cpp">
+   <depend name="include/openfl/filters/BitmapFilterQuality.h"/>
+  </file>
   <file name="src/openfl/filters/BitmapFilter.cpp">
    <depend name="include/openfl/filters/BitmapFilter.h"/>
   </file>
@@ -3304,6 +3311,9 @@
   <file name="src/Sys.cpp">
    <depend name="include/Sys.h"/>
   </file>
+  <file name="src/Kinds.cpp">
+   <depend name="include/Kinds.h"/>
+  </file>
   <file name="src/StringTools.cpp">
    <depend name="include/StringTools.h"/>
   </file>
@@ -3314,8 +3324,53 @@
   <file name="src/Std.cpp">
    <depend name="include/Std.h"/>
   </file>
+  <file name="src/Source.cpp">
+   <depend name="include/Body.h"/>
+   <depend name="include/Source.h"/>
+   <depend name="include/Sources.h"/>
+   <depend name="include/Std.h"/>
+   <depend name="include/Stuff.h"/>
+   <depend name="include/openfl/display/DisplayObject.h"/>
+   <depend name="include/openfl/display/DisplayObjectContainer.h"/>
+   <depend name="include/openfl/display/IBitmapDrawable.h"/>
+   <depend name="include/openfl/display/InteractiveObject.h"/>
+   <depend name="include/openfl/display/Sprite.h"/>
+   <depend name="include/openfl/events/EventDispatcher.h"/>
+   <depend name="include/openfl/events/IEventDispatcher.h"/>
+  </file>
+  <file name="src/Stuff.cpp">
+   <depend name="include/Body.h"/>
+   <depend name="include/Person.h"/>
+   <depend name="include/Stuff.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/openfl/display/Bitmap.h"/>
+   <depend name="include/openfl/display/DisplayObject.h"/>
+   <depend name="include/openfl/display/DisplayObjectContainer.h"/>
+   <depend name="include/openfl/display/IBitmapDrawable.h"/>
+   <depend name="include/openfl/display/InteractiveObject.h"/>
+   <depend name="include/openfl/display/Sprite.h"/>
+   <depend name="include/openfl/events/EventDispatcher.h"/>
+   <depend name="include/openfl/events/IEventDispatcher.h"/>
+   <depend name="include/openfl/filters/BitmapFilter.h"/>
+   <depend name="include/openfl/filters/BitmapFilterQuality.h"/>
+   <depend name="include/openfl/filters/GlowFilter.h"/>
+  </file>
+  <file name="src/Sources.cpp">
+   <depend name="include/Sources.h"/>
+  </file>
   <file name="src/Reflect.cpp">
    <depend name="include/Reflect.h"/>
+  </file>
+  <file name="src/Person.cpp">
+   <depend name="include/Body.h"/>
+   <depend name="include/Person.h"/>
+   <depend name="include/openfl/display/DisplayObject.h"/>
+   <depend name="include/openfl/display/DisplayObjectContainer.h"/>
+   <depend name="include/openfl/display/IBitmapDrawable.h"/>
+   <depend name="include/openfl/display/InteractiveObject.h"/>
+   <depend name="include/openfl/display/Sprite.h"/>
+   <depend name="include/openfl/events/EventDispatcher.h"/>
+   <depend name="include/openfl/events/IEventDispatcher.h"/>
   </file>
   <file name="src/NMEPreloader.cpp">
    <depend name="include/NMEPreloader.h"/>
@@ -3338,6 +3393,27 @@
   </file>
   <file name="src/Lambda.cpp">
    <depend name="include/Lambda.h"/>
+  </file>
+  <file name="src/Game.cpp">
+   <depend name="include/Body.h"/>
+   <depend name="include/Controller.h"/>
+   <depend name="include/Game.h"/>
+   <depend name="include/Person.h"/>
+   <depend name="include/Source.h"/>
+   <depend name="include/Sources.h"/>
+   <depend name="include/Stuff.h"/>
+   <depend name="include/lime/app/IModule.h"/>
+   <depend name="include/openfl/Lib.h"/>
+   <depend name="include/openfl/display/DisplayObject.h"/>
+   <depend name="include/openfl/display/DisplayObjectContainer.h"/>
+   <depend name="include/openfl/display/IBitmapDrawable.h"/>
+   <depend name="include/openfl/display/InteractiveObject.h"/>
+   <depend name="include/openfl/display/MovieClip.h"/>
+   <depend name="include/openfl/display/Sprite.h"/>
+   <depend name="include/openfl/display/Stage.h"/>
+   <depend name="include/openfl/events/Event.h"/>
+   <depend name="include/openfl/events/EventDispatcher.h"/>
+   <depend name="include/openfl/events/IEventDispatcher.h"/>
   </file>
   <file name="src/EReg.cpp">
    <depend name="include/EReg.h"/>
@@ -3390,7 +3466,6 @@
   </file>
   <file name="src/Controller.cpp">
    <depend name="include/Body.h"/>
-   <depend name="include/Component.h"/>
    <depend name="include/Controller.h"/>
    <depend name="include/lime/app/IModule.h"/>
    <depend name="include/openfl/Lib.h"/>
@@ -3406,34 +3481,8 @@
    <depend name="include/openfl/events/IEventDispatcher.h"/>
    <depend name="include/openfl/events/KeyboardEvent.h"/>
   </file>
-  <file name="src/Collectable.cpp">
-   <depend name="include/Collectable.h"/>
-   <depend name="include/Component.h"/>
-   <depend name="include/Kinds.h"/>
-   <depend name="include/openfl/display/DisplayObject.h"/>
-   <depend name="include/openfl/display/DisplayObjectContainer.h"/>
-   <depend name="include/openfl/display/IBitmapDrawable.h"/>
-   <depend name="include/openfl/display/InteractiveObject.h"/>
-   <depend name="include/openfl/display/Sprite.h"/>
-   <depend name="include/openfl/events/EventDispatcher.h"/>
-   <depend name="include/openfl/events/IEventDispatcher.h"/>
-  </file>
-  <file name="src/Kinds.cpp">
-   <depend name="include/Kinds.h"/>
-  </file>
   <file name="src/Body.cpp">
    <depend name="include/Body.h"/>
-   <depend name="include/Component.h"/>
-   <depend name="include/openfl/display/DisplayObject.h"/>
-   <depend name="include/openfl/display/DisplayObjectContainer.h"/>
-   <depend name="include/openfl/display/IBitmapDrawable.h"/>
-   <depend name="include/openfl/display/InteractiveObject.h"/>
-   <depend name="include/openfl/display/Sprite.h"/>
-   <depend name="include/openfl/events/EventDispatcher.h"/>
-   <depend name="include/openfl/events/IEventDispatcher.h"/>
-  </file>
-  <file name="src/Component.cpp">
-   <depend name="include/Component.h"/>
    <depend name="include/openfl/Assets.h"/>
    <depend name="include/openfl/display/Bitmap.h"/>
    <depend name="include/openfl/display/BitmapData.h"/>
@@ -3446,6 +3495,9 @@
    <depend name="include/openfl/display/Sprite.h"/>
    <depend name="include/openfl/events/EventDispatcher.h"/>
    <depend name="include/openfl/events/IEventDispatcher.h"/>
+  </file>
+  <file name="src/Shapes.cpp">
+   <depend name="include/Shapes.h"/>
   </file>
   <file name="src/DocumentClass.cpp">
    <depend name="include/DocumentClass.h"/>
@@ -3462,22 +3514,13 @@
    <depend name="include/openfl/events/IEventDispatcher.h"/>
   </file>
   <file name="src/Main.cpp">
-   <depend name="include/Body.h"/>
-   <depend name="include/Collectable.h"/>
-   <depend name="include/Component.h"/>
-   <depend name="include/Controller.h"/>
-   <depend name="include/Kinds.h"/>
+   <depend name="include/Game.h"/>
    <depend name="include/Main.h"/>
-   <depend name="include/lime/app/IModule.h"/>
-   <depend name="include/openfl/Lib.h"/>
    <depend name="include/openfl/display/DisplayObject.h"/>
    <depend name="include/openfl/display/DisplayObjectContainer.h"/>
    <depend name="include/openfl/display/IBitmapDrawable.h"/>
    <depend name="include/openfl/display/InteractiveObject.h"/>
-   <depend name="include/openfl/display/MovieClip.h"/>
    <depend name="include/openfl/display/Sprite.h"/>
-   <depend name="include/openfl/display/Stage.h"/>
-   <depend name="include/openfl/events/Event.h"/>
    <depend name="include/openfl/events/EventDispatcher.h"/>
    <depend name="include/openfl/events/IEventDispatcher.h"/>
   </file>
@@ -3682,6 +3725,8 @@
    <depend name="include/haxe/io/Error.h"/>
    <depend name="include/haxe/StackItem.h"/>
    <depend name="include/Kinds.h"/>
+   <depend name="include/Sources.h"/>
+   <depend name="include/Shapes.h"/>
    <depend name="include/sys/io/FileOutput.h"/>
    <depend name="include/sys/io/File.h"/>
    <depend name="include/sys/FileSystem.h"/>
@@ -3690,6 +3735,7 @@
    <depend name="include/openfl/ui/GameInput.h"/>
    <depend name="include/openfl/text/Font.h"/>
    <depend name="include/openfl/system/SecurityDomain.h"/>
+   <depend name="include/openfl/filters/BitmapFilterQuality.h"/>
    <depend name="include/openfl/events/TouchEvent.h"/>
    <depend name="include/openfl/events/SecurityErrorEvent.h"/>
    <depend name="include/openfl/events/ProgressEvent.h"/>

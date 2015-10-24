@@ -1,38 +1,54 @@
 package ;
 
-class Body extends Component
-{
+import openfl.display.Bitmap;
+import openfl.display.Sprite;
+import openfl.Assets;
 
-	public function new()
-	{
-		super(50);
-    super.addPng("yoshi");
+enum Shapes {
+	circle;
+	square;
+}
+
+class Body extends Sprite {
+
+	public var speed:Int;
+
+	private var img:String;
+	private var bitmap:Bitmap;
+
+	public function new(img:String, width:Int, height:Int) {
+		super();
+		this.img = "assets/images/"+img+".png";
+    addHitArea(width, height);
+		addPng();
 	}
 
-	public function interact(keys:Array<Bool>,stuff:Array<Component>):Void {
-		for (cmp in stuff) {
-			if(this.hitTestObject(cmp)) {
-				if(keys[0]){
-					cmp.action(true);
-				} else {
-					cmp.action(false);
-				}
-			}
-		}
+	private function addHitArea(width:Int, height:Int):Void {
+		this.graphics.beginFill(0xffffff, 0.3);
+		this.graphics.drawRect(-width/2, -height/2, width, height);
+		this.graphics.endFill();
 	}
 
-  public function move(l:Bool, u:Bool, r:Bool, d:Bool):Void {
+  private function addPng():Void {
+    var bitmapData = Assets.getBitmapData (this.img);
+    this.bitmap = new Bitmap(bitmapData);
+    this.addChild(this.bitmap);
+    bitmap.x = - this.bitmap.width / 2;
+    bitmap.y = - this.bitmap.height / 2;
+  }
+
+	public function move(l:Bool, u:Bool, r:Bool, d:Bool):Void {
     if (l) {
-      this.x -= 5;
+      this.x -= this.speed;
     }
     if (u) {
-      this.y -= 5;
+      this.y -= this.speed;
     }
     if (r) {
-      this.x += 5;
+      this.x += this.speed;
     }
     if (d) {
-      this.y += 5;
+      this.y += this.speed;
     }
   }
 

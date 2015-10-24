@@ -30,15 +30,23 @@ class ApplicationMain {
 		var types = [];
 		
 		
-		urls.push ("assets/bush.png");
+		urls.push ("assets/images/resources/cherry.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
-		urls.push ("assets/cherry.png");
+		urls.push ("assets/images/resources/wood.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
-		urls.push ("assets/yoshi.png");
+		urls.push ("assets/images/sources/bush.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/sources/tree.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/yoshi.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
@@ -102,7 +110,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "97",
+			build: "192",
 			company: "Company Name",
 			file: "Ilha",
 			fps: 30,
