@@ -31,30 +31,29 @@ class Person extends Body {
 				referenceObject = resources[i-1];
 			}
 
-			if(!resources[i].hitTestObject(referenceObject)) {
-				var dx = resources[i].x - this.x;
-				var dy = resources[i].y - this.y;
-				var l:Bool;
-				var u:Bool;
-				var r:Bool;
-				var d:Bool;
+			// Pedro: Alterei o if para mover segundo distancia, não hitTestObject
+			// condicional antigo: (!resources[i].hitTestObject(referenceObject))
+			var dx = resources[i].x - referenceObject.x;
+			var dy = resources[i].y - referenceObject.y;
+			var dist = Math.sqrt((dx*dx)+(dy*dy));
+			var followDistance = (resources[i].width + referenceObject.width)/2;
+			if( dist > followDistance ) {
 
-				resources[i].speed = this.speed;
+				var l:Bool = false;
+				var u:Bool = false;
+				var r:Bool = false;
+				var d:Bool = false;
 
-				if(dx > 0){
+				resources[i].speed = Math.floor((dist - followDistance) / 4);
+
+				if(dx > 0 + followDistance/2){
 					l = true;
-					r = false;
-				}
-				else {
-					l = false;
+				} else if(dx < 0 - followDistance/2) {
 					r = true;
 				}
-				if(dy > 0){
+				if(dy > 0 + followDistance/2){
 					u = true;
-					d = false;
-				}
-				else {
-					u = false;
+				} else if (dy < 0 - followDistance/2) {
 					d = true;
 				}
 
