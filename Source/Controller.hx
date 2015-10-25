@@ -26,7 +26,9 @@ class Controller extends Sprite
     game.player.move(keys[Keyboard.LEFT], keys[Keyboard.UP], keys[Keyboard.RIGHT], keys[Keyboard.DOWN]);
     if (keys[actionKey]) {
       var resource:Resource = game.player.action(game.sources);
-      game.createResource(resource);
+      if(resource != null) {
+        game.createResource(resource);
+      }
       keys[actionKey] = false;
     }
   }

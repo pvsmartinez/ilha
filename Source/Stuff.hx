@@ -15,7 +15,7 @@ class Stuff extends Body {
   public function focus(target:Person) {
     var fters:Array<BitmapFilter> = [];
     if(this.hitTestObject(target)) {
-      fters.push(new GlowFilter(0x00FFFF, 1, 10, 10, 10, BitmapFilterQuality.HIGH));
+      // fters.push(new GlowFilter(0x00FFFF, 1, 10, 10, 10, BitmapFilterQuality.HIGH));
     }
     this.bitmap.filters = fters;
   }

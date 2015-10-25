@@ -20,6 +20,7 @@ class Game extends Sprite {
 	public function everyFrame() {
 		for (st in sources) {
 			st.focus(player);
+			st.reapear();
 		}
 	}
 

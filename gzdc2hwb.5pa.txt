@@ -1,0 +1,31 @@
+﻿Arrumado: respawn dos objetos, quebra quando apertava espaço fora de um objeto
+Implementado: resources seguindo jogador (toscamente)
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch dev
+# Your branch is ahead of 'origin/dev' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+# Changes to be committed:
+#	modified:   .gitignore
+#	modified:   Source/Controller.hx
+#	modified:   Source/Game.hx
+#	modified:   Source/Person.hx
+#	modified:   Source/Source.hx
+#	modified:   Source/Stuff.hx
+#
+# Changes not staged for commit:
+#	modified:   Export/.build
+#	modified:   Export/windows/neko/bin/Ilha.exe
+#	modified:   Export/windows/neko/bin/lime.ndll
+#	modified:   Export/windows/neko/bin/manifest
+#	modified:   Export/windows/neko/haxe/ApplicationMain.hx
+#	modified:   Export/windows/neko/haxe/DefaultAssetLibrary.hx
+#	modified:   Export/windows/neko/haxe/NMEPreloader.hx
+#	modified:   Export/windows/neko/haxe/debug.hxml
+#	modified:   Export/windows/neko/haxe/final.hxml
+#	modified:   Export/windows/neko/haxe/release.hxml
+#	modified:   Export/windows/neko/obj/ApplicationMain.n
+#
+
