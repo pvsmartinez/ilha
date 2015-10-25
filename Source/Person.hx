@@ -7,6 +7,7 @@ class Person extends Body {
 	public function new() {
 		super('yoshi', 50, 50);
 		this.speed = 5;
+		resources = [];
 	}
 
 	override public function move(l:Bool, u:Bool, r:Bool, d:Bool):Void {
@@ -67,9 +68,8 @@ class Person extends Body {
 		for (st in stuff) {
 			if(this.hitTestObject(st)){
 				var resource = st.extract();
-
 				if(resource != null)
-					resources.push(resource);
+					resources.unshift(resource);
 				return resource;
 				// return st.extract();
 			}

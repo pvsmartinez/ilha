@@ -1,7 +1,6 @@
 package;
 
 import openfl.display.Sprite;
-import openfl.display.FPS;
 import openfl.Lib;
 
 class Game extends Sprite {
@@ -9,18 +8,29 @@ class Game extends Sprite {
 	public var player:Person;
 	public var sources:Array<Source> = [];
 	public var resources:Array<Resource> = [];
-	//public var timerToGameOver:Int;
+	public var countToGameOver:Int;
 
 	public function new () {
 		super ();
 		insertStuff();
 		insertPlayer();
+		countToGameOver = 10 * 60;
+	}
+
+	public function everySecond() {
+		countToGameOver --;
+		if (countToGameOver == 0) {
+			trace('oh no!');
+		}
+		for (sr in sources) {
+			sr.everySecond();
+		}
+
 	}
 
 	public function everyFrame() {
 		for (st in sources) {
 			st.focus(player);
-			st.reapear();
 		}
 	}
 
@@ -39,11 +49,11 @@ class Game extends Sprite {
 			rdm = Math.floor(Math.random() * 2);
 			switch ( rdm ) {
 				case 0:
-					source = new Source(bush);
+					source = new Source("bush");
 				case 1:
-					source = new Source(tree);
+					source = new Source("tree");
 				default:
-					source = new Source(tree);
+					source = new Source("tree");
 			}
 			sources.push(source);
 			this.addChild(source);
@@ -66,4 +76,5 @@ class Game extends Sprite {
 		resource.x = player.x;
 		resource.y = player.y;
 	}
+
 }
