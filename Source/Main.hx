@@ -4,43 +4,72 @@ import openfl.display.Sprite;
 import openfl.utils.Timer;
 import openfl.events.Event;
 import openfl.events.TimerEvent;
+import openfl.Lib;
 
 enum GameState {
   mainMenu;
-  paused;
-  startToPlay;
   playing;
   gameOver;
 }
 
 class Main extends Sprite {
 
-  private var game:Game;
-	private var ctrl:Controller;
   private var timer:Timer;
   private var state:GameState;
 
+  private var menu:Menu;
+  private var game:Game;
+	private var ctrl:Controller;
+
   public function new() {
     super();
-    this.state = startToPlay;
+
+    state = mainMenu;
+    timer = new Timer(1000);
+		timer.addEventListener(TimerEvent.TIMER, everySecond);
+		timer.start();
+    setGameState("mainMenu");
+
+    ctrl = new Controller();
 		this.addEventListener(Event.ENTER_FRAME, everyFrame);
-    this.timer = new Timer(1000);
-		this.timer.addEventListener(TimerEvent.TIMER, everySecond);
-		this.timer.start();
+    Lib.current.stage.addEventListener("nextState", nextState);
   }
 
-  private function everyFrame(evt:Event):Void {
+  private function nextState(e:Event) {
     switch ( state ) {
       case mainMenu:
-      case paused:
-      case startToPlay:
-        ctrl = new Controller();
+        setGameState("playing");
+      case playing:
+        setGameState("gameOver");
+      case gameOver:
+        setGameState("mainMenu");
+    }
+  }
+
+  public function setGameState(newState:String) {
+    state = Type.createEnum(GameState, newState);
+    switch ( state ) {
+      case mainMenu:
+        menu = new Menu();
+        this.addChild(menu);
+      case playing:
+        this.removeChild(menu);
+        menu = null;
         game = new Game();
         ctrl.setGame(game);
         this.addChild(game);
-        this.state = playing;
+        state = playing;
+      case gameOver:
+        this.removeChild(game);
+        game = null;
+    }
+  }
+
+  private function everyFrame(evt:Event):Void {
+    ctrl.everyFrame(Std.string(state));
+    switch ( state ) {
+      case mainMenu:
       case playing:
-        ctrl.everyFrame();
         game.everyFrame();
       case gameOver:
     }
@@ -49,8 +78,6 @@ class Main extends Sprite {
   private function everySecond(event:TimerEvent):Void {
     switch ( state ) {
       case mainMenu:
-      case paused:
-      case startToPlay:
       case playing:
         game.everySecond();
       case gameOver:

@@ -18,7 +18,7 @@ class Body extends Sprite {
 
 	public function new(img:String, width:Int, height:Int) {
 		super();
-		this.img = "assets/images/"+img+".png";
+		this.img = "img/"+img+".png";
     addHitArea(width, height);
 		addPng();
 	}
@@ -38,18 +38,17 @@ class Body extends Sprite {
   }
 
 	public function move(l:Bool, u:Bool, r:Bool, d:Bool):Void {
-    if (l) {
-      this.x -= this.speed;
-    }
-    if (u) {
-      this.y -= this.speed;
-    }
-    if (r) {
-      this.x += this.speed;
-    }
-    if (d) {
-      this.y += this.speed;
-    }
+		var spd:Float = this.speed;
+		if ((l && u) || (l && d) || (r && u) || (r && d))
+			spd = spd * Math.sqrt(2)/2;
+    if (l)
+      this.x -= spd;
+    if (u)
+      this.y -= spd;
+    if (r)
+      this.x += spd;
+    if (d)
+      this.y += spd;
   }
 
 }

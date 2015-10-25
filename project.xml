@@ -9,6 +9,9 @@
 	<haxelib name="openfl" />
 
 	<assets path="Assets" rename="assets" />
+	<assets path="Assets/fonts" rename="fonts" />
+	<assets path="Assets/img" rename="img" />
+	<assets path="Assets/audio" rename="audio" type="audio"/>
 	<window background="#333333" fps="30" />
 	<window width="800" height="500" unless="mobile" />
 </project>

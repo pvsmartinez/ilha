@@ -52,6 +52,13 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if (openfl && !flash)
 		
+		openfl.text.Font.registerFont (__ASSET__OPENFL__assets_fonts_pixelart_ttf);
+		
+		
+		
+		
+		
+		openfl.text.Font.registerFont (__ASSET__OPENFL__fonts_pixelart_ttf);
 		
 		
 		
@@ -62,34 +69,69 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if flash
 		
-		path.set ("assets/images/resources/cherry.png", "assets/images/resources/cherry.png");
-		type.set ("assets/images/resources/cherry.png", AssetType.IMAGE);
-		path.set ("assets/images/resources/wood.png", "assets/images/resources/wood.png");
-		type.set ("assets/images/resources/wood.png", AssetType.IMAGE);
-		path.set ("assets/images/sources/bush.png", "assets/images/sources/bush.png");
-		type.set ("assets/images/sources/bush.png", AssetType.IMAGE);
-		path.set ("assets/images/sources/tree.png", "assets/images/sources/tree.png");
-		type.set ("assets/images/sources/tree.png", AssetType.IMAGE);
-		path.set ("assets/images/yoshi.png", "assets/images/yoshi.png");
-		type.set ("assets/images/yoshi.png", AssetType.IMAGE);
+		path.set ("assets/fonts/pixelart.ttf", "assets/fonts/pixelart.ttf");
+		type.set ("assets/fonts/pixelart.ttf", AssetType.FONT);
+		path.set ("assets/img/resources/cherry.png", "assets/img/resources/cherry.png");
+		type.set ("assets/img/resources/cherry.png", AssetType.IMAGE);
+		path.set ("assets/img/resources/wood.png", "assets/img/resources/wood.png");
+		type.set ("assets/img/resources/wood.png", AssetType.IMAGE);
+		path.set ("assets/img/sources/bush.png", "assets/img/sources/bush.png");
+		type.set ("assets/img/sources/bush.png", AssetType.IMAGE);
+		path.set ("assets/img/sources/tree.png", "assets/img/sources/tree.png");
+		type.set ("assets/img/sources/tree.png", AssetType.IMAGE);
+		path.set ("assets/img/yoshi.png", "assets/img/yoshi.png");
+		type.set ("assets/img/yoshi.png", AssetType.IMAGE);
+		path.set ("fonts/pixelart.ttf", "fonts/pixelart.ttf");
+		type.set ("fonts/pixelart.ttf", AssetType.FONT);
+		path.set ("img/resources/cherry.png", "img/resources/cherry.png");
+		type.set ("img/resources/cherry.png", AssetType.IMAGE);
+		path.set ("img/resources/wood.png", "img/resources/wood.png");
+		type.set ("img/resources/wood.png", AssetType.IMAGE);
+		path.set ("img/sources/bush.png", "img/sources/bush.png");
+		type.set ("img/sources/bush.png", AssetType.IMAGE);
+		path.set ("img/sources/tree.png", "img/sources/tree.png");
+		type.set ("img/sources/tree.png", AssetType.IMAGE);
+		path.set ("img/yoshi.png", "img/yoshi.png");
+		type.set ("img/yoshi.png", AssetType.IMAGE);
 		
 		
 		#elseif html5
 		
 		var id;
-		id = "assets/images/resources/cherry.png";
+		id = "assets/fonts/pixelart.ttf";
+		path.set (id, id);
+		type.set (id, AssetType.FONT);
+		id = "assets/img/resources/cherry.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "assets/images/resources/wood.png";
+		id = "assets/img/resources/wood.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "assets/images/sources/bush.png";
+		id = "assets/img/sources/bush.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "assets/images/sources/tree.png";
+		id = "assets/img/sources/tree.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "assets/images/yoshi.png";
+		id = "assets/img/yoshi.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "fonts/pixelart.ttf";
+		path.set (id, id);
+		type.set (id, AssetType.FONT);
+		id = "img/resources/cherry.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/resources/wood.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/sources/bush.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/sources/tree.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/yoshi.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		
@@ -109,6 +151,17 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		
+		className.set ("assets/fonts/pixelart.ttf", __ASSET__assets_fonts_pixelart_ttf);
+		type.set ("assets/fonts/pixelart.ttf", AssetType.FONT);
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		
+		className.set ("fonts/pixelart.ttf", __ASSET__fonts_pixelart_ttf);
+		type.set ("fonts/pixelart.ttf", AssetType.FONT);
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -839,8 +892,22 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
+
 #elseif html5
 
+@:keep #if display private #end class __ASSET__assets_fonts_pixelart_ttf extends lime.text.Font { public function new () { super (); name = "Pixel-Art Regular"; } } 
+
+
+
+
+
+@:keep #if display private #end class __ASSET__fonts_pixelart_ttf extends lime.text.Font { public function new () { super (); name = "Pixel-Art Regular"; } } 
 
 
 
@@ -850,6 +917,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 #else
 
+@:keep #if display private #end class __ASSET__assets_fonts_pixelart_ttf extends lime.text.Font { public function new () { __fontPath = #if (ios || tvos) "assets/" + #end "assets/fonts/pixelart.ttf"; name = "Pixel-Art Regular"; super (); }}
+@:keep #if display private #end class __ASSET__fonts_pixelart_ttf extends lime.text.Font { public function new () { __fontPath = #if (ios || tvos) "assets/" + #end "fonts/pixelart.ttf"; name = "Pixel-Art Regular"; super (); }}
 
 
 #if (windows || mac || linux || cpp)
@@ -862,6 +931,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 #end
 
 #if (openfl && !flash)
+@:keep #if display private #end class __ASSET__OPENFL__assets_fonts_pixelart_ttf extends openfl.text.Font { public function new () { __fontPath = #if (ios || tvos) "assets/" + #end "assets/fonts/pixelart.ttf"; name = "Pixel-Art Regular"; super (); }}
+@:keep #if display private #end class __ASSET__OPENFL__fonts_pixelart_ttf extends openfl.text.Font { public function new () { __fontPath = #if (ios || tvos) "assets/" + #end "fonts/pixelart.ttf"; name = "Pixel-Art Regular"; super (); }}
 
 #end
 

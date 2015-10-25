@@ -6,7 +6,7 @@ class Person extends Body {
 
 	public function new() {
 		super('yoshi', 50, 50);
-		this.speed = 5;
+		this.speed = 8;
 		resources = [];
 	}
 
@@ -20,7 +20,7 @@ class Person extends Body {
 		resources.push(resource);
 	}
 
-	public function moveResources():Void {
+	private function moveResources():Void {
 		for(i in 0 ... resources.length){
 
 			var referenceObject:Body;
@@ -38,7 +38,7 @@ class Person extends Body {
 			var dy = resources[i].y - referenceObject.y;
 			var dist = Math.sqrt((dx*dx)+(dy*dy));
 			var followDistance = (resources[i].width + referenceObject.width)/2;
-			if( dist > followDistance ) {
+			if( dist > followDistance + 5 ) {
 
 				var l:Bool = false;
 				var u:Bool = false;
@@ -71,7 +71,6 @@ class Person extends Body {
 				if(resource != null)
 					resources.unshift(resource);
 				return resource;
-				// return st.extract();
 			}
 		}
 		return null;
