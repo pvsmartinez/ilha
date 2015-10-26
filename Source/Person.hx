@@ -16,13 +16,14 @@ class Person extends Body {
 		}
 	}
 
-	public function fishing():Int {
-		if (1) { /*ferramenta == fishing_rod*/
-			
+	/*public function fishing():boolean {
+		if (1) { /*ferramenta == fishing_rod
+			return true;
 		}
 
-		/*else {
+		else {
 			balao erro
-		}*/
-	}
+			return false;
+		}
+	}*/
 }
