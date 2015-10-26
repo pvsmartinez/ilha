@@ -38,6 +38,10 @@ class ApplicationMain {
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
+		urls.push ("assets/images/sea.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
 		urls.push ("assets/images/sources/bush.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
@@ -110,7 +114,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "192",
+			build: "199",
 			company: "Company Name",
 			file: "Ilha",
 			fps: 30,

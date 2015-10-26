@@ -9,10 +9,14 @@ class Game extends Sprite {
 	public var sources:Array<Source> = [];
 	public var resources:Array<Resource> = [];
 
+	public var sea:Sea;
+
 	public function new () {
 		super ();
 		insertStuff();
 		insertPlayer();
+
+		insertSea();
 	}
 
 	public function everyFrame() {
@@ -47,6 +51,13 @@ class Game extends Sprite {
 			source.x = Math.random() * Lib.current.stage.stageWidth;
 			source.y = Math.random() * Lib.current.stage.stageHeight;
 		}
+	}
+
+		private function insertSea() {
+		sea = new Sea();
+		this.addChild(sea);
+		sea.x = Lib.current.stage.stageWidth/2;
+		sea.y = Lib.current.stage.stageHeight - 50;
 	}
 
 	public function newResource(kind) {

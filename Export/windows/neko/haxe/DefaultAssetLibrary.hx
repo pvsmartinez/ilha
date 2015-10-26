@@ -56,28 +56,40 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
 		#end
 		
 		#if flash
 		
-		path.set ("assets/bush.png", "assets/bush.png");
-		type.set ("assets/bush.png", AssetType.IMAGE);
-		path.set ("assets/cherry.png", "assets/cherry.png");
-		type.set ("assets/cherry.png", AssetType.IMAGE);
-		path.set ("assets/yoshi.png", "assets/yoshi.png");
-		type.set ("assets/yoshi.png", AssetType.IMAGE);
+		path.set ("assets/images/resources/cherry.png", "assets/images/resources/cherry.png");
+		type.set ("assets/images/resources/cherry.png", AssetType.IMAGE);
+		path.set ("assets/images/resources/wood.png", "assets/images/resources/wood.png");
+		type.set ("assets/images/resources/wood.png", AssetType.IMAGE);
+		path.set ("assets/images/sources/bush.png", "assets/images/sources/bush.png");
+		type.set ("assets/images/sources/bush.png", AssetType.IMAGE);
+		path.set ("assets/images/sources/tree.png", "assets/images/sources/tree.png");
+		type.set ("assets/images/sources/tree.png", AssetType.IMAGE);
+		path.set ("assets/images/yoshi.png", "assets/images/yoshi.png");
+		type.set ("assets/images/yoshi.png", AssetType.IMAGE);
 		
 		
 		#elseif html5
 		
 		var id;
-		id = "assets/bush.png";
+		id = "assets/images/resources/cherry.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "assets/cherry.png";
+		id = "assets/images/resources/wood.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "assets/yoshi.png";
+		id = "assets/images/sources/bush.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/sources/tree.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/yoshi.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		
@@ -97,6 +109,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -823,7 +837,11 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
 #elseif html5
+
+
 
 
 
