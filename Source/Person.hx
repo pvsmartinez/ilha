@@ -17,12 +17,12 @@ class Person extends Body {
 	}
 
 	public function fishing():Int {
-		if (/*ferramenta == fishing_rod*/1) {
+		if (1) { /*ferramenta == fishing_rod*/
 			
 		}
 
 		/*else {
 			balao erro
-		}/*
+		}*/
 	}
 }
