@@ -43,10 +43,9 @@ class Controller extends Sprite
         if (keys[menuKey]) {
           if(canProduceFishingRod()){
             createFishingRod();
-            trace ("Created fishing rod!");
           } else {
             trace ("Cannot create fishing rod!");
-          } 
+          }
           keys[menuKey] = false;
         }
     }
@@ -56,18 +55,19 @@ class Controller extends Sprite
     var woodCount:Int = 0;
     var cherryCount:Int = 0;
     for (i in 0 ... game.player.resources.length) {
-      if (game.player.resources[i].kind == wood){ 
+      if (game.player.resources[i].kind == wood){
         woodCount++;
       }else if(game.player.resources[i].kind == cherry){
         cherryCount++;
       }
-    }    
-    return (cherryCount >= 1 && woodCount >= 3);    
+    }
+    return (cherryCount >= 1 && woodCount >= 3);
   }
 
   private function createFishingRod():Void{
     game.consumeResource(new Resource("cherry"), 1);
     game.consumeResource(new Resource("wood"), 3);
+    game.createTool(new Tool("fishingRod"));
   }
 
   private function onKeyDown(evt:KeyboardEvent):Void {

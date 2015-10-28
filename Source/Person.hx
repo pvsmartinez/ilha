@@ -3,6 +3,7 @@ package ;
 class Person extends Body {
 
 	public var resources:Array<Resource> = [];
+	public var tool:Tool;
 
 	public function new() {
 		super('yoshi', 50, 50);
@@ -13,11 +14,18 @@ class Person extends Body {
 	override public function move(l:Bool, u:Bool, r:Bool, d:Bool):Void {
 		super.move(l, u, r, d);
 		moveResources();
+		if(tool != null){
+			tool.move(l, u, r, d);
+		}
 
 	}
 
 	public function addResource(resource:Resource) {
 		resources.push(resource);
+	}
+
+	public function addTool(tool:Tool) {
+		this.tool = tool;
 	}
 
 	private function moveResources():Void {
