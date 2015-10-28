@@ -3,6 +3,7 @@ package ;
 enum Resources {
   cherry;
   wood;
+  fish;
 }
 
 class Resource extends Stuff {

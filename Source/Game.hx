@@ -10,10 +10,13 @@ class Game extends Sprite {
 	public var resources:Array<Resource> = [];
 	public var countToGameOver:Int;
 
+	public var sea:Sea;
+
 	public function new () {
 		super ();
 		insertStuff();
 		insertPlayer();
+		insertSea();
 		countToGameOver = 10 * 60;
 	}
 
@@ -77,4 +80,10 @@ class Game extends Sprite {
 		resource.y = player.y;
 	}
 
+	private function insertSea() {
+		sea = new Sea();
+		this.addChild(sea);
+		sea.x = Lib.current.stage.stageWidth/2;
+		sea.y = Lib.current.stage.stageHeight - 50;
+	}
 }

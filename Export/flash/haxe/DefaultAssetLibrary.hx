@@ -58,6 +58,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
 		#end
 		
 		#if flash
@@ -66,6 +67,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/resources/cherry.png", AssetType.IMAGE);
 		className.set ("assets/images/resources/wood.png", __ASSET__assets_images_resources_wood_png);
 		type.set ("assets/images/resources/wood.png", AssetType.IMAGE);
+		className.set ("assets/images/sea.png", __ASSET__assets_images_sea_png);
+		type.set ("assets/images/sea.png", AssetType.IMAGE);
 		className.set ("assets/images/sources/bush.png", __ASSET__assets_images_sources_bush_png);
 		type.set ("assets/images/sources/bush.png", AssetType.IMAGE);
 		className.set ("assets/images/sources/tree.png", __ASSET__assets_images_sources_tree_png);
@@ -82,6 +85,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		type.set (id, AssetType.IMAGE);
 		id = "assets/images/resources/wood.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/sea.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
@@ -120,6 +127,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("assets/images/resources/wood.png", __ASSET__assets_images_resources_wood_png);
 		type.set ("assets/images/resources/wood.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/sea.png", __ASSET__assets_images_sea_png);
+		type.set ("assets/images/sea.png", AssetType.IMAGE);
 		
 		className.set ("assets/images/sources/bush.png", __ASSET__assets_images_sources_bush_png);
 		type.set ("assets/images/sources/bush.png", AssetType.IMAGE);
@@ -849,12 +859,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 @:keep @:bind #if display private #end class __ASSET__assets_images_resources_cherry_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_resources_wood_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_sea_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_sources_bush_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_sources_tree_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_yoshi_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 
 
 #elseif html5
+
 
 
 
@@ -872,6 +884,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 @:image("Assets/images/resources/cherry.png") #if display private #end class __ASSET__assets_images_resources_cherry_png extends lime.graphics.Image {}
 @:image("Assets/images/resources/wood.png") #if display private #end class __ASSET__assets_images_resources_wood_png extends lime.graphics.Image {}
+@:image("Assets/images/sea.png") #if display private #end class __ASSET__assets_images_sea_png extends lime.graphics.Image {}
 @:image("Assets/images/sources/bush.png") #if display private #end class __ASSET__assets_images_sources_bush_png extends lime.graphics.Image {}
 @:image("Assets/images/sources/tree.png") #if display private #end class __ASSET__assets_images_sources_tree_png extends lime.graphics.Image {}
 @:image("Assets/images/yoshi.png") #if display private #end class __ASSET__assets_images_yoshi_png extends lime.graphics.Image {}

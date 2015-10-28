@@ -75,4 +75,15 @@ class Person extends Body {
 		}
 		return null;
 	}
+
+	/*public function fishing():boolean {
+		if (1) { /*ferramenta == fishing_rod
+			return true;
+		}
+
+		else {
+			balao erro
+			return false;
+		}
+	}*/
 }
