@@ -3,6 +3,7 @@ package ;
 class Person extends Body {
 
 	public var resources:Array<Resource> = [];
+	public var tool:Tool;
 
 	public function new() {
 		super('yoshi', 50, 50);
@@ -13,11 +14,18 @@ class Person extends Body {
 	override public function move(l:Bool, u:Bool, r:Bool, d:Bool):Void {
 		super.move(l, u, r, d);
 		moveResources();
+		if(tool != null){
+			tool.move(l, u, r, d);
+		}
 
 	}
 
 	public function addResource(resource:Resource) {
 		resources.push(resource);
+	}
+
+	public function addTool(tool:Tool) {
+		this.tool = tool;
 	}
 
 	private function moveResources():Void {
@@ -86,4 +94,26 @@ class Person extends Body {
 			return false;
 		}
 	}*/
+
+	public function consumeResource(resource:Resource, quantity:Int):Bool {
+		var success:Bool = true;
+		for (i in 0 ... quantity) {
+			success = removeResource(resource);
+		}
+		return success;
+	}
+
+	private function removeResource(resource:Resource){
+		var i:Int = 0;
+		var found:Bool = false;
+		while (i < resources.length && found == false) {
+			if(resources[i].kind == resource.kind){
+				var elem:Resource = resources[i];
+				found = resources.remove(elem);
+				elem.removeChild(elem.bitmap);
+			}
+			i++;
+		}
+		return found;
+	}
 }

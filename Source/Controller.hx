@@ -11,6 +11,7 @@ class Controller extends Sprite
 
   private var keys:Array<Bool> = [];
   private var actionKey:Int = Keyboard.SPACE;
+  private var menuKey:Int = Keyboard.ENTER;
   private var game:Game;
 
 	public function new() {
@@ -39,9 +40,34 @@ class Controller extends Sprite
           }
           keys[actionKey] = false;
         }
+        if (keys[menuKey]) {
+          if(canProduceFishingRod()){
+            createFishingRod();
+          } else {
+            trace ("Cannot create fishing rod!");
+          }
+          keys[menuKey] = false;
+        }
     }
+  }
 
+  private function canProduceFishingRod():Bool{
+    var woodCount:Int = 0;
+    var cherryCount:Int = 0;
+    for (i in 0 ... game.player.resources.length) {
+      if (game.player.resources[i].kind == wood){
+        woodCount++;
+      }else if(game.player.resources[i].kind == cherry){
+        cherryCount++;
+      }
+    }
+    return (cherryCount >= 1 && woodCount >= 3);
+  }
 
+  private function createFishingRod():Void{
+    game.consumeResource(new Resource("cherry"), 1);
+    game.consumeResource(new Resource("wood"), 3);
+    game.createTool(new Tool("fishingRod"));
   }
 
   private function onKeyDown(evt:KeyboardEvent):Void {
