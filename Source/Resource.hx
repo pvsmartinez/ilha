@@ -8,7 +8,7 @@ enum Resources {
 
 class Resource extends Stuff {
 
-  private var kind:Resources;
+  public var kind:Resources;
 
 	public function new(kind:String) {
     var png:String = "resources/" + kind;

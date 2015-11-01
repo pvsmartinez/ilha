@@ -85,5 +85,27 @@ class Game extends Sprite {
 		this.addChild(sea);
 		sea.x = Lib.current.stage.stageWidth/2;
 		sea.y = Lib.current.stage.stageHeight - 50;
+
+	public function consumeResource(resource:Resource, quantity:Int):Bool {
+		var success:Bool = true;
+		for (i in 0 ... quantity) {
+			success = removeResource(resource);
+		}
+		return success;
+	}
+
+	private function removeResource(resource:Resource){
+		var i:Int = 0;
+		var found:Bool = false;
+		while (i < resources.length && found == false) {
+			if(resources[i].kind == resource.kind){
+				var elem:Resource = resources[i];
+				found = resources.remove(elem);
+				found = player.resources.remove(elem);
+				this.removeChild(elem);
+			}
+			i++;
+		}
+		return found;
 	}
 }

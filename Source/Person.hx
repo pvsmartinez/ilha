@@ -86,4 +86,26 @@ class Person extends Body {
 			return false;
 		}
 	}*/
+
+	public function consumeResource(resource:Resource, quantity:Int):Bool {
+		var success:Bool = true;
+		for (i in 0 ... quantity) {
+			success = removeResource(resource);
+		}
+		return success;
+	}
+
+	private function removeResource(resource:Resource){
+		var i:Int = 0;
+		var found:Bool = false;
+		while (i < resources.length && found == false) {
+			if(resources[i].kind == resource.kind){
+				var elem:Resource = resources[i];
+				found = resources.remove(elem);
+				elem.removeChild(elem.bitmap);
+			}
+			i++;
+		}
+		return found;
+	}
 }
