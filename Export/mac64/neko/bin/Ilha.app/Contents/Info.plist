@@ -5,11 +5,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>Ilha</string>
+	<string>ilha</string>
 	<key>CFBundleIconFile</key>
 	<string>icon.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.sample.ilha</string>
+	<string>Ilha</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>haxe</string>
 	<key>CFBundleVersion</key>
-	<string>313</string>
+	<string>196</string>
 	<key>NSAppleScriptEnabled</key>
 	<string>NO</string>
 	<key>LSApplicationCategoryType</key>

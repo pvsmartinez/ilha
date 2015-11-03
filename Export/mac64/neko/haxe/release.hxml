@@ -3,7 +3,7 @@
 -D openfl=3.3.8
 -cp /Users/pedromartinez/haxelib/lime/2,6,8
 -D lime=2.6.8
--cp Source
+-cp src
 -D lime-openal
 -D openfl-next
 -D tools=2.6.8
@@ -17,6 +17,6 @@
 -D mac
 -D desktop
 --remap flash:openfl
--cp Export/mac64/neko/haxe
--neko Export/mac64/neko/obj/ApplicationMain.n
+-cp export/mac64/neko/haxe
+-neko export/mac64/neko/obj/ApplicationMain.n
 --macro keep("Main")

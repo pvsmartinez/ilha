@@ -52,13 +52,23 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if (openfl && !flash)
 		
-		openfl.text.Font.registerFont (__ASSET__OPENFL__assets_fonts_pixelart_ttf);
 		
 		
 		
 		
 		
-		openfl.text.Font.registerFont (__ASSET__OPENFL__fonts_pixelart_ttf);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		openfl.text.Font.registerFont (__ASSET__OPENFL__font_pixelart_ttf);
 		
 		
 		
@@ -69,71 +79,121 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if flash
 		
-		path.set ("assets/fonts/pixelart.ttf", "assets/fonts/pixelart.ttf");
-		type.set ("assets/fonts/pixelart.ttf", AssetType.FONT);
-		path.set ("assets/img/resources/cherry.png", "assets/img/resources/cherry.png");
-		type.set ("assets/img/resources/cherry.png", AssetType.IMAGE);
-		path.set ("assets/img/resources/wood.png", "assets/img/resources/wood.png");
-		type.set ("assets/img/resources/wood.png", AssetType.IMAGE);
-		path.set ("assets/img/sources/bush.png", "assets/img/sources/bush.png");
-		type.set ("assets/img/sources/bush.png", AssetType.IMAGE);
-		path.set ("assets/img/sources/tree.png", "assets/img/sources/tree.png");
-		type.set ("assets/img/sources/tree.png", AssetType.IMAGE);
-		path.set ("assets/img/yoshi.png", "assets/img/yoshi.png");
-		type.set ("assets/img/yoshi.png", AssetType.IMAGE);
-		path.set ("fonts/pixelart.ttf", "fonts/pixelart.ttf");
-		type.set ("fonts/pixelart.ttf", AssetType.FONT);
-		path.set ("img/resources/cherry.png", "img/resources/cherry.png");
-		type.set ("img/resources/cherry.png", AssetType.IMAGE);
-		path.set ("img/resources/wood.png", "img/resources/wood.png");
-		type.set ("img/resources/wood.png", AssetType.IMAGE);
-		path.set ("img/sources/bush.png", "img/sources/bush.png");
-		type.set ("img/sources/bush.png", AssetType.IMAGE);
-		path.set ("img/sources/tree.png", "img/sources/tree.png");
-		type.set ("img/sources/tree.png", AssetType.IMAGE);
-		path.set ("img/yoshi.png", "img/yoshi.png");
-		type.set ("img/yoshi.png", AssetType.IMAGE);
+		path.set ("img/materials/cherry.png", "img/materials/cherry.png");
+		type.set ("img/materials/cherry.png", AssetType.IMAGE);
+		path.set ("img/materials/wood.png", "img/materials/wood.png");
+		type.set ("img/materials/wood.png", AssetType.IMAGE);
+		path.set ("img/spritesheets/healer_f.png", "img/spritesheets/healer_f.png");
+		type.set ("img/spritesheets/healer_f.png", AssetType.IMAGE);
+		path.set ("img/spritesheets/healer_m.png", "img/spritesheets/healer_m.png");
+		type.set ("img/spritesheets/healer_m.png", AssetType.IMAGE);
+		path.set ("img/spritesheets/mage_f.png", "img/spritesheets/mage_f.png");
+		type.set ("img/spritesheets/mage_f.png", AssetType.IMAGE);
+		path.set ("img/spritesheets/mage_m.png", "img/spritesheets/mage_m.png");
+		type.set ("img/spritesheets/mage_m.png", AssetType.IMAGE);
+		path.set ("img/spritesheets/ninja_f.png", "img/spritesheets/ninja_f.png");
+		type.set ("img/spritesheets/ninja_f.png", AssetType.IMAGE);
+		path.set ("img/spritesheets/ninja_m.png", "img/spritesheets/ninja_m.png");
+		type.set ("img/spritesheets/ninja_m.png", AssetType.IMAGE);
+		path.set ("img/spritesheets/ranger_f.png", "img/spritesheets/ranger_f.png");
+		type.set ("img/spritesheets/ranger_f.png", AssetType.IMAGE);
+		path.set ("img/spritesheets/ranger_m.png", "img/spritesheets/ranger_m.png");
+		type.set ("img/spritesheets/ranger_m.png", AssetType.IMAGE);
+		path.set ("img/spritesheets/townfolk1_f.png", "img/spritesheets/townfolk1_f.png");
+		type.set ("img/spritesheets/townfolk1_f.png", AssetType.IMAGE);
+		path.set ("img/spritesheets/townfolk1_m.png", "img/spritesheets/townfolk1_m.png");
+		type.set ("img/spritesheets/townfolk1_m.png", AssetType.IMAGE);
+		path.set ("img/spritesheets/warrior_f.png", "img/spritesheets/warrior_f.png");
+		type.set ("img/spritesheets/warrior_f.png", AssetType.IMAGE);
+		path.set ("img/spritesheets/warrior_m.png", "img/spritesheets/warrior_m.png");
+		type.set ("img/spritesheets/warrior_m.png", AssetType.IMAGE);
+		path.set ("img/tilesets/floor.png", "img/tilesets/floor.png");
+		type.set ("img/tilesets/floor.png", AssetType.IMAGE);
+		path.set ("img/tilesets/trees.png", "img/tilesets/trees.png");
+		type.set ("img/tilesets/trees.png", AssetType.IMAGE);
+		path.set ("font/pixelart.ttf", "font/pixelart.ttf");
+		type.set ("font/pixelart.ttf", AssetType.FONT);
+		path.set ("info/floorMap.json", "info/floorMap.json");
+		type.set ("info/floorMap.json", AssetType.TEXT);
+		path.set ("info/floorTiles.json", "info/floorTiles.json");
+		type.set ("info/floorTiles.json", AssetType.TEXT);
+		path.set ("info/playerAnimation.json", "info/playerAnimation.json");
+		type.set ("info/playerAnimation.json", AssetType.TEXT);
+		path.set ("info/treeMap.json", "info/treeMap.json");
+		type.set ("info/treeMap.json", AssetType.TEXT);
+		path.set ("info/treeTiles.json", "info/treeTiles.json");
+		type.set ("info/treeTiles.json", AssetType.TEXT);
 		
 		
 		#elseif html5
 		
 		var id;
-		id = "assets/fonts/pixelart.ttf";
+		id = "img/materials/cherry.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/materials/wood.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/spritesheets/healer_f.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/spritesheets/healer_m.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/spritesheets/mage_f.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/spritesheets/mage_m.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/spritesheets/ninja_f.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/spritesheets/ninja_m.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/spritesheets/ranger_f.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/spritesheets/ranger_m.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/spritesheets/townfolk1_f.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/spritesheets/townfolk1_m.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/spritesheets/warrior_f.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/spritesheets/warrior_m.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/tilesets/floor.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/tilesets/trees.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "font/pixelart.ttf";
 		path.set (id, id);
 		type.set (id, AssetType.FONT);
-		id = "assets/img/resources/cherry.png";
+		id = "info/floorMap.json";
 		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/img/resources/wood.png";
+		type.set (id, AssetType.TEXT);
+		id = "info/floorTiles.json";
 		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/img/sources/bush.png";
+		type.set (id, AssetType.TEXT);
+		id = "info/playerAnimation.json";
 		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/img/sources/tree.png";
+		type.set (id, AssetType.TEXT);
+		id = "info/treeMap.json";
 		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/img/yoshi.png";
+		type.set (id, AssetType.TEXT);
+		id = "info/treeTiles.json";
 		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "fonts/pixelart.ttf";
-		path.set (id, id);
-		type.set (id, AssetType.FONT);
-		id = "img/resources/cherry.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/resources/wood.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/sources/bush.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/sources/tree.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/yoshi.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
+		type.set (id, AssetType.TEXT);
 		
 		
 		var assetsPrefix = null;
@@ -151,17 +211,25 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		
-		className.set ("assets/fonts/pixelart.ttf", __ASSET__assets_fonts_pixelart_ttf);
-		type.set ("assets/fonts/pixelart.ttf", AssetType.FONT);
-		useManifest = true;
-		useManifest = true;
-		useManifest = true;
-		useManifest = true;
-		useManifest = true;
-		
-		className.set ("fonts/pixelart.ttf", __ASSET__fonts_pixelart_ttf);
-		type.set ("fonts/pixelart.ttf", AssetType.FONT);
+		className.set ("font/pixelart.ttf", __ASSET__font_pixelart_ttf);
+		type.set ("font/pixelart.ttf", AssetType.FONT);
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -899,15 +967,35 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
+
+
+
+
 #elseif html5
 
-@:keep #if display private #end class __ASSET__assets_fonts_pixelart_ttf extends lime.text.Font { public function new () { super (); name = "Pixel-Art Regular"; } } 
 
 
 
 
 
-@:keep #if display private #end class __ASSET__fonts_pixelart_ttf extends lime.text.Font { public function new () { super (); name = "Pixel-Art Regular"; } } 
+
+
+
+
+
+
+
+
+
+
+
+@:keep #if display private #end class __ASSET__font_pixelart_ttf extends lime.text.Font { public function new () { super (); name = "Pixel-Art Regular"; } } 
 
 
 
@@ -917,8 +1005,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 #else
 
-@:keep #if display private #end class __ASSET__assets_fonts_pixelart_ttf extends lime.text.Font { public function new () { __fontPath = #if (ios || tvos) "assets/" + #end "assets/fonts/pixelart.ttf"; name = "Pixel-Art Regular"; super (); }}
-@:keep #if display private #end class __ASSET__fonts_pixelart_ttf extends lime.text.Font { public function new () { __fontPath = #if (ios || tvos) "assets/" + #end "fonts/pixelart.ttf"; name = "Pixel-Art Regular"; super (); }}
+@:keep #if display private #end class __ASSET__font_pixelart_ttf extends lime.text.Font { public function new () { __fontPath = #if (ios || tvos) "assets/" + #end "font/pixelart.ttf"; name = "Pixel-Art Regular"; super (); }}
 
 
 #if (windows || mac || linux || cpp)
@@ -931,8 +1018,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 #end
 
 #if (openfl && !flash)
-@:keep #if display private #end class __ASSET__OPENFL__assets_fonts_pixelart_ttf extends openfl.text.Font { public function new () { __fontPath = #if (ios || tvos) "assets/" + #end "assets/fonts/pixelart.ttf"; name = "Pixel-Art Regular"; super (); }}
-@:keep #if display private #end class __ASSET__OPENFL__fonts_pixelart_ttf extends openfl.text.Font { public function new () { __fontPath = #if (ios || tvos) "assets/" + #end "fonts/pixelart.ttf"; name = "Pixel-Art Regular"; super (); }}
+@:keep #if display private #end class __ASSET__OPENFL__font_pixelart_ttf extends openfl.text.Font { public function new () { __fontPath = #if (ios || tvos) "assets/" + #end "font/pixelart.ttf"; name = "Pixel-Art Regular"; super (); }}
 
 #end
 

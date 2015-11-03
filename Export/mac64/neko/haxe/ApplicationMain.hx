@@ -90,19 +90,19 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "313",
-			company: "Company Name",
-			file: "Ilha",
+			build: "196",
+			company: "IlhaDesign",
+			file: "ilha",
 			fps: 30,
 			name: "Ilha",
 			orientation: "",
-			packageName: "com.sample.ilha",
+			packageName: "Ilha",
 			version: "1.0.0",
 			windows: [
 				
 				{
 					antialiasing: 0,
-					background: 3355443,
+					background: 0,
 					borderless: false,
 					depthBuffer: false,
 					display: 0,
