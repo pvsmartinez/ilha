@@ -1,8 +1,7 @@
 package core;
 
-import openfl.Assets;
-
 import core.Body;
+import core.Rs;
 
 enum MaterialKind {
   wood;
@@ -18,11 +17,11 @@ class Material extends Body {
     var imgUrl:String;
     switch ( _kind ) {
       case wood:
-        imgUrl = "img/materials/wood.png";
+        imgUrl = "wood";
       case cherry:
-        imgUrl = "img/materials/cherry.png";
+        imgUrl = "cherry";
     }
-    super(Assets.getBitmapData(imgUrl), false);
+    super(Rs.maters[imgUrl], false);
   }
 
   public function follow(target:Body, followDistance:Float) {

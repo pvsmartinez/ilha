@@ -18,13 +18,13 @@ class Island extends Sprite {
   public function new() {
     super();
 
-    _floor = new TileMap("img/tilesets/floor.png", floor);
+    _floor = new TileMap("floor", floor);
     _floor.draw("info/floorMap.json");
 
-    _player = new Human("img/spritesheets/townfolk1_f.png");
+    _player = new Human("townfolk1_f");
     _playerAi = new Player(_player);
 
-    _stuff = new TileMap("img/tilesets/trees.png", trees);
+    _stuff = new TileMap("trees", trees);
     _stuff.draw("info/treeMap.json");
 
     addChild(_floor);

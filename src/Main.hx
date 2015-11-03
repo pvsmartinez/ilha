@@ -8,6 +8,7 @@ import core.Menu;
 import core.Game;
 import core.EndGame;
 import core.KeyState;
+import core.Rs;
 
 enum GameState {
   mainMenu;
@@ -24,6 +25,7 @@ class Main extends Sprite {
 
   public static function main() {
     KeyState.init();
+    Rs.init();
     setGameState(mainMenu);
 
     Lib.current.stage.addEventListener(Event.ENTER_FRAME, everyFrame);

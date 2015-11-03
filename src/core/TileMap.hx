@@ -46,7 +46,7 @@ class TileMap extends Sprite {
         cellHeight = 128;
         nTypes = 2;
     }
-    _image = Assets.getBitmapData(imgUrl);
+    _image = Rs.tlMaps[imgUrl];
     _tilesheet = new Bitmap(_image);
     _pics = new Map<Int, Rectangle>();
     objs = new Map<String, Sprite>();
@@ -66,7 +66,6 @@ class TileMap extends Sprite {
     var rows:Array<String> = contents.split("\n");
     var deslocX = cellWidth - _tileSize;
     var deslocY = cellHeight - _tileSize;
-    trace(deslocX,deslocY);
     for (i in 0...rows.length) {
       var values:Array<Bool> = [];
       var columns:Array<String> = rows[i].split(",");

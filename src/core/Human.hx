@@ -1,11 +1,9 @@
 package core;
 
-import openfl.Assets;
-import openfl.Lib;
-
 import core.Body;
 import core.Stuff;
 import core.Material;
+import core.Rs;
 
 enum Direction {
   left;
@@ -21,7 +19,7 @@ class Human extends Body {
 
   public function new(imgUrl:String) {
     var states = [ "walk_up", "walk_right", "walk_down", "walk_left"];
-    super(Assets.getBitmapData(imgUrl), true, states, 32, 36);
+    super(Rs.humans[imgUrl], true, states, 32, 36);
     this.speed = 0.2;
   }
 
