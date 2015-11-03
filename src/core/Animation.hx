@@ -34,7 +34,7 @@ class Animation extends Sprite {
       while (flag) {
         points.push(new Point(x, y));
         x += w;
-        if (x + w > imgData.height) {
+        if (x + w > imgData.width) {
           x = 0;
           y += h;
           flag = false;

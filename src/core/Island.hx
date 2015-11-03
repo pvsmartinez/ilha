@@ -9,8 +9,6 @@ import core.Player;
 
 class Island extends Sprite {
 
-  private var _tileSize:Int;
-
   private var _floor:TileMap;
   private var _stuff:TileMap;
 
@@ -20,16 +18,14 @@ class Island extends Sprite {
   public function new() {
     super();
 
-    _tileSize = 64;
-
-    _floor = new TileMap("img/tilesets/floor.png", "info/floorTiles.json", floor);
-    _floor.drawMapFromCsv("info/floorMap.json", _tileSize);
+    _floor = new TileMap("img/tilesets/floor.png", floor);
+    _floor.draw("info/floorMap.json");
 
     _player = new Human("img/spritesheets/townfolk1_f.png");
     _playerAi = new Player(_player);
 
-    _stuff = new TileMap("img/tilesets/trees.png", "info/treeTiles.json", trees);
-    _stuff.drawMapFromCsv("info/treeMap.json", _tileSize);
+    _stuff = new TileMap("img/tilesets/trees.png", trees);
+    _stuff.draw("info/treeMap.json");
 
     addChild(_floor);
     addChild(_player);
@@ -44,7 +40,11 @@ class Island extends Sprite {
 
   public function everyFrame(deltaTime:Float) {
     _playerAi.everyFrame([_floor, _stuff], deltaTime);
+    _stuff.everyFrame(deltaTime);
+    camera();
+  }
 
+  private function camera() {
     var safeZone:Int = 100;
     var posX = _player.x + this.x;
     var posY = _player.y + this.y;

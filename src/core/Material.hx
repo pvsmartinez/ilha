@@ -25,4 +25,20 @@ class Material extends Body {
     super(Assets.getBitmapData(imgUrl), false);
   }
 
+  public function follow(target:Body, followDistance:Float) {
+    var dx = this.x - target.x;
+    var dy = this.y - target.y;
+    var dist = Math.sqrt((dx*dx)+(dy*dy));
+    if( dist > followDistance + 5 ) {
+      var mv:Array<Bool> = [];
+      var sp:Float = Math.floor((dist - followDistance) / 4);
+      mv[0] = dx > 0;
+      mv[1] = dy > 0;
+      mv[2] = dx < 0;
+      mv[3] = dy < 0;
+      var sps = [sp * Math.abs(dx/dist), sp * Math.abs(dy/dist)];
+      super.move(mv, sps);
+    }
+  }
+
 }

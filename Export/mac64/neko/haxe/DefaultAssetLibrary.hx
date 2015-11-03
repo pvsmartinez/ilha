@@ -72,9 +72,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
-		
-		
-		
 		#end
 		
 		#if flash
@@ -115,14 +112,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("font/pixelart.ttf", AssetType.FONT);
 		path.set ("info/floorMap.json", "info/floorMap.json");
 		type.set ("info/floorMap.json", AssetType.TEXT);
-		path.set ("info/floorTiles.json", "info/floorTiles.json");
-		type.set ("info/floorTiles.json", AssetType.TEXT);
-		path.set ("info/playerAnimation.json", "info/playerAnimation.json");
-		type.set ("info/playerAnimation.json", AssetType.TEXT);
 		path.set ("info/treeMap.json", "info/treeMap.json");
 		type.set ("info/treeMap.json", AssetType.TEXT);
-		path.set ("info/treeTiles.json", "info/treeTiles.json");
-		type.set ("info/treeTiles.json", AssetType.TEXT);
 		
 		
 		#elseif html5
@@ -182,16 +173,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "info/floorMap.json";
 		path.set (id, id);
 		type.set (id, AssetType.TEXT);
-		id = "info/floorTiles.json";
-		path.set (id, id);
-		type.set (id, AssetType.TEXT);
-		id = "info/playerAnimation.json";
-		path.set (id, id);
-		type.set (id, AssetType.TEXT);
 		id = "info/treeMap.json";
-		path.set (id, id);
-		type.set (id, AssetType.TEXT);
-		id = "info/treeTiles.json";
 		path.set (id, id);
 		type.set (id, AssetType.TEXT);
 		
@@ -230,9 +212,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("font/pixelart.ttf", __ASSET__font_pixelart_ttf);
 		type.set ("font/pixelart.ttf", AssetType.FONT);
-		useManifest = true;
-		useManifest = true;
-		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		
@@ -974,9 +953,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
-
-
-
 #elseif html5
 
 
@@ -996,9 +972,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 @:keep #if display private #end class __ASSET__font_pixelart_ttf extends lime.text.Font { public function new () { super (); name = "Pixel-Art Regular"; } } 
-
-
-
 
 
 

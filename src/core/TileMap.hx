@@ -11,116 +11,134 @@ import openfl.Assets;
 import haxe.Json;
 
 import core.Stuff;
+import core.Floor;
 
-enum StuffKinds {
+enum TileKinds {
   floor;
   trees;
 }
 
 class TileMap extends Sprite {
 
-  private var _tilesheet:Tilesheet;
+  private var _tilesheet:Bitmap;
   private var _image:BitmapData;
-  private var _table:Map<String, Int>;
+  private var _bitmapContainer:BitmapData;
   private var _pics:Map<Int, Rectangle>;
-  private var _passableTiles:Array<Bool>;
-  private var _passableCells:Array<Array<Bool>>;
+  private var _states:Map<String, Array<Point>>;
+  private var _tileSize:Int = 64;
 
-  public var kind:StuffKinds;
-  public var objs:Map<String, Stuff>;
+  public var kind:TileKinds;
+  public var objs:Map<String, Sprite>;
   public var cellWidth:Int;
   public var cellHeight:Int;
 
-  public function new(imgUrl:String, dataPath:String, kd:StuffKinds)  {
-      super();
-      var obj:Dynamic = Json.parse(Assets.getText(dataPath));
-
-      cellWidth = obj.width;
-      cellHeight = obj.height;
-
-      _image = Assets.getBitmapData(imgUrl);
-      _tilesheet     = new Tilesheet(_image);
-      _passableTiles = [];
-      _passableCells = [];
-      kind = kd;
-      _table = new Map<String, Int>();
-      _pics = new Map<Int, Rectangle>();
-      objs = new Map<String, Stuff>();
-
-      _passableTiles.push(false);
-      for (i in 0...obj.data.length) {
-          var tileInfo:Dynamic = obj.data[i];
-          _passableTiles.push(tileInfo.passable);
-          _table.set(tileInfo.name, _tilesheet.addTileRect(new Rectangle(tileInfo.x, tileInfo.y, cellWidth, cellHeight)));
-          _pics.set(i,new Rectangle(tileInfo.x, tileInfo.y, cellWidth, cellHeight));
+  public function new(imgUrl:String, kd:TileKinds) {
+    super();
+    var nTypes:Int;
+    kind = kd;
+    switch ( kind ) {
+      case floor:
+        cellWidth = 64;
+        cellHeight = 64;
+        nTypes = 3;
+      case trees:
+        cellWidth = 64;
+        cellHeight = 128;
+        nTypes = 2;
+    }
+    _image = Assets.getBitmapData(imgUrl);
+    _tilesheet = new Bitmap(_image);
+    _pics = new Map<Int, Rectangle>();
+    objs = new Map<String, Sprite>();
+    var x = 0;
+    var y = 0;
+    for (i in 0...nTypes) {
+      _pics.set(i,new Rectangle(x, y, cellWidth, cellHeight));
+      x += cellWidth;
+      if (x + cellWidth > _tilesheet.width) {
+        x = 0;
+        y += cellHeight;
       }
+    }
   }
-
-  public function drawMapFromCsv(mapPath:String, _tileSize:Int)
-  {
-      var contents = Assets.getText(mapPath);
-      var rows:Array<String> = contents.split("\n");
-      for (i in 0...rows.length) {
-          var values:Array<Bool> = [];
-          var columns:Array<String> = rows[i].split(",");
-          for (j in 0...columns.length) {
-              var value = Std.parseInt(columns[j]);
-              if (value > -1) {
-                switch ( kind ) {
-                  case floor:
-                    _tilesheet.drawTiles(graphics, [j * _tileSize, i * _tileSize, value]);
-                  case trees:
-                    if (_pics.exists(value)) {
-                      var btCont:BitmapData = new BitmapData(cellWidth, cellHeight);
-                      btCont.copyPixels(_image, _pics[value], new Point(0, 0));
-                      var st:Stuff = new Stuff(btCont, value);
-                      objs.set(j + '/'+ i, st);
-                      addChild(st);
-                      st.x = (j * _tileSize) + btCont.width/2;
-                      st.y = (i * _tileSize) + btCont.height/2;
-                    }
-                }
-                  values.push(_passableTiles[Std.int(value) + 1]);
-                  continue;
-              }
-              values.push(false);
+  public function draw(mapPath:String) {
+    var contents = Assets.getText(mapPath);
+    var rows:Array<String> = contents.split("\n");
+    var deslocX = cellWidth - _tileSize;
+    var deslocY = cellHeight - _tileSize;
+    trace(deslocX,deslocY);
+    for (i in 0...rows.length) {
+      var values:Array<Bool> = [];
+      var columns:Array<String> = rows[i].split(",");
+      for (j in 0...columns.length) {
+        var value = Std.parseInt(columns[j]);
+        if (value > -1) {
+          if (_pics.exists(value)) {
+            _bitmapContainer = new BitmapData(cellWidth, cellHeight);
+            _bitmapContainer.copyPixels(_image, _pics[value], new Point(0, 0));
+            var spt:Sprite;
+            switch ( kind ) {
+              case floor:
+                spt = new Floor(_bitmapContainer, value);
+              case trees:
+                spt = new Stuff(_bitmapContainer, value);
+            }
+            objs.set(j + '/' + i, spt);
+            addChild(spt);
+            spt.x = (j * _tileSize) - deslocX;
+            spt.y = (i * _tileSize) - deslocY;
           }
-          _passableCells.push(values);
+        }
       }
+    }
   }
-
+  public function everyFrame(deltaTime:Float) {
+    if (kind == trees) {
+      for (st in objs) {
+        cast(st, Stuff).everyFrame(deltaTime);
+      }
+    }
+  }
   public function getStuff(tileX:Int, tileY:Int):Stuff {
-    if (objs.exists(tileX + '/'+ tileY))
-      return objs[tileX + '/'+ tileY];
+    if (kind != trees)
+      return null;
+    if (objs.exists(tileX + '/' + tileY))
+      return cast(objs[tileX + '/' + tileY], Stuff);
     return null;
   }
-
-  public function canGoUp(tileX:Int, tileY:Int):Bool
-  {
-      if (tileY <= 0)
-          return false;
-      return _passableCells[tileY - 1][tileX];
+  public function canWalk(tileX:Int, tileY:Int):Bool {
+    if (kind != floor)
+      return true;
+    if (objs.exists(tileX + '/' + tileY))
+      return cast(objs[tileX + '/' + tileY], Floor).walkable;
+    return false;
   }
-
-  public function canGoLeft(tileX:Int, tileY:Int):Bool
-  {
-      if (tileX <= 0)
-          return false;
-      return _passableCells[tileY][tileX - 1];
+  public function canGoLeft(tileX:Int, tileY:Int):Bool {
+    if (kind != floor)
+      return true;
+    if (objs.exists((tileX - 1) + '/' + tileY))
+      return cast(objs[(tileX - 1) + '/' + tileY], Floor).walkable;
+    return false;
   }
-
-  public function canGoRight(tileX:Int, tileY:Int):Bool
-  {
-      if (tileX > _passableCells[tileY].length)
-          return false;
-      return _passableCells[tileY][tileX+1];
+  public function canGoUp(tileX:Int, tileY:Int):Bool {
+    if (kind != floor)
+      return true;
+    if (objs.exists(tileX + '/' + (tileY - 1)))
+      return cast(objs[tileX + '/' + (tileY - 1)], Floor).walkable;
+    return false;
   }
-
-  public function canGoDown(tileX:Int, tileY:Int):Bool
-  {
-      if (tileY > _passableCells.length)
-          return false;
-      return _passableCells[tileY+1][tileX];
+  public function canGoRight(tileX:Int, tileY:Int):Bool {
+    if (kind != floor)
+      return true;
+    if (objs.exists((tileX + 1) + '/' + tileY))
+      return cast(objs[(tileX + 1) + '/' + tileY], Floor).walkable;
+    return false;
   }
-
+  public function canGoDown(tileX:Int, tileY:Int):Bool {
+    if (kind != floor)
+      return true;
+    if (objs.exists(tileX + '/' + (tileY + 1)))
+      return cast(objs[tileX + '/' + (tileY + 1)], Floor).walkable;
+    return false;
+  }
 }

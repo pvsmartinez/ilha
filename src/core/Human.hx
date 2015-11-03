@@ -27,7 +27,7 @@ class Human extends Body {
 
   public function everyFrame(maps:Array<TileMap>, deltaTime:Float, act:Array<Bool>, mv:Array<Bool>) {
     getPos(maps[0]);
-    move(maps[0], deltaTime, mv);
+    walk(maps[0], deltaTime, mv);
     focus(maps[0], mv);
     action(maps[1], act);
     if (_hasAnimation)
@@ -59,9 +59,7 @@ class Human extends Body {
           st = map.getStuff(tileX, tileY + 1);
       }
       if (st != null) {
-        trace(st);
         var mt:Material = st.extract();
-        trace(mt);
         if (mt != null) {
           this.parent.addChild(mt);
           mt.x = this.x;
@@ -72,40 +70,30 @@ class Human extends Body {
     }
   }
 
-  override public function move(map:TileMap, deltaTime:Float, mv:Array<Bool>, ?sp:Float):Void {
-		super.move(map, deltaTime, mv);
-		moveMaterials(map, deltaTime, mv);
-	}
-
-  private function moveMaterials(map:TileMap, deltaTime:Float, mv:Array<Bool>):Void {
+  public function walk(map:TileMap, deltaTime:Float, mv:Array<Bool>):Void {
+    var spd:Float = this.speed * deltaTime;
+    var l:Bool = mv[0];
+    var u:Bool = mv[1];
+    var r:Bool = mv[2];
+    var d:Bool = mv[3];
+		if ((l && u) || (l && d) || (r && u) || (r && d))
+			spd = spd * Math.sqrt(2)/2;
+    l = l && map.canWalk(Math.floor((this.x - spd - _border)/ map.cellWidth), tileY);
+    u = u && map.canWalk(tileX, Math.floor((this.y - spd - _border)/ map.cellHeight));
+    r = r && map.canWalk(Math.floor((this.x + spd + _border)/ map.cellWidth), tileY);
+    d = d && map.canWalk(tileX, Math.floor((this.y + spd + _border)/ map.cellHeight));
+    super.move([l,u,r,d], [spd,spd]);
 		for(i in 0 ... _materials.length) {
-			var referenceObject:Body;
+			var target:Body;
       var followDistance:Float;
 			if(i == 0) {
-				referenceObject = this;
+				target = this;
         followDistance = 10 + this.size/2;
 			} else {
-				referenceObject = _materials[i-1];
+				target = _materials[i-1];
         followDistance = 6;
 			}
-      var dx = _materials[i].x - referenceObject.x;
-      var dy = _materials[i].y - referenceObject.y;
-			var dist = Math.sqrt((dx*dx)+(dy*dy));
-			if( dist > followDistance + 5 ) {
-				var mv:Array<Bool> = [false,false,false,false];
-				var sp:Float = Math.floor((dist - followDistance) / 4);
-				if(dx > 0 + followDistance/2)
-					mv[0] = true;
-				else if(dx < 0 - followDistance/2)
-					mv[2] = true;
-				if(dy > 0 + followDistance/2)
-					mv[1] = true;
-				else if (dy < 0 - followDistance/2)
-					mv[3] = true;
-
-        _materials[i].getPos(map);
-				_materials[i].move(map, deltaTime, mv, sp);
-			}
+			_materials[i].follow(target, followDistance);
 		}
 	}
 

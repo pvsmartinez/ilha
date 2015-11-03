@@ -43,38 +43,18 @@ class Body extends Sprite {
     tileY = Math.floor(this.y / map.cellHeight);
   }
 
-  public function move(map:TileMap, deltaTime:Float, mv:Array<Bool>, ?sp:Float) {
+  public function move(mv:Array<Bool>, spd:Array<Float>) {
     var l:Bool = mv[0];
     var u:Bool = mv[1];
     var r:Bool = mv[2];
     var d:Bool = mv[3];
-    var flag:Bool;
-		var spd:Float = (sp != null) ? sp : this.speed * deltaTime;
-		if ((l && u) || (l && d) || (r && u) || (r && d))
-			spd = spd * Math.sqrt(2)/2;
-    if (l) {
-      flag = true;
-      if (Math.floor((this.x - spd - _border)/ map.cellWidth) != tileX)
-        flag = map.canGoLeft(tileX, tileY);
-      this.x -= (flag) ? spd : 0;
-    }
-    if (r) {
-      flag = true;
-      if (Math.floor((this.x + spd + _border)/ map.cellWidth) != tileX)
-        flag = map.canGoRight(tileX, tileY);
-      this.x += (flag) ? spd : 0;
-    }
-    if (u) {
-      flag = true;
-      if (Math.floor((this.y - spd - _border)/ map.cellHeight) != tileY)
-        flag = map.canGoUp(tileX, tileY);
-      this.y -= (flag) ? spd : 0;
-    }
-    if (d) {
-      flag = true;
-      if (Math.floor((this.y + spd + _border)/ map.cellHeight) != tileY)
-        flag = map.canGoDown(tileX, tileY);
-      this.y += (flag) ? spd : 0;
-    }
+    if (l)
+      this.x -= spd[0];
+    if (u)
+      this.y -= spd[1];
+    if (r)
+      this.x += spd[0];
+    if (d)
+      this.y += spd[1];
   }
 }
