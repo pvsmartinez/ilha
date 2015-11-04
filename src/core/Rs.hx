@@ -36,9 +36,9 @@ class Rs {
   }
   private static function loadSounds() {
     sounds = new Map<String, Sound>();
-    sounds.set("blip", Assets.getSound("sfx/Blip_Select2.ogg"));
-    sounds.set("random", Assets.getSound("sfx/Randomize15.ogg"));
     sounds.set("bell", Assets.getSound("sfx/bell.wav"));
+    sounds.set("wood", Assets.getSound("sfx/wood.ogg"));
+    sounds.set("cherry", Assets.getSound("sfx/cherry.ogg"));
   }
   private static function loadMusics() {
     musics = new Map<String, Sound>();
