@@ -48,7 +48,17 @@ class Rs {
   private static function loadSounds() {
     sounds = new Map<String, Sound>();
     sounds.set("bell", Assets.getSound("sfx/bell.wav"));
-    sounds.set("wood", Assets.getSound("sfx/wood.ogg"));
+
+    sounds.set("axe0", Assets.getSound("sfx/axe0.ogg"));
+    sounds.set("axe1", Assets.getSound("sfx/axe1.ogg"));
+    sounds.set("axe2", Assets.getSound("sfx/axe2.ogg"));
+    sounds.set("blip", Assets.getSound("sfx/Blip_Select2.ogg"));
+
+    sounds.set("wood0", Assets.getSound("sfx/wood0.ogg"));
+    sounds.set("wood1", Assets.getSound("sfx/wood1.ogg"));
+    sounds.set("wood2", Assets.getSound("sfx/wood2.ogg"));
+
+    sounds.set("goo", Assets.getSound("sfx/goo.ogg"));
     sounds.set("cherry", Assets.getSound("sfx/cherry.ogg"));
   }
   private static function loadMusics() {
