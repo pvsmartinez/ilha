@@ -7,12 +7,14 @@ import core.Rs;
 
 class SoundHandler{
 
+  private static var currentMusic:String = "";
+  private static var isMusicPlaying:Bool = false;
   private static var musicChannel:SoundChannel;
   private static var fxTransform:SoundTransform;
 
   public function init() {
-    fxTransform = new SoundTransform(1, 0);
-    musicChannel.soundTransform = new SoundTransform(1, 0);
+    fxTransform = new SoundTransform(0.8, 0);
+    musicChannel.soundTransform = new SoundTransform(0.8, 0);
   }
 
   public static function playSound(soundID: String){
@@ -25,7 +27,8 @@ class SoundHandler{
   }
 
   public static function setAndPlayMusic(musicID:String) {
-    if(Rs.musics.exists(musicID)){
+    if(Rs.musics.exists(musicID) && (musicID != currentMusic && isMusicPlaying == false)){
+      currentMusic = musicID;
       musicChannel = Rs.musics[musicID].play();
     }
     else{
@@ -41,6 +44,7 @@ class SoundHandler{
   }
 
   public static function stopMusic() {
+    isMusicPlaying = false;
     musicChannel.stop();
   }
 }

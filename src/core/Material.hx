@@ -16,13 +16,48 @@ class Material extends Body {
   public function new(matKind:MaterialKind) {
     _kind = matKind;
     var imgUrl:String;
+    var pickedNumber:Int = Std.random(100);
     switch ( _kind ) {
       case wood:
         imgUrl = "wood";
-        SoundHandler.playSound("wood");
+        if(pickedNumber < 25){
+            SoundHandler.playSound("axe0");
+        }
+        else if(pickedNumber < 45){
+            SoundHandler.playSound("axe1");
+        }
+        else if(pickedNumber < 60){
+            SoundHandler.playSound("axe2");
+        }
+        else if(pickedNumber < 75){
+            SoundHandler.playSound("wood0");
+        }
+        else if(pickedNumber < 90){
+            SoundHandler.playSound("wood1");
+        }
+        else if(pickedNumber < 97){
+            SoundHandler.playSound("wood2");
+        }
+        else{
+            SoundHandler.playSound("blip");
+        }
       case cherry:
         imgUrl = "cherry";
-        SoundHandler.playSound("cherry");
+        if(pickedNumber < 25){
+            SoundHandler.playSound("axe0");
+        }
+        else if(pickedNumber < 45){
+            SoundHandler.playSound("axe2");
+        }
+        else if(pickedNumber < 75){
+            SoundHandler.playSound("wood2");
+        }
+        else if(pickedNumber < 90){
+            SoundHandler.playSound("cherry");
+        }
+        else{
+            SoundHandler.playSound("smash");
+        }
     }
     super(Rs.maters[imgUrl], false);
   }
