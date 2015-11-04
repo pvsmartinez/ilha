@@ -10,6 +10,7 @@ import core.TileMap;
 enum AiStates {
   thinking;
   going;
+  talking;
 }
 
 class Ai extends Sprite {
@@ -41,6 +42,7 @@ class Ai extends Sprite {
         think(maps, deltaTime);
       case going:
         go(maps, deltaTime);
+      case talking:
     }
     _puppet.everyFrame(maps, deltaTime, _actionKeys, _movementKeys);
   }

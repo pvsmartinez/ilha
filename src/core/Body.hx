@@ -43,7 +43,7 @@ class Body extends Sprite {
     tileY = Math.floor(this.y / map.cellHeight);
   }
 
-  public function move(mv:Array<Bool>, spd:Array<Float>) {
+  public function move(mv:Array<Bool>, spd:Array<Float>, ?map:TileMap) {
     var l:Bool = mv[0];
     var u:Bool = mv[1];
     var r:Bool = mv[2];
@@ -56,5 +56,8 @@ class Body extends Sprite {
       this.x += spd[0];
     if (d)
       this.y += spd[1];
+    if (map != null) {
+      getPos(map);
+    }
   }
 }

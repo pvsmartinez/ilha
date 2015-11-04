@@ -117,32 +117,4 @@ class TileMap extends Sprite {
       return cast(objs[tileX + '/' + tileY], Floor).walkable;
     return false;
   }
-  public function canGoLeft(tileX:Int, tileY:Int):Bool {
-    if (kind != floor)
-      return true;
-    if (objs.exists((tileX - 1) + '/' + tileY))
-      return cast(objs[(tileX - 1) + '/' + tileY], Floor).walkable;
-    return false;
-  }
-  public function canGoUp(tileX:Int, tileY:Int):Bool {
-    if (kind != floor)
-      return true;
-    if (objs.exists(tileX + '/' + (tileY - 1)))
-      return cast(objs[tileX + '/' + (tileY - 1)], Floor).walkable;
-    return false;
-  }
-  public function canGoRight(tileX:Int, tileY:Int):Bool {
-    if (kind != floor)
-      return true;
-    if (objs.exists((tileX + 1) + '/' + tileY))
-      return cast(objs[(tileX + 1) + '/' + tileY], Floor).walkable;
-    return false;
-  }
-  public function canGoDown(tileX:Int, tileY:Int):Bool {
-    if (kind != floor)
-      return true;
-    if (objs.exists(tileX + '/' + (tileY + 1)))
-      return cast(objs[tileX + '/' + (tileY + 1)], Floor).walkable;
-    return false;
-  }
 }

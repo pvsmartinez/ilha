@@ -26,7 +26,6 @@ class Human extends Body {
   }
 
   public function everyFrame(maps:Array<TileMap>, deltaTime:Float, act:Array<Bool>, mv:Array<Bool>) {
-    getPos(maps[0]);
     walk(maps[0], deltaTime, mv);
     focus(maps[0], mv);
     action(maps[1], act);
@@ -83,7 +82,6 @@ class Human extends Body {
       }
     }
   }
-
   public function walk(map:TileMap, deltaTime:Float, mv:Array<Bool>):Void {
     var spd:Float = this.speed * deltaTime;
     var l:Bool = mv[0];
@@ -96,8 +94,11 @@ class Human extends Body {
     u = u && map.canWalk(tileX, Math.floor((this.y - spd - _border)/ map.cellHeight));
     r = r && map.canWalk(Math.floor((this.x + spd + _border)/ map.cellWidth), tileY);
     d = d && map.canWalk(tileX, Math.floor((this.y + spd + _border)/ map.cellHeight));
-    super.move([l,u,r,d], [spd,spd]);
-		for(i in 0 ... _materials.length) {
+    super.move([l,u,r,d], [spd,spd], map);
+    followMaterials();
+	}
+  private function followMaterials() {
+    for(i in 0 ... _materials.length) {
 			var target:Body;
       var followDistance:Float;
 			if(i == 0) {
@@ -109,6 +110,6 @@ class Human extends Body {
 			}
 			_materials[i].follow(target, followDistance);
 		}
-	}
+  }
 
 }
