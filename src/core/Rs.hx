@@ -5,7 +5,7 @@ import openfl.display.BitmapData;
 
 class Rs {
 
-  public static var humans:Map<String, BitmapData>;
+  public static var humans:Array<BitmapData>;
   public static var tlMaps:Map<String, BitmapData>;
   public static var maters:Map<String, BitmapData>;
 
@@ -16,8 +16,19 @@ class Rs {
   }
 
   private static function loadHumans() {
-    humans = new Map<String, BitmapData>();
-    humans.set("townfolk1_f", Assets.getBitmapData("img/spritesheets/townfolk1_f.png"));
+    humans = [];
+    humans.push(Assets.getBitmapData("img/humans/townfolk1_f.png"));
+    humans.push(Assets.getBitmapData("img/humans/townfolk1_m.png"));
+    humans.push(Assets.getBitmapData("img/humans/mage_f.png"));
+    humans.push(Assets.getBitmapData("img/humans/mage_m.png"));
+    humans.push(Assets.getBitmapData("img/humans/healer_f.png"));
+    humans.push(Assets.getBitmapData("img/humans/healer_m.png"));
+    humans.push(Assets.getBitmapData("img/humans/ranger_f.png"));
+    humans.push(Assets.getBitmapData("img/humans/ranger_m.png"));
+    humans.push(Assets.getBitmapData("img/humans/ninja_f.png"));
+    humans.push(Assets.getBitmapData("img/humans/ninja_m.png"));
+    humans.push(Assets.getBitmapData("img/humans/warrior_f.png"));
+    humans.push(Assets.getBitmapData("img/humans/warrior_m.png"));
   }
   private static function loadTlMaps() {
     tlMaps = new Map<String, BitmapData>();

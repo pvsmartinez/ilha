@@ -29,8 +29,11 @@ class TileMap extends Sprite {
 
   public var kind:TileKinds;
   public var objs:Map<String, Sprite>;
+  public var nObjs:Int;
   public var cellWidth:Int;
   public var cellHeight:Int;
+  public var mapWidth:Int;
+  public var mapHeight:Int;
 
   public function new(imgUrl:String, kd:TileKinds) {
     super();
@@ -66,6 +69,7 @@ class TileMap extends Sprite {
     var rows:Array<String> = contents.split("\n");
     var deslocX = cellWidth - _tileSize;
     var deslocY = cellHeight - _tileSize;
+    nObjs = 0;
     for (i in 0...rows.length) {
       var values:Array<Bool> = [];
       var columns:Array<String> = rows[i].split(",");
@@ -83,6 +87,7 @@ class TileMap extends Sprite {
                 spt = new Stuff(_bitmapContainer, value);
             }
             objs.set(j + '/' + i, spt);
+            nObjs ++;
             addChild(spt);
             spt.x = (j * _tileSize) - deslocX;
             spt.y = (i * _tileSize) - deslocY;
