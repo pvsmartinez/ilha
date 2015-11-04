@@ -2,6 +2,7 @@ package core;
 
 import core.Body;
 import core.Rs;
+import core.SoundHandler;
 
 enum MaterialKind {
   wood;
@@ -18,8 +19,10 @@ class Material extends Body {
     switch ( _kind ) {
       case wood:
         imgUrl = "wood";
+        SoundHandler.playSound("wood");
       case cherry:
         imgUrl = "cherry";
+        SoundHandler.playSound("cherry");
     }
     super(Rs.maters[imgUrl], false);
   }

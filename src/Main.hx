@@ -9,6 +9,7 @@ import core.Game;
 import core.EndGame;
 import core.KeyState;
 import core.Rs;
+import core.SoundHandler;
 
 enum GameState {
   mainMenu;
@@ -54,6 +55,7 @@ class Main extends Sprite {
       case playing:
         if(menu != null)
           Lib.current.stage.removeChild(menu);
+          SoundHandler.setAndPlayMusic("memory");
         menu = null;
         game = new Game();
         Lib.current.stage.addChild(game);
