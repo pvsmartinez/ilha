@@ -26,6 +26,27 @@ class SoundHandler{
     }
   }
 
+  public static function randomSoundFromList(soundList:Array<String>, probList:Array<Int>):Void{
+    var probSum:Int = 0;
+
+    var pickedNumber = Std.random(100);
+
+    if(soundList.length != probList.length){
+      trace("Sound list and probability list of diferent sizes");
+      return;
+    }
+    else{
+      for(idx in 0...soundList.length){
+        probSum = probSum + probList[idx];
+        if(pickedNumber < probSum){
+          playSound(soundList[idx]);
+          break;
+        }
+      }
+    }
+    return;
+  }
+
   public static function setAndPlayMusic(musicID:String) {
     if(Rs.musics.exists(musicID) && (musicID != currentMusic && isMusicPlaying == false)){
       currentMusic = musicID;

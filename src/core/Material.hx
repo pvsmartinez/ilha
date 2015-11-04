@@ -20,44 +20,10 @@ class Material extends Body {
     switch ( _kind ) {
       case wood:
         imgUrl = "wood";
-        if(pickedNumber < 25){
-            SoundHandler.playSound("axe0");
-        }
-        else if(pickedNumber < 45){
-            SoundHandler.playSound("axe1");
-        }
-        else if(pickedNumber < 60){
-            SoundHandler.playSound("axe2");
-        }
-        else if(pickedNumber < 75){
-            SoundHandler.playSound("wood0");
-        }
-        else if(pickedNumber < 90){
-            SoundHandler.playSound("wood1");
-        }
-        else if(pickedNumber < 97){
-            SoundHandler.playSound("wood2");
-        }
-        else{
-            SoundHandler.playSound("blip");
-        }
+        SoundHandler.randomSoundFromList(["axe0", "axe1", "axe2", "wood0", "wood1", "wood2", "blip"] ,[25, 20, 15, 15, 15, 7, 3]);
       case cherry:
         imgUrl = "cherry";
-        if(pickedNumber < 25){
-            SoundHandler.playSound("axe0");
-        }
-        else if(pickedNumber < 45){
-            SoundHandler.playSound("axe2");
-        }
-        else if(pickedNumber < 75){
-            SoundHandler.playSound("wood2");
-        }
-        else if(pickedNumber < 90){
-            SoundHandler.playSound("cherry");
-        }
-        else{
-            SoundHandler.playSound("smash");
-        }
+        SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
     }
     super(Rs.maters[imgUrl], false);
   }
