@@ -72,44 +72,68 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
 		#end
 		
 		#if flash
 		
+		path.set ("img/humans/healer_f.png", "img/humans/healer_f.png");
+		type.set ("img/humans/healer_f.png", AssetType.IMAGE);
+		path.set ("img/humans/healer_m.png", "img/humans/healer_m.png");
+		type.set ("img/humans/healer_m.png", AssetType.IMAGE);
+		path.set ("img/humans/mage_f.png", "img/humans/mage_f.png");
+		type.set ("img/humans/mage_f.png", AssetType.IMAGE);
+		path.set ("img/humans/mage_m.png", "img/humans/mage_m.png");
+		type.set ("img/humans/mage_m.png", AssetType.IMAGE);
+		path.set ("img/humans/ninja_f.png", "img/humans/ninja_f.png");
+		type.set ("img/humans/ninja_f.png", AssetType.IMAGE);
+		path.set ("img/humans/ninja_m.png", "img/humans/ninja_m.png");
+		type.set ("img/humans/ninja_m.png", AssetType.IMAGE);
+		path.set ("img/humans/ranger_f.png", "img/humans/ranger_f.png");
+		type.set ("img/humans/ranger_f.png", AssetType.IMAGE);
+		path.set ("img/humans/ranger_m.png", "img/humans/ranger_m.png");
+		type.set ("img/humans/ranger_m.png", AssetType.IMAGE);
+		path.set ("img/humans/townfolk1_f.png", "img/humans/townfolk1_f.png");
+		type.set ("img/humans/townfolk1_f.png", AssetType.IMAGE);
+		path.set ("img/humans/townfolk1_m.png", "img/humans/townfolk1_m.png");
+		type.set ("img/humans/townfolk1_m.png", AssetType.IMAGE);
+		path.set ("img/humans/warrior_f.png", "img/humans/warrior_f.png");
+		type.set ("img/humans/warrior_f.png", AssetType.IMAGE);
+		path.set ("img/humans/warrior_m.png", "img/humans/warrior_m.png");
+		type.set ("img/humans/warrior_m.png", AssetType.IMAGE);
 		path.set ("img/materials/cherry.png", "img/materials/cherry.png");
 		type.set ("img/materials/cherry.png", AssetType.IMAGE);
 		path.set ("img/materials/wood.png", "img/materials/wood.png");
 		type.set ("img/materials/wood.png", AssetType.IMAGE);
-		path.set ("img/spritesheets/healer_f.png", "img/spritesheets/healer_f.png");
-		type.set ("img/spritesheets/healer_f.png", AssetType.IMAGE);
-		path.set ("img/spritesheets/healer_m.png", "img/spritesheets/healer_m.png");
-		type.set ("img/spritesheets/healer_m.png", AssetType.IMAGE);
-		path.set ("img/spritesheets/mage_f.png", "img/spritesheets/mage_f.png");
-		type.set ("img/spritesheets/mage_f.png", AssetType.IMAGE);
-		path.set ("img/spritesheets/mage_m.png", "img/spritesheets/mage_m.png");
-		type.set ("img/spritesheets/mage_m.png", AssetType.IMAGE);
-		path.set ("img/spritesheets/ninja_f.png", "img/spritesheets/ninja_f.png");
-		type.set ("img/spritesheets/ninja_f.png", AssetType.IMAGE);
-		path.set ("img/spritesheets/ninja_m.png", "img/spritesheets/ninja_m.png");
-		type.set ("img/spritesheets/ninja_m.png", AssetType.IMAGE);
-		path.set ("img/spritesheets/ranger_f.png", "img/spritesheets/ranger_f.png");
-		type.set ("img/spritesheets/ranger_f.png", AssetType.IMAGE);
-		path.set ("img/spritesheets/ranger_m.png", "img/spritesheets/ranger_m.png");
-		type.set ("img/spritesheets/ranger_m.png", AssetType.IMAGE);
-		path.set ("img/spritesheets/townfolk1_f.png", "img/spritesheets/townfolk1_f.png");
-		type.set ("img/spritesheets/townfolk1_f.png", AssetType.IMAGE);
-		path.set ("img/spritesheets/townfolk1_m.png", "img/spritesheets/townfolk1_m.png");
-		type.set ("img/spritesheets/townfolk1_m.png", AssetType.IMAGE);
-		path.set ("img/spritesheets/warrior_f.png", "img/spritesheets/warrior_f.png");
-		type.set ("img/spritesheets/warrior_f.png", AssetType.IMAGE);
-		path.set ("img/spritesheets/warrior_m.png", "img/spritesheets/warrior_m.png");
-		type.set ("img/spritesheets/warrior_m.png", AssetType.IMAGE);
 		path.set ("img/tilesets/floor.png", "img/tilesets/floor.png");
 		type.set ("img/tilesets/floor.png", AssetType.IMAGE);
 		path.set ("img/tilesets/trees.png", "img/tilesets/trees.png");
 		type.set ("img/tilesets/trees.png", AssetType.IMAGE);
 		path.set ("font/pixelart.ttf", "font/pixelart.ttf");
 		type.set ("font/pixelart.ttf", AssetType.FONT);
+		path.set ("sfx/bell.wav", "sfx/bell.wav");
+		type.set ("sfx/bell.wav", AssetType.SOUND);
+		path.set ("sfx/Blip_Select2.ogg", "sfx/Blip_Select2.ogg");
+		type.set ("sfx/Blip_Select2.ogg", AssetType.SOUND);
+		path.set ("sfx/cherry.ogg", "sfx/cherry.ogg");
+		type.set ("sfx/cherry.ogg", AssetType.SOUND);
+		path.set ("sfx/Randomize15.ogg", "sfx/Randomize15.ogg");
+		type.set ("sfx/Randomize15.ogg", AssetType.SOUND);
+		path.set ("sfx/wood.ogg", "sfx/wood.ogg");
+		type.set ("sfx/wood.ogg", AssetType.SOUND);
+		path.set ("audio/AMemoryAway.ogg", "audio/AMemoryAway.ogg");
+		type.set ("audio/AMemoryAway.ogg", AssetType.MUSIC);
+		path.set ("audio/Blip_Select2.ogg", "audio/Blip_Select2.ogg");
+		type.set ("audio/Blip_Select2.ogg", AssetType.SOUND);
+		path.set ("audio/Randomize15.ogg", "audio/Randomize15.ogg");
+		type.set ("audio/Randomize15.ogg", AssetType.SOUND);
 		path.set ("info/floorMap.json", "info/floorMap.json");
 		type.set ("info/floorMap.json", AssetType.TEXT);
 		path.set ("info/treeMap.json", "info/treeMap.json");
@@ -119,46 +143,46 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#elseif html5
 		
 		var id;
+		id = "img/humans/healer_f.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/healer_m.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/mage_f.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/mage_m.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/ninja_f.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/ninja_m.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/ranger_f.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/ranger_m.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/townfolk1_f.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/townfolk1_m.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/warrior_f.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/warrior_m.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
 		id = "img/materials/cherry.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/materials/wood.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/spritesheets/healer_f.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/spritesheets/healer_m.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/spritesheets/mage_f.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/spritesheets/mage_m.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/spritesheets/ninja_f.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/spritesheets/ninja_m.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/spritesheets/ranger_f.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/spritesheets/ranger_m.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/spritesheets/townfolk1_f.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/spritesheets/townfolk1_m.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/spritesheets/warrior_f.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/spritesheets/warrior_m.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/tilesets/floor.png";
@@ -170,6 +194,30 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "font/pixelart.ttf";
 		path.set (id, id);
 		type.set (id, AssetType.FONT);
+		id = "sfx/bell.wav";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "sfx/Blip_Select2.ogg";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "sfx/cherry.ogg";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "sfx/Randomize15.ogg";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "sfx/wood.ogg";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "audio/AMemoryAway.ogg";
+		path.set (id, id);
+		type.set (id, AssetType.MUSIC);
+		id = "audio/Blip_Select2.ogg";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "audio/Randomize15.ogg";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
 		id = "info/floorMap.json";
 		path.set (id, id);
 		type.set (id, AssetType.TEXT);
@@ -212,6 +260,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("font/pixelart.ttf", __ASSET__font_pixelart_ttf);
 		type.set ("font/pixelart.ttf", AssetType.FONT);
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		
@@ -953,6 +1009,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
+
+
 #elseif html5
 
 
@@ -972,6 +1036,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 @:keep #if display private #end class __ASSET__font_pixelart_ttf extends lime.text.Font { public function new () { super (); name = "Pixel-Art Regular"; } } 
+
+
+
+
+
+
+
+
 
 
 

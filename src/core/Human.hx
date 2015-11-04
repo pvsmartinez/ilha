@@ -1,5 +1,7 @@
 package core;
 
+import openfl.geom.Point;
+
 import core.Body;
 import core.Stuff;
 import core.Material;
@@ -17,9 +19,9 @@ class Human extends Body {
   private var _looking:Direction = up;
   private var _materials:Array<Material> = [];
 
-  public function new(imgUrl:String) {
+  public function new(imgN:Int) {
     var states = [ "walk_up", "walk_right", "walk_down", "walk_left"];
-    super(Rs.humans[imgUrl], true, states, 32, 36);
+    super(Rs.humans[imgN], true, states, 32, 36);
     this.speed = 0.2;
   }
 
@@ -32,29 +34,43 @@ class Human extends Body {
       _animation.animate(deltaTime, act, mv);
   }
 
-  private function focus(map:TileMap, mv:Array<Bool>) {
-    if (mv[0])
+  public function focus(map:TileMap, mv:Array<Bool>):Point {
+    var tx = tileX;
+    var ty = tileY;
+    if (mv[0]) {
       _looking = left;
-    if (mv[2])
+      tx --;
+    }
+    if (mv[2]) {
       _looking = right;
-    if (mv[1])
+      tx ++;
+    }
+    if (mv[1]) {
       _looking = up;
-    if (mv[3])
+      ty --;
+    }
+    if (mv[3]) {
       _looking = down;
+      ty ++;
+    }
+    return new Point(tx,ty);
   }
 
   public function action(map:TileMap, act:Array<Bool>) {
     if(act[0]) {
       var st:Stuff;
-      switch ( _looking ) {
-        case left:
-          st = map.getStuff(tileX - 1, tileY);
-        case up:
-          st = map.getStuff(tileX, tileY - 1);
-        case right:
-          st = map.getStuff(tileX + 1, tileY);
-        case down:
-          st = map.getStuff(tileX, tileY + 1);
+      st = map.getStuff(tileX, tileY);
+      if (st == null) {
+        switch ( _looking ) {
+          case left:
+            st = map.getStuff(tileX - 1, tileY);
+          case up:
+            st = map.getStuff(tileX, tileY - 1);
+          case right:
+            st = map.getStuff(tileX + 1, tileY);
+          case down:
+            st = map.getStuff(tileX, tileY + 1);
+        }
       }
       if (st != null) {
         var mt:Material = st.extract();

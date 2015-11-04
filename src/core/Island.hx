@@ -6,13 +6,16 @@ import openfl.Lib;
 import core.TileMap;
 import core.Human;
 import core.Player;
+import core.Ai;
+import core.Rs;
 
 class Island extends Sprite {
 
   private var _floor:TileMap;
   private var _stuff:TileMap;
 
-  private var _player:Human;
+  private var _humans:Array<Human>;
+  private var _npcAis:Array<Ai>;
   private var _playerAi:Player;
 
   public function new() {
@@ -20,19 +23,26 @@ class Island extends Sprite {
 
     _floor = new TileMap("floor", floor);
     _floor.draw("info/floorMap.json");
+    addChild(_floor);
 
-    _player = new Human("townfolk1_f");
-    _playerAi = new Player(_player);
+    _humans = [];
+    _npcAis = [];
+    var nHumans = 5;
+    for(i in 0...nHumans) {
+      var rnd = Math.floor(Math.random() * Rs.humans.length);
+      _humans.push(new Human(rnd));
+      addChild(_humans[i]);
+      _humans[i].x = _humans[i].y = 100 * (i + 1);
+      if (i == 0) {
+        _playerAi = new Player(_humans[i]);
+      } else {
+        _npcAis.push(new Ai(_humans[i]));
+      }
+    }
 
     _stuff = new TileMap("trees", trees);
     _stuff.draw("info/treeMap.json");
-
-    addChild(_floor);
-    addChild(_player);
-    _player.x = 100;
-    _player.y = 100;
     addChild(_stuff);
-
     _floor.x = _stuff.x = 0;
     _floor.y = _stuff.y = 0;
 
@@ -40,14 +50,17 @@ class Island extends Sprite {
 
   public function everyFrame(deltaTime:Float) {
     _playerAi.everyFrame([_floor, _stuff], deltaTime);
+    for (ai in _npcAis) {
+      ai.everyFrame([_floor, _stuff], deltaTime);
+    }
     _stuff.everyFrame(deltaTime);
     camera();
   }
 
   private function camera() {
     var safeZone:Int = 100;
-    var posX = _player.x + this.x;
-    var posY = _player.y + this.y;
+    var posX = _humans[0].x + this.x;
+    var posY = _humans[0].y + this.y;
     if (posX < safeZone)
       this.x += Math.abs(posX - safeZone);
     if (posX > Lib.current.stage.stageWidth - safeZone)
