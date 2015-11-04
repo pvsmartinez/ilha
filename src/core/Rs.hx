@@ -1,6 +1,7 @@
 package core;
 
 import openfl.Assets;
+import openfl.media.Sound;
 import openfl.display.BitmapData;
 
 class Rs {
@@ -8,11 +9,15 @@ class Rs {
   public static var humans:Map<String, BitmapData>;
   public static var tlMaps:Map<String, BitmapData>;
   public static var maters:Map<String, BitmapData>;
+  public static var sounds:Map<String, Sound>;
+  public static var musics:Map<String, Sound>;
 
   public static function init() {
     loadHumans();
     loadTlMaps();
     loadMaters();
+    loadSounds();
+    loadMusics();
   }
 
   private static function loadHumans() {
@@ -28,6 +33,16 @@ class Rs {
     maters = new Map<String, BitmapData>();
     maters.set("wood", Assets.getBitmapData("img/materials/wood.png"));
     maters.set("cherry", Assets.getBitmapData("img/materials/cherry.png"));
+  }
+  private static function loadSounds() {
+    sounds = new Map<String, Sound>();
+    sounds.set("blip", Assets.getSound("sfx/Blip_Select2.ogg"));
+    sounds.set("random", Assets.getSound("sfx/Randomize15.ogg"));
+    sounds.set("bell", Assets.getSound("sfx/bell.wav"));
+  }
+  private static function loadMusics() {
+    musics = new Map<String, Sound>();
+    musics.set("memory", Assets.getMusic("audio/AMemoryAway.ogg"));
   }
 
 }
