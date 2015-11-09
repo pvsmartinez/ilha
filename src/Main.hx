@@ -11,7 +11,7 @@ import core.KeyState;
 import core.Rs;
 import core.SoundHandler;
 
-enum GameState {
+enum MainState {
   mainMenu;
   playing;
   gameOver;
@@ -22,7 +22,7 @@ class Main extends Sprite {
   private static var menu:Menu;
   private static var end:EndGame;
   private static var game:Game;
-  private static var state:GameState;
+  private static var state:MainState;
 
   public static function main() {
     KeyState.init();
@@ -43,7 +43,7 @@ class Main extends Sprite {
     }
   }
 
-  public static function setGameState(newState:GameState) {
+  public static function setGameState(newState:MainState) {
     state = newState;
     switch ( state ) {
       case mainMenu:

@@ -9,6 +9,8 @@ class Rs {
   public static var humans:Array<BitmapData>;
   public static var tlMaps:Map<String, BitmapData>;
   public static var maters:Map<String, BitmapData>;
+  public static var stuffs:Map<String, BitmapData>;
+  public static var screen:Map<String, BitmapData>;
   public static var sounds:Map<String, Sound>;
   public static var musics:Map<String, Sound>;
 
@@ -16,10 +18,12 @@ class Rs {
     loadHumans();
     loadTlMaps();
     loadMaters();
+    loadStuffs();
+    loadScreen();
+
     loadSounds();
     loadMusics();
   }
-
   private static function loadHumans() {
     humans = [];
     humans.push(Assets.getBitmapData("img/humans/townfolk1_f.png"));
@@ -43,8 +47,23 @@ class Rs {
   private static function loadMaters() {
     maters = new Map<String, BitmapData>();
     maters.set("wood", Assets.getBitmapData("img/materials/wood.png"));
-    maters.set("cherry", Assets.getBitmapData("img/materials/cherry.png"));
+    maters.set("fruit", Assets.getBitmapData("img/materials/fruit.png"));
+    maters.set("fish", Assets.getBitmapData("img/materials/fish.png"));
+    maters.set("stone", Assets.getBitmapData("img/materials/stone.png"));
+    maters.set("water", Assets.getBitmapData("img/materials/water.png"));
   }
+  private static function loadStuffs() {
+    stuffs = new Map<String, BitmapData>();
+    stuffs.set("tree", Assets.getBitmapData("img/stuff/tree.png"));
+    stuffs.set("bush", Assets.getBitmapData("img/stuff/bush.png"));
+    stuffs.set("rock", Assets.getBitmapData("img/stuff/rock.png"));
+    stuffs.set("wave", Assets.getBitmapData("img/stuff/wave.png"));
+  }
+  private static function loadScreen() {
+    screen = new Map<String, BitmapData>();
+    screen.set("title", Assets.getBitmapData("img/screens/title.png"));
+  }
+
   private static function loadSounds() {
     sounds = new Map<String, Sound>();
     sounds.set("bell", Assets.getSound("sfx/bell.wav"));

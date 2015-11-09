@@ -14,11 +14,10 @@
   <assets path="assets/sound" rename="sfx" include="*.ogg|*.wav" />
   <assets path="assets/audio" rename="audio" include="*.mp3" if="flash" />
   <assets path="assets/audio" rename="audio" include="*.ogg" unless="flash" />
-  <assets path="assets/info" rename="info" include="*.txt|*.json" />
 
 
 	<window background="#000000" fps="30" />
-	<window width="800" height="500" unless="mobile" />
+	<window width="1010" height="660" unless="mobile" />
 	<window orientation="landscape" vsync="false" antialiasing="0" if="cpp" />
 
 </project>

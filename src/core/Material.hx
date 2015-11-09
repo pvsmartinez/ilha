@@ -6,7 +6,11 @@ import core.SoundHandler;
 
 enum MaterialKind {
   wood;
-  cherry;
+  stone;
+  leaf;
+  fruit;
+  fish;
+  water;
 }
 
 class Material extends Body {
@@ -41,8 +45,8 @@ class Material extends Body {
         else{
             SoundHandler.playSound("blip");
         }
-      case cherry:
-        imgUrl = "cherry";
+      case fruit:
+        imgUrl = "fruit";
         if(pickedNumber < 25){
             SoundHandler.playSound("axe0");
         }
@@ -58,8 +62,21 @@ class Material extends Body {
         else{
             SoundHandler.playSound("smash");
         }
+      case stone:
+        imgUrl = "stone";
+        SoundHandler.playSound("smash");
+      case fish:
+        imgUrl = "fish";
+        SoundHandler.playSound("smash");
+      case water:
+        imgUrl = "water";
+        SoundHandler.playSound("smash");
+      default:
+        imgUrl = "fruit";
+        SoundHandler.playSound("smash");
     }
     super(Rs.maters[imgUrl], false);
+    this.selectable = false;
   }
 
   public function follow(target:Body, followDistance:Float) {

@@ -68,7 +68,20 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
 		openfl.text.Font.registerFont (__ASSET__OPENFL__font_pixelart_ttf);
+		
+		
+		
+		
+		
 		
 		
 		
@@ -108,36 +121,62 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("img/humans/warrior_f.png", AssetType.IMAGE);
 		path.set ("img/humans/warrior_m.png", "img/humans/warrior_m.png");
 		type.set ("img/humans/warrior_m.png", AssetType.IMAGE);
-		path.set ("img/materials/cherry.png", "img/materials/cherry.png");
-		type.set ("img/materials/cherry.png", AssetType.IMAGE);
+		path.set ("img/materials/fish.png", "img/materials/fish.png");
+		type.set ("img/materials/fish.png", AssetType.IMAGE);
+		path.set ("img/materials/fruit.png", "img/materials/fruit.png");
+		type.set ("img/materials/fruit.png", AssetType.IMAGE);
+		path.set ("img/materials/stone.png", "img/materials/stone.png");
+		type.set ("img/materials/stone.png", AssetType.IMAGE);
+		path.set ("img/materials/water.png", "img/materials/water.png");
+		type.set ("img/materials/water.png", AssetType.IMAGE);
 		path.set ("img/materials/wood.png", "img/materials/wood.png");
 		type.set ("img/materials/wood.png", AssetType.IMAGE);
+		path.set ("img/screens/title.png", "img/screens/title.png");
+		type.set ("img/screens/title.png", AssetType.IMAGE);
+		path.set ("img/stuff/bush.png", "img/stuff/bush.png");
+		type.set ("img/stuff/bush.png", AssetType.IMAGE);
+		path.set ("img/stuff/rock.png", "img/stuff/rock.png");
+		type.set ("img/stuff/rock.png", AssetType.IMAGE);
+		path.set ("img/stuff/tree.png", "img/stuff/tree.png");
+		type.set ("img/stuff/tree.png", AssetType.IMAGE);
+		path.set ("img/stuff/wave.png", "img/stuff/wave.png");
+		type.set ("img/stuff/wave.png", AssetType.IMAGE);
 		path.set ("img/tilesets/floor.png", "img/tilesets/floor.png");
 		type.set ("img/tilesets/floor.png", AssetType.IMAGE);
 		path.set ("img/tilesets/trees.png", "img/tilesets/trees.png");
 		type.set ("img/tilesets/trees.png", AssetType.IMAGE);
 		path.set ("font/pixelart.ttf", "font/pixelart.ttf");
 		type.set ("font/pixelart.ttf", AssetType.FONT);
+		path.set ("sfx/axe0.ogg", "sfx/axe0.ogg");
+		type.set ("sfx/axe0.ogg", AssetType.SOUND);
+		path.set ("sfx/axe1.ogg", "sfx/axe1.ogg");
+		type.set ("sfx/axe1.ogg", AssetType.SOUND);
+		path.set ("sfx/axe2.ogg", "sfx/axe2.ogg");
+		type.set ("sfx/axe2.ogg", AssetType.SOUND);
 		path.set ("sfx/bell.wav", "sfx/bell.wav");
 		type.set ("sfx/bell.wav", AssetType.SOUND);
 		path.set ("sfx/Blip_Select2.ogg", "sfx/Blip_Select2.ogg");
 		type.set ("sfx/Blip_Select2.ogg", AssetType.SOUND);
 		path.set ("sfx/cherry.ogg", "sfx/cherry.ogg");
 		type.set ("sfx/cherry.ogg", AssetType.SOUND);
+		path.set ("sfx/goo.ogg", "sfx/goo.ogg");
+		type.set ("sfx/goo.ogg", AssetType.SOUND);
 		path.set ("sfx/Randomize15.ogg", "sfx/Randomize15.ogg");
 		type.set ("sfx/Randomize15.ogg", AssetType.SOUND);
-		path.set ("sfx/wood.ogg", "sfx/wood.ogg");
-		type.set ("sfx/wood.ogg", AssetType.SOUND);
+		path.set ("sfx/smash.ogg", "sfx/smash.ogg");
+		type.set ("sfx/smash.ogg", AssetType.SOUND);
+		path.set ("sfx/wood0.ogg", "sfx/wood0.ogg");
+		type.set ("sfx/wood0.ogg", AssetType.SOUND);
+		path.set ("sfx/wood1.ogg", "sfx/wood1.ogg");
+		type.set ("sfx/wood1.ogg", AssetType.SOUND);
+		path.set ("sfx/wood2.ogg", "sfx/wood2.ogg");
+		type.set ("sfx/wood2.ogg", AssetType.SOUND);
 		path.set ("audio/AMemoryAway.ogg", "audio/AMemoryAway.ogg");
 		type.set ("audio/AMemoryAway.ogg", AssetType.MUSIC);
 		path.set ("audio/Blip_Select2.ogg", "audio/Blip_Select2.ogg");
 		type.set ("audio/Blip_Select2.ogg", AssetType.SOUND);
 		path.set ("audio/Randomize15.ogg", "audio/Randomize15.ogg");
 		type.set ("audio/Randomize15.ogg", AssetType.SOUND);
-		path.set ("info/floorMap.json", "info/floorMap.json");
-		type.set ("info/floorMap.json", AssetType.TEXT);
-		path.set ("info/treeMap.json", "info/treeMap.json");
-		type.set ("info/treeMap.json", AssetType.TEXT);
 		
 		
 		#elseif html5
@@ -179,10 +218,34 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "img/humans/warrior_m.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/materials/cherry.png";
+		id = "img/materials/fish.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/materials/fruit.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/materials/stone.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/materials/water.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/materials/wood.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/screens/title.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/stuff/bush.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/stuff/rock.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/stuff/tree.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/stuff/wave.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/tilesets/floor.png";
@@ -194,6 +257,15 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "font/pixelart.ttf";
 		path.set (id, id);
 		type.set (id, AssetType.FONT);
+		id = "sfx/axe0.ogg";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "sfx/axe1.ogg";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "sfx/axe2.ogg";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
 		id = "sfx/bell.wav";
 		path.set (id, id);
 		type.set (id, AssetType.SOUND);
@@ -203,10 +275,22 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "sfx/cherry.ogg";
 		path.set (id, id);
 		type.set (id, AssetType.SOUND);
+		id = "sfx/goo.ogg";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
 		id = "sfx/Randomize15.ogg";
 		path.set (id, id);
 		type.set (id, AssetType.SOUND);
-		id = "sfx/wood.ogg";
+		id = "sfx/smash.ogg";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "sfx/wood0.ogg";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "sfx/wood1.ogg";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "sfx/wood2.ogg";
 		path.set (id, id);
 		type.set (id, AssetType.SOUND);
 		id = "audio/AMemoryAway.ogg";
@@ -218,12 +302,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "audio/Randomize15.ogg";
 		path.set (id, id);
 		type.set (id, AssetType.SOUND);
-		id = "info/floorMap.json";
-		path.set (id, id);
-		type.set (id, AssetType.TEXT);
-		id = "info/treeMap.json";
-		path.set (id, id);
-		type.set (id, AssetType.TEXT);
 		
 		
 		var assetsPrefix = null;
@@ -257,9 +335,22 @@ class DefaultAssetLibrary extends AssetLibrary {
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		
 		className.set ("font/pixelart.ttf", __ASSET__font_pixelart_ttf);
 		type.set ("font/pixelart.ttf", AssetType.FONT);
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -1017,6 +1108,19 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 #elseif html5
 
 
@@ -1035,7 +1139,20 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
+
+
 @:keep #if display private #end class __ASSET__font_pixelart_ttf extends lime.text.Font { public function new () { super (); name = "Pixel-Art Regular"; } } 
+
+
+
+
+
 
 
 

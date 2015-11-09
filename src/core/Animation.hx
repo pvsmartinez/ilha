@@ -10,25 +10,22 @@ class Animation extends Sprite {
 
   private var _spritesheet:BitmapData;
   private var _bitmapContainer:BitmapData;
-  private var _states:Map<String, Array<Point>>;
+  private var _states:Array<Array<Point>> = [];
   private var _animatingSpeed:Float = 125;
   private var _animatingDelta:Float = 0;
   private var _animationFrame:Int = 0;
   private var _animating:Bool = false;
-  private var _currentState:String;
-  private var _nextState:String;
+  private var _currentState:Int = 0;
 
   public var displayImage:Bitmap;
 
-  public function new (imgData:BitmapData, sts:Array<String>, w:Int, h:Int) {
+  public function new (imgData:BitmapData, sts:Int, w:Int, h:Int) {
     super();
     _spritesheet = imgData;
-    _currentState = sts[0];
-    _states = new Map<String, Array<Point>>();
     _bitmapContainer = new BitmapData(w, h);
     var x = 0;
     var y = 0;
-    for (i in 0...sts.length) {
+    for (i in 0...sts) {
       var flag:Bool = true;
       var points:Array<Point> = [];
       while (flag) {
@@ -40,33 +37,21 @@ class Animation extends Sprite {
           flag = false;
         }
       }
-      _states.set(sts[i], points);
+      _states.push(points);
     }
     draw();
   }
 
-  public function animate(deltaTime:Float, acts:Array<Bool>, mv:Array<Bool>) {
-    _animating = mv[0] || mv[1] || mv[2] || mv[3];
-    if (mv[0]) {
-      _nextState = "walk_left";
-    }
-    if (mv[2]) {
-      _nextState = "walk_right";
-    }
-    if (mv[1]) {
-      _nextState = "walk_up";
-    }
-    if (mv[3]) {
-      _nextState = "walk_down";
-    }
-    if (_nextState != null && _nextState != _currentState) {
-      _currentState = _nextState;
+  public function animate(deltaTime:Float, animating:Bool, ?nextState:Int) {
+    _animating = animating;
+    if (animating && nextState != null && nextState > -1 && nextState != _currentState) {
+      _currentState = nextState;
       _animationFrame = 0;
       draw();
     }
     if (_animating) {
       _animatingDelta += deltaTime;
-      if (_states.exists(_currentState) && _animatingDelta > _animatingSpeed) {
+      if (_currentState < _states.length && _animatingDelta > _animatingSpeed) {
         if (_animationFrame >= _states[_currentState].length - 1) {
           _animationFrame = 0;
         } else {
@@ -82,7 +67,7 @@ class Animation extends Sprite {
 
   private function draw() {
     this.removeChild(displayImage);
-    if (_states.exists(_currentState)) {
+    if (_currentState < _states.length) {
       var point:Point = _states[_currentState][_animationFrame];
       _bitmapContainer.copyPixels(_spritesheet, new Rectangle(point.x, point.y, _bitmapContainer.width, _bitmapContainer.height), new Point(0, 0));
     }

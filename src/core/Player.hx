@@ -3,8 +3,8 @@ package core;
 import openfl.display.Sprite;
 import openfl.ui.Keyboard;
 
+import core.Game;
 import core.Human;
-import core.TileMap;
 import core.KeyState;
 
 class Player extends Sprite {
@@ -18,7 +18,7 @@ class Player extends Sprite {
     _puppet = human;
   }
 
-  public function everyFrame(maps:Array<TileMap>, deltaTime:Float) {
+  public function everyFrame(deltaTime:Float) {
     _actionKeys = [KeyState.isKeyDown(Keyboard.SPACE, true)];
     _movementKeys = [
       KeyState.isKeyDown(Keyboard.LEFT),
@@ -26,7 +26,7 @@ class Player extends Sprite {
       KeyState.isKeyDown(Keyboard.RIGHT),
       KeyState.isKeyDown(Keyboard.DOWN)
     ];
-    _puppet.everyFrame(maps, deltaTime, _actionKeys, _movementKeys);
+    _puppet.everyFrame(deltaTime, _actionKeys, _movementKeys);
   }
 
 }

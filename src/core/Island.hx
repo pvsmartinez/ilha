@@ -3,16 +3,17 @@ package core;
 import openfl.display.Sprite;
 import openfl.Lib;
 
-import core.TileMap;
 import core.Human;
 import core.Player;
 import core.Ai;
 import core.Rs;
 
+import core.TileSystem;
+import core.Constants;
+
 class Island extends Sprite {
 
-  private var _floor:TileMap;
-  private var _stuff:TileMap;
+  private var _map:TileSystem;
 
   private var _humans:Array<Human>;
   private var _npcAis:Array<Ai>;
@@ -21,39 +22,31 @@ class Island extends Sprite {
   public function new() {
     super();
 
-    _floor = new TileMap("floor", floor);
-    _floor.draw("info/floorMap.json");
-    addChild(_floor);
+    _map = new TileSystem();
+    addChild(_map);
+    _map.x = _map.y = 0;
 
     _humans = [];
     _npcAis = [];
-    var nHumans = 5;
+    var nHumans = 1 + Constants.CPU_UNITS;
     for(i in 0...nHumans) {
       var rnd = Math.floor(Math.random() * Rs.humans.length);
       _humans.push(new Human(rnd));
-      addChild(_humans[i]);
-      _humans[i].x = _humans[i].y = 100 * (i + 1);
+      _map.addHuman(_humans[i]);
       if (i == 0) {
         _playerAi = new Player(_humans[i]);
       } else {
         _npcAis.push(new Ai(_humans[i]));
       }
     }
-
-    _stuff = new TileMap("trees", trees);
-    _stuff.draw("info/treeMap.json");
-    addChild(_stuff);
-    _floor.x = _stuff.x = 0;
-    _floor.y = _stuff.y = 0;
-
   }
 
   public function everyFrame(deltaTime:Float) {
-    _playerAi.everyFrame([_floor, _stuff], deltaTime);
+    _playerAi.everyFrame(deltaTime);
+    _map.everyFrame(deltaTime);
     for (ai in _npcAis) {
-      ai.everyFrame([_floor, _stuff], deltaTime);
+      ai.everyFrame(deltaTime);
     }
-    _stuff.everyFrame(deltaTime);
     camera();
   }
 

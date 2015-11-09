@@ -1,37 +1,46 @@
 package core;
 
 import openfl.display.Sprite;
-import openfl.display.BitmapData;
-import openfl.display.Bitmap;
+
+import core.Constants;
 
 enum FloorKind {
-  grass;
-  water;
-  mud;
+  sandL;
+  sandM;
+  sandH;
+  sandT;
+  sea;
 }
 
 class Floor extends Sprite {
 
   private var _kind:FloorKind;
-  private var _bitMap:Bitmap;
 
   public var walkable:Bool;
 
-  public function new(imgData:BitmapData, kd:Int) {
+  public function new(kd:FloorKind) {
     super();
-    switch ( kd ) {
-      case 0:
-        _kind = grass;
-        walkable = true;
-      case 1:
-        _kind = water;
-        walkable = false;
-      case 2:
-        _kind = mud;
-        walkable = false;
+    _kind = kd;
+    if (_kind == sea)
+      walkable = false;
+    else
+      walkable = true;
+      var color:Int;
+    switch ( _kind ) {
+      case sandL:
+        color = 0xffaf49;
+      case sandM:
+        color = 0xffc069;
+      case sandH:
+        color = 0xffb649;
+      case sandT:
+        color = 0xf5aa2e;
+      case sea:
+        color = 0x02256d;
     }
-    _bitMap = new Bitmap(imgData);
-    addChild(_bitMap);
+    this.graphics.beginFill(color);
+		this.graphics.drawRect(0, 0, Constants.TILESIZE * Constants.MAPWIDTH, Constants.TILESIZE);
+		this.graphics.endFill();
   }
 
 }

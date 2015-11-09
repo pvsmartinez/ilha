@@ -32,10 +32,7 @@ class Game extends Sprite {
     var elapsed = Lib.getTimer() - _timeStarted;
     var deltaTime = elapsed - _lastTime;
     _lastTime = elapsed;
-
     _story.everyFrame(_lastTime);
     _island.everyFrame(deltaTime);
-
   }
-
 }

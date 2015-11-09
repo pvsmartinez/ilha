@@ -1,9 +1,15 @@
 # ILHA - Nome do jogo aqui
   Descrição do jogo aqui - Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis nibh neque. Pellentesque eget eros sed mi vehicula facilisis. Curabitur porttitor urna magna, vel hendrerit leo fermentum vitae.   
   [Game Design](https://docs.google.com/document/d/198yFuwlhrNjCyBM3WB6Zhyb64_cELDcQW03ilJ5Yi1o/edit#heading=h.6px0j6f2erze)
+  [Tarefas](https://trello.com/b/JO20zWJl/ilha)
 ---
 ### Direitos Autorais:
-* Pedro Vicente Martinez
+* David Wen
+* Lucas
+* Marina
+* Natasha
+* Pedro Martinez
+* Rafael Freitas
 ---
 ### Dados técnicos:
 * Jogo criado com o framework openfl, na linguagem haxe.

@@ -3,7 +3,8 @@ package core;
 import openfl.display.Sprite;
 import openfl.Lib;
 
-import Main.GameState;
+import Main.MainState;
+import core.Constants;
 
 class Story extends Sprite {
 
@@ -12,8 +13,8 @@ class Story extends Sprite {
 
   public function new() {
     super();
-    _coolTime = 2 * 60 * 1000;
-    _endGameTime = 10 * 60 * 1000;
+    _coolTime = Math.floor(Constants.GAME_TIME / 5);
+    _endGameTime = Constants.GAME_TIME;
     temporaryEffect();
   }
 

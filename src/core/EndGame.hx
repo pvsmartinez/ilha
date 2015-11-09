@@ -10,7 +10,7 @@ import openfl.Assets;
 import openfl.Lib;
 
 import core.KeyState;
-import Main.GameState;
+import Main.MainState;
 
 class EndGame extends Sprite {
 

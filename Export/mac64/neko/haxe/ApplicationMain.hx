@@ -90,7 +90,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "288",
+			build: "478",
 			company: "IlhaDesign",
 			file: "ilha",
 			fps: 30,
@@ -108,13 +108,13 @@ class ApplicationMain {
 					display: 0,
 					fullscreen: false,
 					hardware: true,
-					height: 500,
+					height: 660,
 					parameters: "{}",
 					resizable: true,
 					stencilBuffer: true,
 					title: "Ilha",
 					vsync: false,
-					width: 800,
+					width: 1010,
 					x: null,
 					y: null
 				},
@@ -132,7 +132,7 @@ class ApplicationMain {
 		
 		#if (js && html5)
 		#if (munit || utest)
-		openfl.Lib.embed (null, 800, 500, "null");
+		openfl.Lib.embed (null, 1010, 660, "null");
 		#end
 		#else
 		create ();

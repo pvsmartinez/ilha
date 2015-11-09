@@ -5,7 +5,6 @@ import openfl.display.BitmapData;
 import openfl.display.Bitmap;
 
 import core.Animation;
-import core.TileMap;
 import core.Stuff;
 
 class Body extends Sprite {
@@ -15,13 +14,14 @@ class Body extends Sprite {
   private var _imgData:BitmapData;
   private var _bitMap:Bitmap;
   private var _border:Int = 10;
+  private var _direction:Int = 90;
 
-  public var tileX:Int;
-  public var tileY:Int;
   public var size:Float;
   public var speed:Float = 0.1;
+  public var floor:TileSystem;
+  public var selectable:Bool = true;
 
-  public function new(imgData:BitmapData, animate:Bool, ?sts:Array<String>, ?w:Int, ?h:Int) {
+  public function new(imgData:BitmapData, animate:Bool, ?sts:Int, ?w:Int, ?h:Int) {
     super();
     _imgData = imgData;
     _hasAnimation = animate;
@@ -38,26 +38,26 @@ class Body extends Sprite {
     }
   }
 
-  public function getPos(map:TileMap) {
-    tileX = Math.floor(this.x / map.cellWidth);
-    tileY = Math.floor(this.y / map.cellHeight);
-  }
-
-  public function move(mv:Array<Bool>, spd:Array<Float>, ?map:TileMap) {
+  public function move(mv:Array<Bool>, spd:Array<Float>) {
     var l:Bool = mv[0];
     var u:Bool = mv[1];
     var r:Bool = mv[2];
     var d:Bool = mv[3];
-    if (l)
+    if (l) {
+      _direction = 0;
       this.x -= spd[0];
-    if (u)
+    }
+    if (u) {
+      _direction = 90;
       this.y -= spd[1];
-    if (r)
+    }
+    if (r) {
+      _direction = 180;
       this.x += spd[0];
-    if (d)
+    }
+    if (d) {
+      _direction = -90;
       this.y += spd[1];
-    if (map != null) {
-      getPos(map);
     }
   }
 }

@@ -1,6 +1,7 @@
 package core;
 
 import openfl.display.Sprite;
+import openfl.display.Bitmap;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
@@ -9,19 +10,21 @@ import openfl.ui.Keyboard;
 import openfl.Assets;
 import openfl.Lib;
 
+import core.Rs;
 import core.KeyState;
-import Main.GameState;
+import Main.MainState;
 
 class Menu extends Sprite {
 
-  private var titleFormat:TextFormat = new TextFormat(Assets.getFont("font/pixelart.ttf").fontName, 100, 0xFFFFFF, true);
-  private var playFormat:TextFormat = new TextFormat(Assets.getFont("font/pixelart.ttf").fontName, 50, 0xFFFFFF, false);
+  //private var titleFormat:TextFormat = new TextFormat(Assets.getFont("font/pixelart.ttf").fontName, 100, 0xFFFFFF, true);
+  //private var playFormat:TextFormat = new TextFormat(Assets.getFont("font/pixelart.ttf").fontName, 50, 0xFFFFFF, false);
 
   public function new () {
     super ();
-    var y = Lib.current.stage.stageHeight/2;
-    write("THE ISLAND", titleFormat, 0, y);
-    write("SPACE TO PLAY", playFormat, 0, y + 100);
+    addChild(new Bitmap(Rs.screen["title"]));
+    //var y = Lib.current.stage.stageHeight/2;
+    //write("THE ISLAND", titleFormat, 0, y);
+    //write("SPACE TO PLAY", playFormat, 0, y + 100);
   }
 
   public function everyFrame() {
@@ -29,7 +32,7 @@ class Menu extends Sprite {
       Main.setGameState(playing);
   }
 
-  private function write(text:String, format:TextFormat, x:Float, y:Float) {
+  /*private function write(text:String, format:TextFormat, x:Float, y:Float) {
     var txt:TextField = new TextField();
     txt.width = Lib.current.stage.stageWidth;
     txt.selectable = false;
@@ -39,6 +42,6 @@ class Menu extends Sprite {
     addChild(txt);
     txt.x = x;
     txt.y = y - txt.height/2;
-  }
+  }*/
 
 }
