@@ -24,56 +24,22 @@ class Material extends Body {
     switch ( _kind ) {
       case wood:
         imgUrl = "wood";
-        if(pickedNumber < 25){
-            SoundHandler.playSound("axe0");
-        }
-        else if(pickedNumber < 45){
-            SoundHandler.playSound("axe1");
-        }
-        else if(pickedNumber < 60){
-            SoundHandler.playSound("axe2");
-        }
-        else if(pickedNumber < 75){
-            SoundHandler.playSound("wood0");
-        }
-        else if(pickedNumber < 90){
-            SoundHandler.playSound("wood1");
-        }
-        else if(pickedNumber < 97){
-            SoundHandler.playSound("wood2");
-        }
-        else{
-            SoundHandler.playSound("blip");
-        }
+        SoundHandler.randomSoundFromList(["axe0", "axe1", "axe2", "wood0", "wood1", "wood2", "blip"] ,[25, 20, 15, 15, 15, 7, 3]);
       case fruit:
         imgUrl = "fruit";
-        if(pickedNumber < 25){
-            SoundHandler.playSound("axe0");
-        }
-        else if(pickedNumber < 45){
-            SoundHandler.playSound("axe2");
-        }
-        else if(pickedNumber < 75){
-            SoundHandler.playSound("wood2");
-        }
-        else if(pickedNumber < 90){
-            SoundHandler.playSound("cherry");
-        }
-        else{
-            SoundHandler.playSound("smash");
-        }
+        SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
       case stone:
         imgUrl = "stone";
-        SoundHandler.playSound("smash");
+        SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
       case fish:
         imgUrl = "fish";
-        SoundHandler.playSound("smash");
+        SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
       case water:
         imgUrl = "water";
-        SoundHandler.playSound("smash");
+        SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
       default:
         imgUrl = "fruit";
-        SoundHandler.playSound("smash");
+        SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
     }
     super(Rs.maters[imgUrl], false);
     this.selectable = false;

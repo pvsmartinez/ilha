@@ -79,6 +79,7 @@ class Rs {
 
     sounds.set("goo", Assets.getSound("sfx/goo.ogg"));
     sounds.set("cherry", Assets.getSound("sfx/cherry.ogg"));
+    sounds.set("smash", Assets.getSound("sfx/smash.ogg"));
   }
   private static function loadMusics() {
     musics = new Map<String, Sound>();
