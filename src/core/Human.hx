@@ -125,6 +125,9 @@ class Human extends Body {
           trace("Hello human!");
         }
       }
+    } else if(act[1]) {
+       var removedMaterial:Material = _materials.pop();
+       this.parent.removeChild(removedMaterial);
     }
   }
 

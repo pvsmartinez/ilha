@@ -19,7 +19,7 @@ class Player extends Sprite {
   }
 
   public function everyFrame(deltaTime:Float) {
-    _actionKeys = [KeyState.isKeyDown(Keyboard.SPACE, true)];
+    _actionKeys = [KeyState.isKeyDown(Keyboard.SPACE, true), KeyState.isKeyDown(Keyboard.C, true)];
     _movementKeys = [
       KeyState.isKeyDown(Keyboard.LEFT),
       KeyState.isKeyDown(Keyboard.UP),
