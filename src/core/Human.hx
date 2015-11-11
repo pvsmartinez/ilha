@@ -9,10 +9,12 @@ import core.Body;
 import core.Stuff;
 import core.Material;
 import core.Rs;
+import core.Recipe;
 
 enum HumanState {
   free;
   extracting;
+  crafting;
 }
 
 class Human extends Body {
@@ -25,12 +27,12 @@ class Human extends Body {
     this.speed = 0.1;
   }
 
-  public function everyFrame(deltaTime:Float, act:Array<Bool>, mv:Array<Int>, dir:Int) {
+  public function everyFrame(deltaTime:Float, act:Array<Bool>, mv:Array<Int>) {
+    if (_materials.length > Constants.HUMAN_MATERIALS_CARRY) {
+      releaseMaterial();
+    }
     switch ( _state ) {
       case free:
-        if (dir != null) {
-          direction = dir;
-        }
         walk(deltaTime, mv);
         action(act);
         var animating:Bool = Math.abs(mv[0]) + Math.abs(mv[1]) > 0;
@@ -45,10 +47,16 @@ class Human extends Body {
           case 2:
             state = 1;
         }
-
         _animation.animate(deltaTime, animating, state);
       case extracting:
         //can't do anything
+      case crafting:
+    }
+  }
+
+  public function setDirection(dir:Int) {
+    if (dir != null) {
+      direction = dir;
     }
   }
 
@@ -85,9 +93,13 @@ class Human extends Body {
         var dy = this.y - ob.y;
         var dt = Math.sqrt((dx*dx)+(dy*dy));
         var alpha = Math.atan2(dy, dx) * 180 / Math.PI;
-        var inAlpha = Math.abs((this.direction*90) - alpha) < Constants.HUMAN_VISION_DEGREE;
+        var beta = Constants.HUMAN_VISION_DEGREE;
+        if (dt < Constants.HUMAN_VISION_DISTANCE/3) {
+          beta = beta * 3;
+        }
+        var inAlpha = Math.abs((this.direction*90) - alpha) < beta;
         if (this.direction*90 == 180 && !inAlpha) {
-           inAlpha = Math.abs((-this.direction*90) - alpha) < Constants.HUMAN_VISION_DEGREE;
+           inAlpha = Math.abs((-this.direction*90) - alpha) < beta;
         }
         if (dt < Constants.HUMAN_VISION_DISTANCE && inAlpha && ob.selectable) {
           if (dist == null || Math.sqrt(dx * dy) < dist) {
@@ -111,19 +123,68 @@ class Human extends Body {
           }
         } else if (Type.getClass(target) == Human) {
           trace("Hello human!");
+        } else if (Type.getClass(target) == Material) {
+          getMaterial(target);
         }
+      } else {
+        releaseMaterial();
       }
+    } else if(act[1]) {
+      var ingredients = [ wood=>2, fruit=>1];
+      craft(new Recipe(ingredients));
     }
+  }
+
+  public function releaseMaterial() {
+    if (_materials.length > 0) {
+      var mt:Material = _materials[_materials.length - 1];
+      _materials.pop();
+      mt.state = idle;
+      mt.selectable = true;
+    }
+  }
+
+  public function getMaterial(mt:Material) {
+    mt.x = this.x;
+    mt.y = this.y;
+    mt.state = following;
+    mt.selectable = false;
+    _materials.unshift(mt);
   }
 
   public function createMaterial(mKind:MaterialKind) {
     var mt:Material = new Material(mKind);
     this.parent.addChild(mt);
     this.floor.objs.push(mt);
-    mt.x = this.x;
-    mt.y = this.y;
-    _materials.unshift(mt);
+    getMaterial(mt);
     _state = free;
   }
 
+  public function craft(recipe:Recipe):Void{
+    for (key in recipe._ingredientList.keys()) {
+      consumeMaterial(key, recipe._ingredientList.get(key));
+    }
+  }
+
+  public function consumeMaterial(materialKind:MaterialKind, quantity:Int):Bool {
+		var success:Bool = true;
+		for (i in 0 ... quantity) {
+			success = removeMaterial(materialKind);
+		}
+		return success;
+	}
+
+  private function removeMaterial(materialKind:MaterialKind):Bool{
+		var i:Int = 0;
+		var found:Bool = false;
+		while (i < _materials.length && found == false) {
+			if(_materials[i]._kind == materialKind){
+				var elem:Material = _materials[i];
+				found = _materials.remove(elem);
+				this.parent.removeChild(elem);
+			}
+			i++;
+		}
+		return found;
+	}
 }

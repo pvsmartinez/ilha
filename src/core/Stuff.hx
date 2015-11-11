@@ -66,7 +66,8 @@ class Stuff extends Body {
       _bitMap.x = _bitMap.y = 0;
     }
     _materialIcon = new Material(_material);
-    _materialIcon.x = _materialIcon.y = 0;
+    _materialIcon.x = -_materialIcon.sizeX/2;
+    _materialIcon.y = 0;
     _progress = new Progress(this);
   }
 

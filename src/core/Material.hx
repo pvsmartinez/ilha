@@ -13,9 +13,15 @@ enum MaterialKind {
   water;
 }
 
+enum MaterialState {
+  idle;
+  following;
+}
+
 class Material extends Body {
 
-  private var _kind:MaterialKind;
+  public var _kind:MaterialKind;
+  public var state:MaterialState;
 
   public function new(matKind:MaterialKind) {
     _kind = matKind;
@@ -43,6 +49,21 @@ class Material extends Body {
     }
     super(Rs.maters[imgUrl], false);
     this.selectable = false;
+  }
+
+  public function everyFrame(deltaTime:Float) {
+    if (state == idle) {
+      if (onFocus) {
+        this.scaleX = 1;
+        this.scaleY = 1;
+      } else {
+        this.scaleX = 0.7;
+        this.scaleY = 0.7;
+      }
+    } else {
+      this.scaleX = 1;
+      this.scaleY = 1;
+    }
   }
 
   public function follow(target:Body, followDistance:Float) {

@@ -19,7 +19,7 @@ class Player extends Sprite {
   }
 
   public function everyFrame(deltaTime:Float) {
-    _actionKeys = [KeyState.isKeyDown(Keyboard.SPACE, true)];
+    _actionKeys = [KeyState.isKeyDown(Keyboard.SPACE, true), KeyState.isKeyDown(Keyboard.C, true)];
     _movementKeys = [0,0];
     var dir:Int = null;
     if (KeyState.isKeyDown(Keyboard.LEFT)) {
@@ -46,11 +46,12 @@ class Player extends Sprite {
       dir = 2;
     if (KeyState.lastKey == Keyboard.DOWN && KeyState.isKeyDown(Keyboard.DOWN))
       dir = -1;
-    _puppet.everyFrame(deltaTime, _actionKeys, _movementKeys, dir);
     var target:Body = _puppet.getFocus();
     if (target != null) {
       target.onFocus = true;
     }
+    _puppet.setDirection(dir);
+    _puppet.everyFrame(deltaTime, _actionKeys, _movementKeys);
   }
 
 }

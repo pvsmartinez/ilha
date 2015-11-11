@@ -43,7 +43,8 @@ class Ai extends Sprite {
         go();
       case talking:
     }
-    _puppet.everyFrame(deltaTime, _actionKeys, _movementKeys, _dir);
+    _puppet.setDirection(_dir);
+    _puppet.everyFrame(deltaTime, _actionKeys, _movementKeys);
   }
 
   private function think(deltaTime:Float) {

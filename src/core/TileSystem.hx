@@ -54,6 +54,8 @@ class TileSystem extends Sprite {
   		setChildIndex(objs[i], _iMap.length + i);
       if (Type.getClass(objs[i]) == Stuff) {
         cast(objs[i], Stuff).everyFrame(deltaTime);
+      } else if (Type.getClass(objs[i]) == Material) {
+        cast(objs[i], Material).everyFrame(deltaTime);
       }
   	}
   }

@@ -19,7 +19,7 @@ class SoundHandler{
 
   public static function playSound(soundID: String){
     if(Rs.sounds.exists(soundID)){
-      Rs.sounds[soundID].play(0, 1, fxTransform);
+      //Rs.sounds[soundID].play(0, 1, fxTransform);
     }
     else{
       trace("The sound ID " + soundID + " is not set.");
