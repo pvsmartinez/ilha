@@ -168,7 +168,11 @@ class Human extends Body {
       for (key in recipe._ingredientList.keys()) {
         consumeMaterial(key, recipe._ingredientList.get(key));
       }
-      _currentTool = cast(recipe._result, Tool);
+      if(Type.getClass(recipe._result) == Tool){
+        _currentTool = cast(recipe._result, Tool);
+      } else if(Type.getClass(recipe._result) == Material){
+        trace("É material");
+      }
     }
   }
 
