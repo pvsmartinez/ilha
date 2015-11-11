@@ -23,6 +23,7 @@ class Human extends Body {
   private var _timer:Float;
   private var _currentTool:Tool;
   private var _materials:Array<Material> = [];
+  private var _tool:Tool;
   private var _state:HumanState = free;
 
   public function new(imgN:Int) {
@@ -133,8 +134,8 @@ class Human extends Body {
         releaseMaterial();
       }
     } else if(act[1]) {
-      var ingredients = [ wood=>2, fruit=>1];
-      craft(new Recipe(ingredients));
+      var ingredients = [ wood=>2, stone=>1];
+      craft(new Recipe(new Tool(axe),ingredients));
     }
   }
 
@@ -164,8 +165,11 @@ class Human extends Body {
   }
 
   public function craft(recipe:Recipe):Void{
-    for (key in recipe._ingredientList.keys()) {
-      consumeMaterial(key, recipe._ingredientList.get(key));
+    if(isAbleToCraft(recipe)){
+      for (key in recipe._ingredientList.keys()) {
+        consumeMaterial(key, recipe._ingredientList.get(key));
+      }
+      _tool = cast(recipe._result, Tool);
     }
   }
 
@@ -193,5 +197,25 @@ class Human extends Body {
 
   public function useTool(stf:Stuff):Float{
     return _currentTool.howManyHitPointsWouldGetFromResource(stf);
+  }
+  
+  private function isAbleToCraft(recipe:Recipe):Bool{
+    var able:Bool = true;
+    for (key in recipe._ingredientList.keys()) {
+      if(countIngredient(key) < recipe._ingredientList.get(key)){
+        able = false;
+      };
+    }
+    return able;
+  }
+
+  private function countIngredient(materialKind:MaterialKind):Int{
+    var count:Int = 0;
+    for(i in 0 ... _materials.length){
+      if(_materials[i]._kind == materialKind){
+        count++;
+      }
+    }
+    return count;
   }
 }
