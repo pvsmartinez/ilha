@@ -10,6 +10,7 @@ import core.Stuff;
 import core.Material;
 import core.Rs;
 import core.Recipe;
+import core.Tool;
 
 enum HumanState {
   free;
@@ -20,6 +21,7 @@ enum HumanState {
 class Human extends Body {
 
   private var _materials:Array<Material> = [];
+  private var _tool:Tool;
   private var _state:HumanState = free;
 
   public function new(imgN:Int) {
@@ -130,8 +132,8 @@ class Human extends Body {
         releaseMaterial();
       }
     } else if(act[1]) {
-      var ingredients = [ wood=>2, fruit=>1];
-      craft(new Recipe(ingredients));
+      var ingredients = [ wood=>2, stone=>1];
+      craft(new Recipe(new Tool(axe),ingredients));
     }
   }
 
@@ -165,7 +167,8 @@ class Human extends Body {
       for (key in recipe._ingredientList.keys()) {
         consumeMaterial(key, recipe._ingredientList.get(key));
       }
-    } 
+      _tool = cast(recipe._result, Tool);
+    }
   }
 
   public function consumeMaterial(materialKind:MaterialKind, quantity:Int):Bool {
