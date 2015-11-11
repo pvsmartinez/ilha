@@ -47,7 +47,4 @@ class Ui extends Sprite {
       }
     }
   }
-
-
-
 }

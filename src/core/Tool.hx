@@ -27,15 +27,15 @@ class Tool extends Sprite {
     var values:Array<Float> = [1, 1, 1, 1];
     switch(kind){
         case axe:
-          values = [50, 30, 1, 1];
+          values = [10, 2, 1, 1];
         case pick:
-          values = [1, 1, 50, 1];
+          values = [1, 1, 10, 1];
         case spear:
-          values = [1, 1, 1, 50];
+          values = [1, 5, 1, 5];
         case rod:
-          values = [1, 1, 1, 50];
+          values = [0.5, 1, 0.5, 10];
         case knife:
-          values = [1, 50, 1, 1];
+          values = [1, 10, 1, 1];
     }
     for (i in 0...list.length) {
       if (list[i] == stf.kind) {
