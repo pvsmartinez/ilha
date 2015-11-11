@@ -50,12 +50,10 @@ class Material extends Body {
     var dy = this.y - target.y;
     var dist = Math.sqrt((dx*dx)+(dy*dy));
     if( dist > followDistance + 5 ) {
-      var mv:Array<Bool> = [];
+      var mv:Array<Int> = [];
       var sp:Float = Math.floor((dist - followDistance) / 4);
-      mv[0] = dx > 0;
-      mv[1] = dy > 0;
-      mv[2] = dx < 0;
-      mv[3] = dy < 0;
+      mv[0] = (dx != 0) ? -Math.floor(dx/Math.abs(dx)) : 0;
+      mv[1] = (dy != 0) ? -Math.floor(dy/Math.abs(dy)) : 0;
       var sps = [sp * Math.abs(dx/dist), sp * Math.abs(dy/dist)];
       super.move(mv, sps);
     }

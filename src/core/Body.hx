@@ -14,12 +14,14 @@ class Body extends Sprite {
   private var _imgData:BitmapData;
   private var _bitMap:Bitmap;
   private var _border:Int = 10;
-  private var _direction:Int = 90;
 
-  public var size:Float;
+  public var direction:Int = 0;
+  public var sizeX:Float;
+  public var sizeY:Float;
   public var speed:Float = 0.1;
   public var floor:TileSystem;
   public var selectable:Bool = true;
+  public var onFocus:Bool = false;
 
   public function new(imgData:BitmapData, animate:Bool, ?sts:Int, ?w:Int, ?h:Int) {
     super();
@@ -28,36 +30,20 @@ class Body extends Sprite {
     if (_hasAnimation) {
       _animation = new Animation(_imgData, sts, w, h);
       addChild(_animation);
-      size = _animation.displayImage.width;
+      sizeX = _animation.displayImage.width;
+      sizeY = _animation.displayImage.height;
     } else {
       _bitMap = new Bitmap(_imgData);
       addChild(_bitMap);
       _bitMap.x = -_bitMap.width/2;
       _bitMap.y = -_bitMap.height;
-      size = _bitMap.width;
+      sizeX = _bitMap.width;
+      sizeY = _bitMap.height;
     }
   }
 
-  public function move(mv:Array<Bool>, spd:Array<Float>) {
-    var l:Bool = mv[0];
-    var u:Bool = mv[1];
-    var r:Bool = mv[2];
-    var d:Bool = mv[3];
-    if (l) {
-      _direction = 0;
-      this.x -= spd[0];
-    }
-    if (u) {
-      _direction = 90;
-      this.y -= spd[1];
-    }
-    if (r) {
-      _direction = 180;
-      this.x += spd[0];
-    }
-    if (d) {
-      _direction = -90;
-      this.y += spd[1];
-    }
+  public function move(mv:Array<Int>, spd:Array<Float>) {
+    this.x += mv[0] * spd[0];
+    this.y += mv[1] * spd[1];
   }
 }

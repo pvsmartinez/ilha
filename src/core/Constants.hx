@@ -13,6 +13,6 @@ class Constants {
   public static inline var GAME_TIME = 10 * 60 * 1000;
 
   public static inline var HUMAN_VISION_DISTANCE = 96;
-  public static inline var HUMAN_VISION_DEGREE = 45;
+  public static inline var HUMAN_VISION_DEGREE = 30;
 
 }

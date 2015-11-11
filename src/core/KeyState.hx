@@ -8,6 +8,8 @@ class KeyState
 
     private static var _keys:Array<Bool> = [];
 
+    public static var lastKey:Int = -1;
+
     public static function init()
     {
         for (i in 0...200) _keys.push(false);
@@ -19,11 +21,13 @@ class KeyState
     private static function onKeyUp(e)
     {
         _keys[e.keyCode] = false;
+        lastKey = -1;
     }
 
     private static function onKeyDown(e)
     {
         _keys[e.keyCode] = true;
+        lastKey = e.keyCode;
     }
 
     public static function isKeyDown(keyCode:Int, ?fragile:Bool = false):Bool

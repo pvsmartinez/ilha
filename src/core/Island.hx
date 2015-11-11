@@ -41,17 +41,24 @@ class Island extends Sprite {
     }
   }
 
+  /*
+   *  The order of everyFrame matters.
+   *  First, it need to reset conditional status, like focus
+   *  Then it does human actions, prioritizing the player
+   *  And finally it does the camera stuff
+   */
   public function everyFrame(deltaTime:Float) {
+    _map.resetEveryFrame();
     _playerAi.everyFrame(deltaTime);
-    _map.everyFrame(deltaTime);
     for (ai in _npcAis) {
       ai.everyFrame(deltaTime);
     }
+    _map.everyFrame(deltaTime);
     camera();
   }
 
   private function camera() {
-    var safeZone:Int = 100;
+    var safeZone:Int = 200;
     var posX = _humans[0].x + this.x;
     var posY = _humans[0].y + this.y;
     if (posX < safeZone)

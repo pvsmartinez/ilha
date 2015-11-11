@@ -41,6 +41,12 @@ class TileSystem extends Sprite {
     objs.push(h);
   }
 
+  public function resetEveryFrame() {
+    for (i in 0...objs.length) {
+      objs[i].onFocus = false;
+    }
+  }
+
   public function everyFrame(deltaTime:Float) {
     objs.sort(sortByY);
     var i:Int;

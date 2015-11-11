@@ -12,64 +12,53 @@ import core.Rs;
 
 enum HumanState {
   free;
-  extract;
+  extracting;
 }
 
 class Human extends Body {
 
-  private static inline var WALK_LEFT  = 0;
-  private static inline var WALK_UP    = 1;
-  private static inline var WALK_RIGHT = 2;
-  private static inline var WALK_DOWN  = 3;
-
   private var _materials:Array<Material> = [];
-  private var _stateNames:Array<String>;
-  private var _hState:HumanState = free;
-  private var _hStateTime:Float = 0;
-  private var _temporarySprite:Sprite;
+  private var _state:HumanState = free;
 
   public function new(imgN:Int) {
     super(Rs.humans[imgN], true, 4, 32, 36);
     this.speed = 0.1;
   }
 
-  public function everyFrame(deltaTime:Float, act:Array<Bool>, mv:Array<Bool>) {
-    var state:Int = 0;
-    switch ( _hState ) {
+  public function everyFrame(deltaTime:Float, act:Array<Bool>, mv:Array<Int>, dir:Int) {
+    switch ( _state ) {
       case free:
+        if (dir != null) {
+          direction = dir;
+        }
         walk(deltaTime, mv);
         action(act);
-        state = (Lambda.indexOf(mv, true) + 3) % 4;
-        var animating:Bool = Lambda.exists(mv, function(i){return i == true;});
-        _animation.animate(deltaTime,animating,state);
-      case extract:
-        _hStateTime -= deltaTime;
-        if (_hStateTime <= 0) {
-          var mt:Material = cast(_temporarySprite, Material);
-          this.parent.addChild(mt);
-          this.floor.objs.push(mt);
-          mt.x = this.x;
-          mt.y = this.y;
-          _materials.unshift(mt);
-          _hState = free;
-          _hStateTime = 1;
+        var animating:Bool = Math.abs(mv[0]) + Math.abs(mv[1]) > 0;
+        var state:Int = 0;
+        switch ( direction ) {
+          case -1:
+            state = 2;
+          case 0:
+            state = 3;
+          case 1:
+            state = 0;
+          case 2:
+            state = 1;
         }
+
+        _animation.animate(deltaTime, animating, state);
+      case extracting:
+        //can't do anything
     }
   }
 
-  public function walk(deltaTime:Float, mv:Array<Bool>):Void {
+  public function walk(deltaTime:Float, mv:Array<Int>):Void {
     var spd:Float = this.speed * deltaTime;
-    var l:Bool = mv[WALK_LEFT];
-    var u:Bool = mv[WALK_UP];
-    var r:Bool = mv[WALK_RIGHT];
-    var d:Bool = mv[WALK_DOWN];
-		if ((l && u) || (l && d) || (r && u) || (r && d))
+		if (Math.abs(mv[0]) + Math.abs(mv[1]) == 2)
 			spd = spd * Math.sqrt(2)/2;
-    l = l && floor.canWalk(this.x - spd - _border, this.y);
-    u = u && floor.canWalk(this.x, this.y - spd - _border);
-    r = r && floor.canWalk(this.x + spd + _border, this.y);
-    d = d && floor.canWalk(this.x, this.y + spd + _border);
-    super.move([l,u,r,d], [spd,spd]);
+    var h = (floor.canWalk(this.x + mv[0] * (spd + _border), this.y)) ? mv[0] : 0;
+    var v = (floor.canWalk(this.x, this.y + mv[1] * (spd + _border))) ? mv[1] : 0;
+    super.move([h,v], [spd,spd]);
     followMaterials();
 	}
   private function followMaterials() {
@@ -78,7 +67,7 @@ class Human extends Body {
       var followDistance:Float;
 			if(i == 0) {
 				target = this;
-        followDistance = 10 + this.size/2;
+        followDistance = 10 + this.sizeX/2;
 			} else {
 				target = _materials[i-1];
         followDistance = 6;
@@ -89,20 +78,22 @@ class Human extends Body {
 
   public function getFocus():Body {
     var target:Body = null;
-    var dist:Float = Constants.HUMAN_VISION_DISTANCE;
+    var dist:Float = null;
     for (ob in floor.objs) {
       if (ob != this) {
         var dx = this.x - ob.x;
         var dy = this.y - ob.y;
         var dt = Math.sqrt((dx*dx)+(dy*dy));
         var alpha = Math.atan2(dy, dx) * 180 / Math.PI;
-        var inAlpha = Math.abs(this._direction - alpha) < Constants.HUMAN_VISION_DEGREE;
-        if (this._direction == 180 && !inAlpha) {
-           inAlpha = Math.abs(-this._direction - alpha) < Constants.HUMAN_VISION_DEGREE;
+        var inAlpha = Math.abs((this.direction*90) - alpha) < Constants.HUMAN_VISION_DEGREE;
+        if (this.direction*90 == 180 && !inAlpha) {
+           inAlpha = Math.abs((-this.direction*90) - alpha) < Constants.HUMAN_VISION_DEGREE;
         }
-        if (dt < dist && inAlpha && ob.selectable) {
-          target = ob;
-          dist = dt;
+        if (dt < Constants.HUMAN_VISION_DISTANCE && inAlpha && ob.selectable) {
+          if (dist == null || Math.sqrt(dx * dy) < dist) {
+            target = ob;
+            dist = Math.sqrt(dx * dy);
+          }
         }
       }
     }
@@ -115,17 +106,24 @@ class Human extends Body {
       target = getFocus();
       if (target != null) {
         if (Type.getClass(target) == Stuff) {
-          var mt:Dynamic = target.extract();
-          if (mt!= null && mt.material != null) {
-            _hState = extract;
-            _hStateTime = mt.time;
-            _temporarySprite = mt.material;
+          if(target.extract(this)) {
+            _state = extracting;
           }
         } else if (Type.getClass(target) == Human) {
           trace("Hello human!");
         }
       }
     }
+  }
+
+  public function createMaterial(mKind:MaterialKind) {
+    var mt:Material = new Material(mKind);
+    this.parent.addChild(mt);
+    this.floor.objs.push(mt);
+    mt.x = this.x;
+    mt.y = this.y;
+    _materials.unshift(mt);
+    _state = free;
   }
 
 }
