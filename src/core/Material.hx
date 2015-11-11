@@ -34,6 +34,9 @@ class Material extends Body {
       case fruit:
         imgUrl = "fruit";
         SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
+      case leaf:
+        imgUrl = "leaf";
+        SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
       case stone:
         imgUrl = "stone";
         SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);

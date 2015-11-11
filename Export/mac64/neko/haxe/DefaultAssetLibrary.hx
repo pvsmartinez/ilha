@@ -66,6 +66,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
 		openfl.text.Font.registerFont (__ASSET__OPENFL__font_pixelart_ttf);
 		
 		
@@ -93,6 +94,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("img/materials/fish.png", AssetType.IMAGE);
 		path.set ("img/materials/fruit.png", "img/materials/fruit.png");
 		type.set ("img/materials/fruit.png", AssetType.IMAGE);
+		path.set ("img/materials/leaf.png", "img/materials/leaf.png");
+		type.set ("img/materials/leaf.png", AssetType.IMAGE);
 		path.set ("img/materials/stone.png", "img/materials/stone.png");
 		type.set ("img/materials/stone.png", AssetType.IMAGE);
 		path.set ("img/materials/water.png", "img/materials/water.png");
@@ -159,6 +162,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/materials/fruit.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/materials/leaf.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/materials/stone.png";
@@ -259,6 +265,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -1041,7 +1048,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
 #elseif html5
+
 
 
 

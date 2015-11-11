@@ -38,6 +38,7 @@ class Rs {
     maters.set("fish", Assets.getBitmapData("img/materials/fish.png"));
     maters.set("stone", Assets.getBitmapData("img/materials/stone.png"));
     maters.set("water", Assets.getBitmapData("img/materials/water.png"));
+    maters.set("leaf", Assets.getBitmapData("img/materials/leaf.png"));
   }
   private static function loadStuffs() {
     stuffs = new Map<String, BitmapData>();

@@ -10,6 +10,7 @@ import core.Stuff;
 import core.Material;
 import core.Rs;
 import core.Recipe;
+import core.Tool;
 
 enum HumanState {
   free;
@@ -19,10 +20,13 @@ enum HumanState {
 
 class Human extends Body {
 
+  private var _timer:Float;
+  private var _currentTool:Tool;
   private var _materials:Array<Material> = [];
   private var _state:HumanState = free;
 
   public function new(imgN:Int) {
+    _currentTool = new Tool(axe);
     super(Rs.humans[imgN], true, 4, 77, 110);
     this.speed = 0.1;
   }
@@ -42,6 +46,12 @@ class Human extends Body {
         _animation.animate(deltaTime, animating, state);
       case extracting:
         //can't do anything
+        _timer -= deltaTime;
+
+        if(_timer <= 0.0){
+          _state = free;
+        }
+
       case crafting:
     }
   }
@@ -112,6 +122,7 @@ class Human extends Body {
         if (Type.getClass(target) == Stuff) {
           if(target.extract(this)) {
             _state = extracting;
+            _timer = 250.0;
           }
         } else if (Type.getClass(target) == Human) {
           trace("Hello human!");
@@ -179,4 +190,8 @@ class Human extends Body {
 		}
 		return found;
 	}
+
+  public function useTool(stf:Stuff):Float{
+    return _currentTool.howManyHitPointsWouldGetFromResource(stf);
+  }
 }
