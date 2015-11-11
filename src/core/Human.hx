@@ -161,9 +161,11 @@ class Human extends Body {
   }
 
   public function craft(recipe:Recipe):Void{
-    for (key in recipe._ingredientList.keys()) {
-      consumeMaterial(key, recipe._ingredientList.get(key));
-    }
+    if(isAbleToCraft(recipe)){
+      for (key in recipe._ingredientList.keys()) {
+        consumeMaterial(key, recipe._ingredientList.get(key));
+      }
+    } 
   }
 
   public function consumeMaterial(materialKind:MaterialKind, quantity:Int):Bool {
@@ -187,4 +189,24 @@ class Human extends Body {
 		}
 		return found;
 	}
+
+  private function isAbleToCraft(recipe:Recipe):Bool{
+    var able:Bool = true;
+    for (key in recipe._ingredientList.keys()) {
+      if(countIngredient(key) < recipe._ingredientList.get(key)){
+        able = false;
+      };
+    }
+    return able;
+  }
+
+  private function countIngredient(materialKind:MaterialKind):Int{
+    var count:Int = 0;
+    for(i in 0 ... _materials.length){
+      if(_materials[i]._kind == materialKind){
+        count++;
+      }
+    }
+    return count;
+  }
 }
