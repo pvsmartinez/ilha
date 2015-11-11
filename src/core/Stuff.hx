@@ -19,7 +19,6 @@ enum SourceKind {
 
 enum SourceState {
   idle;
-  extracting;
   recovering;
   gone;
 }
@@ -28,6 +27,7 @@ class Stuff extends Body {
 
   public var kind:SourceKind;
   private var _material:MaterialKind;
+  private var _hitPoints:Float;
   private var _timer:Float;
   private var _timeToRecover:Float;
   private var _timeToExtract:Float;
@@ -39,6 +39,9 @@ class Stuff extends Body {
   public var targeted:Bool = false;
 
   public function new(kd:SourceKind) {
+
+    _hitPoints = 100.0;
+
     kind = kd;
     var imgData:BitmapData;
     var reposition = false;
@@ -48,7 +51,7 @@ class Stuff extends Body {
         _timeToRecover = 30 * 1000;
         _timeToExtract = 2 * 1000;
       case bush:
-        _material = fruit;
+        _material = leaf;
         _timeToRecover = 60 * 1000;
         _timeToExtract = 1 * 1000;
       case rock:
@@ -73,14 +76,33 @@ class Stuff extends Body {
 
   public function extract(agent:Human):Bool {
     if (state == idle) {
-      state = extracting;
-      _timer = _timeToExtract;
-      _agent = agent;
       addChild(_progress);
+      _agent = agent;
+
+      _hitPoints -= _agent.useTool(this);
+
+      _progress.draw((100.0 - _hitPoints)/100.0);
+
+
+      if(_hitPoints <= 0.0){
+        if (_timeToRecover != null) {
+          state = recovering;
+          _timer = _timeToRecover;
+        } else {
+          state = gone;
+        }
+
+        _agent.createMaterial(_material);
+        removeChild(_bitMap);
+        removeChild(_progress);
+      }
+
+
       return true;
     }
     return false;
   }
+
 
   public function everyFrame(deltaTime:Float) {
     switch ( state ) {
@@ -90,24 +112,11 @@ class Stuff extends Body {
         } else {
           removeChild(_materialIcon);
         }
-      case extracting:
-        _timer -= deltaTime;
-        _progress.draw((_timeToExtract - _timer)/_timeToExtract);
-        if (_timer < 0) {
-          if (_timeToRecover != null) {
-            state = recovering;
-            _timer = _timeToRecover;
-          } else {
-            state = gone;
-          }
-          _agent.createMaterial(_material);
-          removeChild(_bitMap);
-          removeChild(_progress);
-        }
       case recovering:
         removeChild(_materialIcon);
         _timer -= deltaTime;
         if (_timer < 0) {
+          _hitPoints = 100.0;
           state = idle;
           addChild(_bitMap);
           targeted = false;
