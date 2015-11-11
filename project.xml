@@ -17,7 +17,7 @@
 
 
 	<window background="#000000" fps="30" />
-	<window width="1010" height="660" unless="mobile" />
+	<window width="1024" height="768" unless="mobile" />
 	<window orientation="landscape" vsync="false" antialiasing="0" if="cpp" />
 
 </project>

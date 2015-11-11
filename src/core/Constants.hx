@@ -4,7 +4,7 @@ import core.Floor;
 
 class Constants {
 
-  public static inline var CPU_UNITS = 3;
+  public static inline var CPU_UNITS = 2;
 
   public static inline var TILESIZE = 64;
   public static inline var MAPWIDTH = 32;

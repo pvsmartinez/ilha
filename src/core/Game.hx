@@ -6,6 +6,7 @@ import openfl.Lib;
 
 import core.Island;
 import core.Story;
+import core.Ui;
 
 class Game extends Sprite {
 
@@ -14,6 +15,7 @@ class Game extends Sprite {
 
   private var _island:Island;
   private var _story:Story;
+  private var _ui:Ui;
 
   public function new() {
     super();
@@ -26,6 +28,8 @@ class Game extends Sprite {
     _island.x = 0;
     _island.y = 0;
     addChild(_story);
+    _ui = new Ui(_island);
+    addChild(_ui);
   }
 
   public function everyFrame() {

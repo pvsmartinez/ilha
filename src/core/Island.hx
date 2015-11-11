@@ -3,8 +3,8 @@ package core;
 import openfl.display.Sprite;
 import openfl.Lib;
 
-import core.Human;
 import core.Player;
+import core.Human;
 import core.Ai;
 import core.Rs;
 
@@ -15,9 +15,10 @@ class Island extends Sprite {
 
   private var _map:TileSystem;
 
-  private var _humans:Array<Human>;
   private var _npcAis:Array<Ai>;
   private var _playerAi:Player;
+
+  public var humans:Array<Human>;
 
   public function new() {
     super();
@@ -26,17 +27,17 @@ class Island extends Sprite {
     addChild(_map);
     _map.x = _map.y = 0;
 
-    _humans = [];
+    humans = [];
     _npcAis = [];
     var nHumans = 1 + Constants.CPU_UNITS;
     for(i in 0...nHumans) {
       var rnd = Math.floor(Math.random() * Rs.humans.length);
-      _humans.push(new Human(rnd));
-      _map.addHuman(_humans[i]);
+      humans.push(new Human(rnd));
+      _map.addHuman(humans[i]);
       if (i == 0) {
-        _playerAi = new Player(_humans[i]);
+        _playerAi = new Player(humans[i]);
       } else {
-        _npcAis.push(new Ai(_humans[i]));
+        _npcAis.push(new Ai(humans[i]));
       }
     }
   }
@@ -59,8 +60,8 @@ class Island extends Sprite {
 
   private function camera() {
     var safeZone:Int = 200;
-    var posX = _humans[0].x + this.x;
-    var posY = _humans[0].y + this.y;
+    var posX = humans[0].x + this.x;
+    var posY = humans[0].y + this.y;
     if (posX < safeZone)
       this.x += Math.abs(posX - safeZone);
     if (posX > Lib.current.stage.stageWidth - safeZone)

@@ -6,43 +6,30 @@ import openfl.display.BitmapData;
 
 class Rs {
 
+  public static var screen:Map<String, BitmapData>;
+  public static var uis:Map<String, BitmapData>;
+
   public static var humans:Array<BitmapData>;
-  public static var tlMaps:Map<String, BitmapData>;
+  public static var tools:Map<String, BitmapData>;
+
   public static var maters:Map<String, BitmapData>;
   public static var stuffs:Map<String, BitmapData>;
-  public static var screen:Map<String, BitmapData>;
   public static var sounds:Map<String, Sound>;
   public static var musics:Map<String, Sound>;
 
   public static function init() {
+    loadUis();
+    loadScreen();
     loadHumans();
-    loadTlMaps();
     loadMaters();
     loadStuffs();
-    loadScreen();
 
     loadSounds();
     loadMusics();
   }
   private static function loadHumans() {
     humans = [];
-    humans.push(Assets.getBitmapData("img/humans/townfolk1_f.png"));
-    humans.push(Assets.getBitmapData("img/humans/townfolk1_m.png"));
-    humans.push(Assets.getBitmapData("img/humans/mage_f.png"));
-    humans.push(Assets.getBitmapData("img/humans/mage_m.png"));
-    humans.push(Assets.getBitmapData("img/humans/healer_f.png"));
-    humans.push(Assets.getBitmapData("img/humans/healer_m.png"));
-    humans.push(Assets.getBitmapData("img/humans/ranger_f.png"));
-    humans.push(Assets.getBitmapData("img/humans/ranger_m.png"));
-    humans.push(Assets.getBitmapData("img/humans/ninja_f.png"));
-    humans.push(Assets.getBitmapData("img/humans/ninja_m.png"));
-    humans.push(Assets.getBitmapData("img/humans/warrior_f.png"));
-    humans.push(Assets.getBitmapData("img/humans/warrior_m.png"));
-  }
-  private static function loadTlMaps() {
-    tlMaps = new Map<String, BitmapData>();
-    tlMaps.set("floor", Assets.getBitmapData("img/tilesets/floor.png"));
-    tlMaps.set("trees", Assets.getBitmapData("img/tilesets/trees.png"));
+    humans.push(Assets.getBitmapData("img/humans/char.png"));
   }
   private static function loadMaters() {
     maters = new Map<String, BitmapData>();
@@ -58,6 +45,12 @@ class Rs {
     stuffs.set("bush", Assets.getBitmapData("img/stuff/bush.png"));
     stuffs.set("rock", Assets.getBitmapData("img/stuff/rock.png"));
     stuffs.set("wave", Assets.getBitmapData("img/stuff/wave.png"));
+  }
+  private static function loadUis() {
+    uis = new Map<String, BitmapData>();
+    uis.set("map", Assets.getBitmapData("img/ui/mapa.png"));
+    uis.set("head", Assets.getBitmapData("img/ui/head.png"));
+    uis.set("axe", Assets.getBitmapData("img/ui/axe.png"));
   }
   private static function loadScreen() {
     screen = new Map<String, BitmapData>();

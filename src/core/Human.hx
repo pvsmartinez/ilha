@@ -23,7 +23,7 @@ class Human extends Body {
   private var _state:HumanState = free;
 
   public function new(imgN:Int) {
-    super(Rs.humans[imgN], true, 4, 32, 36);
+    super(Rs.humans[imgN], true, 4, 77, 110);
     this.speed = 0.1;
   }
 
@@ -36,17 +36,9 @@ class Human extends Body {
         walk(deltaTime, mv);
         action(act);
         var animating:Bool = Math.abs(mv[0]) + Math.abs(mv[1]) > 0;
-        var state:Int = 0;
-        switch ( direction ) {
-          case -1:
-            state = 2;
-          case 0:
-            state = 3;
-          case 1:
-            state = 0;
-          case 2:
-            state = 1;
-        }
+        var state = direction;
+        if (state == -1)
+          state = 3;
         _animation.animate(deltaTime, animating, state);
       case extracting:
         //can't do anything
