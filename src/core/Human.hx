@@ -9,6 +9,7 @@ import core.Body;
 import core.Stuff;
 import core.Material;
 import core.Rs;
+import core.Recipe;
 
 enum HumanState {
   free;
@@ -126,9 +127,37 @@ class Human extends Body {
         }
       }
     } else if(act[1]) {
-       var removedMaterial:Material = _materials.pop();
-       this.parent.removeChild(removedMaterial);
+      var ingredients = [ wood=>2, fruit=>1];
+      craft(new Recipe(ingredients));
     }
   }
+
+  public function craft(recipe:Recipe):Void{
+    for (key in recipe._ingredientList.keys()) {
+      consumeMaterial(key, recipe._ingredientList.get(key));
+    }
+  }
+
+  public function consumeMaterial(materialKind:MaterialKind, quantity:Int):Bool {
+		var success:Bool = true;
+		for (i in 0 ... quantity) {
+			success = removeMaterial(materialKind);
+		}
+		return success;
+	}
+
+  private function removeMaterial(materialKind:MaterialKind):Bool{
+		var i:Int = 0;
+		var found:Bool = false;
+		while (i < _materials.length && found == false) {
+			if(_materials[i]._kind == materialKind){
+				var elem:Material = _materials[i];
+				found = _materials.remove(elem);
+				this.parent.removeChild(elem);
+			}
+			i++;
+		}
+		return found;
+	}
 
 }

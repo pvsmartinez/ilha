@@ -15,7 +15,7 @@ enum MaterialKind {
 
 class Material extends Body {
 
-  private var _kind:MaterialKind;
+  public var _kind:MaterialKind;
 
   public function new(matKind:MaterialKind) {
     _kind = matKind;
