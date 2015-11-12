@@ -14,7 +14,7 @@ enum ToolKind {
 
 class Tool extends Sprite {
 
-  private var kind:ToolKind;
+  public var kind:ToolKind;
 
   public function new(kd:ToolKind) {
     super();

@@ -14,6 +14,7 @@ class Rs {
 
   public static var maters:Map<String, BitmapData>;
   public static var stuffs:Map<String, BitmapData>;
+  public static var miscs:Map<String, BitmapData>;
   public static var sounds:Map<String, Sound>;
   public static var musics:Map<String, Sound>;
 
@@ -23,6 +24,7 @@ class Rs {
     loadHumans();
     loadMaters();
     loadStuffs();
+    loadMiscs();
 
     loadSounds();
     loadMusics();
@@ -46,6 +48,10 @@ class Rs {
     stuffs.set("bush", Assets.getBitmapData("img/stuff/bush.png"));
     stuffs.set("rock", Assets.getBitmapData("img/stuff/rock.png"));
     stuffs.set("wave", Assets.getBitmapData("img/stuff/wave.png"));
+  }
+  private static function loadMiscs() {
+    miscs = new Map<String, BitmapData>();
+    miscs.set("speech_ballon", Assets.getBitmapData("img/misc/speech_balloon.png"));
   }
   private static function loadUis() {
     uis = new Map<String, BitmapData>();

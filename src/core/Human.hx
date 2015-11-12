@@ -2,6 +2,7 @@ package core;
 
 import openfl.display.Sprite;
 import openfl.geom.Point;
+import openfl.display.Bitmap;
 
 import core.TileSystem;
 import core.Constants;
@@ -14,6 +15,8 @@ import core.Tool;
 
 enum HumanState {
   free;
+  waitingToTalk;
+  trading;
   extracting;
   crafting;
 }
@@ -21,15 +24,24 @@ enum HumanState {
 class Human extends Body {
 
   private var _timer:Float;
-  private var _currentTool:Tool;
   private var _materials:Array<Material> = [];
   private var _tool:Tool;
   private var _state:HumanState = free;
+  private var _talkIcon:Bitmap;
+  private var currentTool:Tool;
 
   public function new(imgN:Int) {
-    _currentTool = new Tool(axe);
+
+    var rand:Int = Math.floor(Math.random() * 4.999);
+    var list = [axe, pick, spear, rod, knife ];
+
+    currentTool = new Tool(list[rand]);
     super(Rs.humans[imgN], true, 4, 77, 110);
     this.speed = 0.1;
+
+    _talkIcon = new Bitmap(Rs.miscs["speech_ballon"]);
+    _talkIcon.x = -_talkIcon.width/2;
+    _talkIcon.y = -(this.sizeY + _talkIcon.height);
   }
 
   public function everyFrame(deltaTime:Float, act:Array<Bool>, mv:Array<Int>) {
@@ -38,6 +50,14 @@ class Human extends Body {
     }
     switch ( _state ) {
       case free:
+        if(onFocus){
+          _state = waitingToTalk;
+          addChild(_talkIcon);
+          trace("TRADING TIME?!?!?");
+        }
+        else{
+          removeChild(_talkIcon);
+        }
         walk(deltaTime, mv);
         action(act);
         var animating:Bool = Math.abs(mv[0]) + Math.abs(mv[1]) > 0;
@@ -54,6 +74,14 @@ class Human extends Body {
         }
 
       case crafting:
+      case waitingToTalk:
+        if(!onFocus){
+          _state = free;
+        } else {
+          action(act);
+        }
+      case trading:
+        action(act);
     }
   }
 
@@ -126,7 +154,19 @@ class Human extends Body {
             _timer = 250.0;
           }
         } else if (Type.getClass(target) == Human) {
-          trace("Hello human!");
+            trace("TARGET=HUMAN || STATE: " + _state);
+          switch(_state){
+            case free:
+              _state = trading;
+            case waitingToTalk:
+            trace("LETS TRADE!!!");
+              _state = trading;
+            case trading:
+              trace("Nice tool ;D");
+              tradeTool(target);
+              _state = free;
+            default:
+          }
         } else if (Type.getClass(target) == Material) {
           getMaterial(target);
         }
@@ -196,9 +236,22 @@ class Human extends Body {
 	}
 
   public function useTool(stf:Stuff):Float{
-    return _currentTool.howManyHitPointsWouldGetFromResource(stf);
+    return currentTool.howManyHitPointsWouldGetFromResource(stf);
   }
-  
+
+  public function tradeTool(trader:Human):Void{
+    var tempTool:Tool = currentTool;
+
+    currentTool = trader.currentTool;
+
+    trader.currentTool = tempTool;
+
+    trace("After trading:....");
+    trace("My tool: "  + currentTool.kind + "|| trader tool: " + trader.currentTool.kind );
+
+    return;
+  }
+
   private function isAbleToCraft(recipe:Recipe):Bool{
     var able:Bool = true;
     for (key in recipe._ingredientList.keys()) {
