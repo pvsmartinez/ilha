@@ -155,12 +155,16 @@ class Human extends Body {
     _materials.unshift(mt);
   }
 
-  public function createMaterial(mKind:MaterialKind) {
-    var mt:Material = new Material(mKind);
+  public function displayMaterial(mt:Material):Void {
     this.parent.addChild(mt);
     this.floor.objs.push(mt);
     getMaterial(mt);
     _state = free;
+  }
+
+  public function createMaterial(mKind:MaterialKind) {
+    var mt:Material = new Material(mKind);
+    displayMaterial(mt);
   }
 
   public function craft(recipe:Recipe):Void{
@@ -171,7 +175,7 @@ class Human extends Body {
       if(Type.getClass(recipe._result) == Tool){
         _currentTool = cast(recipe._result, Tool);
       } else if(Type.getClass(recipe._result) == Material){
-        trace("É material");
+        displayMaterial(cast(recipe._result, Material));
       }
     }
   }
