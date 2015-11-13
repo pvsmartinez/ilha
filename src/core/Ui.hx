@@ -30,7 +30,7 @@ class Ui extends Sprite {
     for (i in 0..._island.humans.length) {
       var head:Bitmap = new Bitmap(Rs.uis["head"+(i + 1)]);
       _heads.push(head);
-      _wkinds.push(Std.string(_island.humans[i]._currentTool.kind));
+      _wkinds.push(Std.string(_island.humans[i].currentTool.kind));
       var weapon:Bitmap = new Bitmap(Rs.uis[_wkinds[i]]);
       _weapons.push(weapon);
     }
@@ -52,8 +52,8 @@ class Ui extends Sprite {
   }
   public function everyFrame() {
     for (i in 0..._island.humans.length) {
-      if (Std.string(_island.humans[i]._currentTool.kind) != _wkinds[i]) {
-        _wkinds[i] = Std.string(_island.humans[i]._currentTool.kind);
+      if (Std.string(_island.humans[i].currentTool.kind) != _wkinds[i]) {
+        _wkinds[i] = Std.string(_island.humans[i].currentTool.kind);
         _weapons[i] = new Bitmap(Rs.uis[_wkinds[i]]);
       }
     }

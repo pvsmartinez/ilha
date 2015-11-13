@@ -4,6 +4,7 @@ import openfl.display.Sprite;
 import openfl.display.BitmapData;
 import openfl.display.Bitmap;
 
+import core.SoundHandler;
 import core.Progress;
 import core.Material;
 import core.Human;
@@ -82,6 +83,7 @@ class Stuff extends Body {
   public function extract(agent:Human):Bool {
     if (state == idle) {
       addChild(_progress);
+      SoundHandler.randomSoundFromList(["axe0", "axe1", "axe2"],[33, 33, 34]);
       _agent = agent;
       _hitPoints -= _agent.useTool(this);
       _progress.draw((_hitPointsMax - _hitPoints)/_hitPointsMax);
