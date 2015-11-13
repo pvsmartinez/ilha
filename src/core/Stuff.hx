@@ -13,6 +13,7 @@ import core.Rs;
 enum SourceKind {
   tree;
   bush;
+  grass;
   rock;
   wave;
 }
@@ -50,6 +51,10 @@ class Stuff extends Body {
         _hitPointsMax = 20.0;
         _timeToRecover = 30 * 1000;
       case bush:
+        _material = fruit;
+        _hitPointsMax = 6.0;
+        _timeToRecover = 60 * 1000;
+      case grass:
         _material = leaf;
         _hitPointsMax = 10.0;
         _timeToRecover = 60 * 1000;

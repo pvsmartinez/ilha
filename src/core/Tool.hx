@@ -10,11 +10,12 @@ enum ToolKind {
   spear;
   rod;
   knife;
+  hand;
 }
 
 class Tool extends Sprite {
 
-  private var kind:ToolKind;
+  public var kind:ToolKind;
 
   public function new(kd:ToolKind) {
     super();
@@ -23,19 +24,21 @@ class Tool extends Sprite {
 
   public function howManyHitPointsWouldGetFromResource(stf:Stuff):Float{
     var returnValue:Float = 1;
-    var list = [tree, bush, rock, wave];
-    var values:Array<Float> = [1, 1, 1, 1];
+    var list = [tree, bush, grass, rock, wave];
+    var values:Array<Float>;
     switch(kind){
         case axe:
-          values = [10, 2, 1, 1];
+          values = [10, 2, 4, 2, 2];
         case pick:
-          values = [1, 1, 10, 1];
+          values = [4, 2, 2, 10, 1];
         case spear:
-          values = [1, 5, 1, 5];
+          values = [1, 2, 5, 2, 5];
         case rod:
-          values = [0.5, 1, 0.5, 10];
+          values = [1, 3, 1, 1, 10];
         case knife:
-          values = [1, 10, 1, 1];
+          values = [2, 6, 10, 2, 2];
+        default:
+          values = [2, 2, 2, 2, 2];
     }
     for (i in 0...list.length) {
       if (list[i] == stf.kind) {

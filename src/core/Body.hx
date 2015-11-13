@@ -46,4 +46,5 @@ class Body extends Sprite {
     this.x += mv[0] * spd[0];
     this.y += mv[1] * spd[1];
   }
+
 }

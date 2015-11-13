@@ -42,16 +42,31 @@ class Rs {
   }
   private static function loadStuffs() {
     stuffs = new Map<String, BitmapData>();
+    stuffs.set("grass", Assets.getBitmapData("img/stuff/grass.png"));
     stuffs.set("tree", Assets.getBitmapData("img/stuff/tree.png"));
     stuffs.set("bush", Assets.getBitmapData("img/stuff/bush.png"));
     stuffs.set("rock", Assets.getBitmapData("img/stuff/rock.png"));
     stuffs.set("wave", Assets.getBitmapData("img/stuff/wave.png"));
+    stuffs.set("camp", Assets.getBitmapData("img/stuff/camp.png"));
+    stuffs.set("tent", Assets.getBitmapData("img/stuff/tent.png"));
   }
   private static function loadUis() {
     uis = new Map<String, BitmapData>();
-    uis.set("map", Assets.getBitmapData("img/ui/mapa.png"));
-    uis.set("head", Assets.getBitmapData("img/ui/head.png"));
-    uis.set("axe", Assets.getBitmapData("img/ui/axe.png"));
+    uis.set("map", Assets.getBitmapData("img/ui/map.png"));
+    uis.set("head1", Assets.getBitmapData("img/ui/heads/head1.png"));
+    uis.set("head2", Assets.getBitmapData("img/ui/heads/head2.png"));
+    uis.set("head3", Assets.getBitmapData("img/ui/heads/head3.png"));
+    uis.set("head4", Assets.getBitmapData("img/ui/heads/head4.png"));
+    uis.set("head5", Assets.getBitmapData("img/ui/heads/head5.png"));
+    uis.set("head6", Assets.getBitmapData("img/ui/heads/head6.png"));
+    uis.set("head7", Assets.getBitmapData("img/ui/heads/head7.png"));
+    uis.set("axe", Assets.getBitmapData("img/ui/tools/axe.png"));
+    uis.set("knife", Assets.getBitmapData("img/ui/tools/knife.png"));
+    uis.set("pick", Assets.getBitmapData("img/ui/tools/pick.png"));
+    uis.set("rod", Assets.getBitmapData("img/ui/tools/rod.png"));
+    // TODO
+    uis.set("spear", Assets.getBitmapData("img/ui/tools/axe.png"));
+    uis.set("hand", Assets.getBitmapData("img/ui/tools/axe.png"));
   }
   private static function loadScreen() {
     screen = new Map<String, BitmapData>();

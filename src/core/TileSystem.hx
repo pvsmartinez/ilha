@@ -1,11 +1,13 @@
 package core;
 
 import openfl.display.Sprite;
+import openfl.geom.Point;
 
 import core.Constants;
 import core.Stuff;
 import core.Floor;
 import core.Human;
+import core.Camp;
 
 enum MapZones {
   ocean;
@@ -22,6 +24,7 @@ class TileSystem extends Sprite {
   private var _iMap:Array<Floor>;
   private var _passables:Array<Bool>;
   private var _startingPoint:Array<Int>;
+  private var _camp:Camp;
 
   public var objs:Array<Body>;
 
@@ -40,6 +43,15 @@ class TileSystem extends Sprite {
     h.y = dy;
     objs.push(h);
   }
+  public function canDrop(mt:Material, h:Human):Bool {
+    if (h.x > _camp.x && h.x < _camp.x + _camp.sizeX && h.y > _camp.y && h.y < _camp.y + _camp.sizeY) {
+      _camp.addMaterial(mt);
+      mt.x = h.x;
+      mt.y = h.y;
+      return true;
+    }
+    return false;
+  }
 
   public function resetEveryFrame() {
     for (i in 0...objs.length) {
@@ -51,13 +63,20 @@ class TileSystem extends Sprite {
     objs.sort(sortByY);
     var i:Int;
   	for (i in 0...objs.length) {
-  		setChildIndex(objs[i], _iMap.length + i);
+  		setChildIndex(objs[i], _iMap.length + i + 1);
       if (Type.getClass(objs[i]) == Stuff) {
         cast(objs[i], Stuff).everyFrame(deltaTime);
       } else if (Type.getClass(objs[i]) == Material) {
         cast(objs[i], Material).everyFrame(deltaTime);
       }
   	}
+  }
+  public function canWalk(x:Float, y:Float):Bool {
+    var tx = Math.floor(x/Constants.TILESIZE);
+    var ty = Math.floor(y/Constants.TILESIZE);
+    if (tx < 0 || ty < 0 || tx >= Constants.MAPWIDTH || ty >= Constants.MAPHEIGHT)
+      return false;
+    return _passables[ty];
   }
 
   private function sortByY(a:Sprite, b:Sprite):Int {
@@ -68,16 +87,28 @@ class TileSystem extends Sprite {
 
   private function defineZones() {
     objs = [];
-    draw(ocean, [0,Constants.MAPWIDTH], [Constants.MAPHEIGHT - 1, Constants.MAPHEIGHT]);
-    draw(dry, [0,Constants.MAPWIDTH], [Constants.MAPHEIGHT - 2, Constants.MAPHEIGHT - 1]);
-    var zones = [camp, lake, normal, normal, normal, dense, rocked, dense];
+    draw(ocean, [0,Constants.MAPWIDTH], [Constants.MAPHEIGHT, Constants.MAPHEIGHT]);
+    draw(dry, [0,Constants.MAPWIDTH], [Constants.MAPHEIGHT - 1, Constants.MAPHEIGHT - 1]);
+    var zones:Array<MapZones> = [];
+    var rnd = Math.floor(Math.random() * 3);
+    switch ( rnd ) {
+      case 0:
+        trace("jungle island");
+        zones = [camp, lake, normal, dense, dense, dense, dense, dense];
+      case 1:
+        trace("sparse island");
+        zones = [camp, normal, normal, normal, rocked, rocked, rocked, dense];
+      case 2:
+        trace("normal island");
+        zones = [camp, lake, normal, normal, normal, dense, rocked, dense];
+    }
     var slotX = 0;
     var slotY = 0;
     var zoneWidth = Math.floor(Constants.MAPWIDTH / 4);
     var zoneHeight = Math.floor((Constants.MAPHEIGHT - 2) / 2);
     while (zones.length > 0) {
       var rnd = Math.floor(Math.random() * zones.length);
-      draw(zones[rnd], [slotX*zoneWidth, (1+slotX)*zoneWidth], [slotY*zoneHeight+1, (1+slotY)*zoneHeight+1]);
+      draw(zones[rnd], [slotX*zoneWidth, (1+slotX)*zoneWidth-1], [slotY*zoneHeight, (1+slotY)*zoneHeight-1]);
       zones.remove(zones[rnd]);
       slotX ++;
       if (slotX >= 4) {
@@ -86,91 +117,103 @@ class TileSystem extends Sprite {
       }
     }
   }
-
   private function draw(z:MapZones, xx:Array<Int>, yy:Array<Int>) {
-    var stuff:Stuff;
+    var stuffs:Array<SourceKind> = [];
+    var ocuppied:Array<Point> = [];
     var rnd:Int;
-    if (z == camp) {
-      _startingPoint = [xx[0], xx[1], yy[0], yy[1]];
-    } else {
-      for (j in xx[0]...xx[1]) {
-        for (i in yy[0]...yy[1]) {
-          stuff = null;
-          var xx = Math.floor(Math.random() * Constants.TILESIZE);
-          var yy = Math.floor(Math.random() * Constants.TILESIZE);
-          switch ( z ) {
-            case ocean:
-              stuff = new Stuff(wave);
-              xx = 0;
-              yy = 0;
-            case dry:
-              rnd = Math.floor(Math.random() * 16);
-              if (rnd == 0) {
-                var tiles = [rock, rock, bush, bush, tree];
-                rnd = Math.floor(Math.random() * tiles.length);
-                stuff = new Stuff(tiles[rnd]);
-              }
-            case normal:
-              rnd = Math.floor(Math.random() * 13);
-              if (rnd == 0) {
-                var tiles = [tree, tree, rock, bush];
-                rnd = Math.floor(Math.random() * tiles.length);
-                stuff = new Stuff(tiles[rnd]);
-              }
-            case rocked:
-              rnd = Math.floor(Math.random() * 6);
-              if (rnd == 0) {
-                var tiles = [rock, rock, rock, bush, rock];
-                rnd = Math.floor(Math.random() * tiles.length);
-                stuff = new Stuff(tiles[rnd]);
-              }
-            case dense:
-              rnd = Math.floor(Math.random() * 6);
-              if (rnd == 0) {
-                var tiles = [tree, tree, tree, bush, bush];
-                rnd = Math.floor(Math.random() * tiles.length);
-                stuff = new Stuff(tiles[rnd]);
-              }
-            default:
-              // Lake cases
-              stuff = null;
-          }
-          if (stuff != null) {
-            addChild(stuff);
-            stuff.x = (j * Constants.TILESIZE) + xx;
-            stuff.y = (i * Constants.TILESIZE) + yy;
-            this.setChildIndex(stuff, Math.floor(stuff.y));
-            objs.push(stuff);
-          }
+    var reposition:Bool = true;
+    switch ( z ) {
+      case camp:
+        addCamp(xx, yy);
+      case ocean:
+        stuffs = [wave, wave, wave, wave, wave, wave, wave, wave, wave, wave, wave, wave];
+        reposition = false;
+      case dry:
+        stuffs = [tree, rock, bush, grass, tree];
+      case normal:
+        rnd = Math.floor(Math.random() * 3);
+        switch ( rnd ) {
+          case 0:
+            stuffs = [tree, tree, grass, rock, rock, grass, bush];
+          case 1:
+            stuffs = [tree, tree, tree, tree, rock, grass, grass, bush, bush];
+          case 2:
+            stuffs = [tree, tree, tree, tree, grass, rock, rock, rock, grass, grass, bush, bush, bush];
         }
+      case rocked:
+        rnd = Math.floor(Math.random() * 3);
+        switch ( rnd ) {
+          case 0:
+            stuffs = [rock, rock, rock, grass, grass, bush, bush, bush];
+          case 1:
+            stuffs = [rock, rock, rock, rock, rock, rock, bush, bush, bush];
+          case 2:
+            stuffs = [rock, rock, rock, rock, rock, rock, rock, rock, rock, rock, grass];
+        }
+      case dense:
+        rnd = Math.floor(Math.random() * 3);
+        switch ( rnd ) {
+          case 0:
+            stuffs = [tree, tree, tree, tree, tree, grass, bush, bush, bush, bush, bush, grass, grass, grass];
+          case 1:
+            stuffs = [tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, bush, bush, bush, bush, grass, grass];
+          case 2:
+            stuffs = [tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, bush, bush, bush, bush];
+        }
+      case lake:
+        //addLake();
+    }
+    while (stuffs.length > 0) {
+      var pt:Point = new Point();
+      pt.x = Math.floor(Math.random() * (xx[1] + 1 - xx[0])) + xx[0];
+      pt.y = Math.floor(Math.random() * (yy[1] + 1 - yy[0])) + yy[0];
+      var flag = true;
+      for (i in 0...ocuppied.length) {
+        if (pt.x == ocuppied[i].x && pt.y == ocuppied[i].y) {
+          flag = false;
+        }
+      }
+      if(flag == true) {
+        ocuppied.push(pt);
+        rnd = Math.floor(Math.random() * stuffs.length);
+        var sourceKind = stuffs[rnd];
+        var stuff:Stuff = new Stuff(sourceKind);
+        stuffs.remove(sourceKind);
+        addChild(stuff);
+        stuff.x = pt.x * Constants.TILESIZE;
+        stuff.y = pt.y * Constants.TILESIZE;
+        if (reposition) {
+          stuff.x += Constants.TILESIZE/2 + ((Math.floor(Math.random() * 3) - 1) * Constants.TILESIZE/6);
+          stuff.y += Constants.TILESIZE/2 + ((Math.floor(Math.random() * 3) - 1) * Constants.TILESIZE/6);
+        }
+        this.setChildIndex(stuff, Math.floor(stuff.y));
+        objs.push(stuff);
       }
     }
   }
-
+  private function addCamp(xx:Array<Int>, yy:Array<Int>) {
+    _startingPoint = [xx[0], xx[1], yy[0], yy[1]];
+    _camp = new Camp();
+    addChildAt(_camp, _iMap.length);
+    _camp.x = ((xx[0] + xx[1]) * Constants.TILESIZE / 2) - _camp.sizeX/3;
+    _camp.y = ((yy[0] + yy[1]) * Constants.TILESIZE / 2) - _camp.sizeY/3;
+    _camp.createTent(this);
+  }
   private function drawFloor() {
     _iMap = [];
     _passables = [];
     var kind:FloorKind;
     var floor:Floor;
-    var tiles = [sandT,sandT,sandT,sandT,sandT,sandT,sandH,sandH,sandH,sandH,sandM,sandM,sandL,sea];
-    for (i in 0...Constants.MAPHEIGHT) {
+    var tiles = [sandT,sandT,sandT,sandT,sandT,sandT,sandT,sandH,sandH,sandH,sandH,sandM,sandM,sandL,sea];
+    for (i in 0...tiles.length) {
       var lmap:Array<Floor> = [];
       var lpass:Array<Bool> = [];
       floor = new Floor(tiles[i]);
-      addChild(floor);
+      addChildAt(floor, 0);
       floor.x = 0;
       floor.y = i * Constants.TILESIZE;
       _iMap.push(floor);
       _passables.push(floor.walkable);
     }
   }
-
-  public function canWalk(x:Float, y:Float):Bool {
-    var tx = Math.floor(x/Constants.TILESIZE);
-    var ty = Math.floor(y/Constants.TILESIZE);
-    if (tx < 0 || ty < 0 || tx >= Constants.MAPWIDTH || ty >= Constants.MAPHEIGHT)
-      return false;
-    return _passables[ty];
-  }
-
 }

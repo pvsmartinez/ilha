@@ -39,7 +39,7 @@ class Floor extends Sprite {
         color = 0x02256d;
     }
     this.graphics.beginFill(color);
-		this.graphics.drawRect(0, 0, Constants.TILESIZE * Constants.MAPWIDTH, Constants.TILESIZE);
+		this.graphics.drawRect(0, 0, (Constants.TILESIZE + 1) * Constants.MAPWIDTH, Constants.TILESIZE);
 		this.graphics.endFill();
   }
 
