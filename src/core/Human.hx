@@ -167,7 +167,7 @@ class Human extends Body {
       }
     } else if(act[1]) {
       var ingredients = [ wood=>2, stone=>1];
-      craft(new Recipe(new Tool(pick),ingredients));
+      craft(new Recipe(pick, ingredients));
     }
   }
 
@@ -215,10 +215,10 @@ class Human extends Body {
       for (key in recipe._ingredientList.keys()) {
         consumeMaterial(key, recipe._ingredientList.get(key));
       }
-      if(Type.getClass(recipe._result) == Tool){
-        currentTool = cast(recipe._result, Tool);
-      } else if(Type.getClass(recipe._result) == Material){
-        displayMaterial(cast(recipe._result, Material));
+      if(recipe._resultKind == tool){
+        currentTool = (new Tool(cast(recipe._result, ToolKind)));
+      } else if(recipe._resultKind == material){
+        createMaterial(cast(recipe._result, MaterialKind));
       }
     }
   }
