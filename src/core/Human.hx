@@ -12,6 +12,7 @@ import core.Material;
 import core.Rs;
 import core.Recipe;
 import core.Tool;
+import core.RecipeBook;
 
 enum HumanState {
   free;
@@ -166,8 +167,7 @@ class Human extends Body {
         releaseMaterial(false);
       }
     } else if(act[1]) {
-      var ingredients = [ wood=>2, stone=>1];
-      craft(new Recipe(pick, ingredients));
+      craft(pick);
     }
   }
 
@@ -210,7 +210,8 @@ class Human extends Body {
     displayMaterial(mt);
   }
 
-  public function craft(recipe:Recipe):Void{
+  public function craft(craftable:EnumValue):Void{
+    var recipe:Recipe = RecipeBook.getRecipeFor(craftable);
     if(isAbleToCraft(recipe)){
       for (key in recipe._ingredientList.keys()) {
         consumeMaterial(key, recipe._ingredientList.get(key));
