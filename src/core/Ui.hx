@@ -12,6 +12,7 @@ class Ui extends Sprite {
   private var _island:Island;
   private var _heads:Array<Bitmap>;
   private var _weapons:Array<Bitmap>;
+  private var _wkinds:Array<String>;
 
   private var _xBorder:Int = 30;
   private var _yBorder:Int = 20;
@@ -25,13 +26,15 @@ class Ui extends Sprite {
     _map.y = _yBorder;
     _heads = [];
     _weapons = [];
+    _wkinds = [];
     for (i in 0..._island.humans.length) {
-      var head:Bitmap = new Bitmap(Rs.uis["head"]);
+      var head:Bitmap = new Bitmap(Rs.uis["head"+(i + 1)]);
       _heads.push(head);
-      var weapon:Bitmap = new Bitmap(Rs.uis["axe"]);
+      _wkinds.push(Std.string(_island.humans[i].currentTool.kind));
+      var weapon:Bitmap = new Bitmap(Rs.uis[_wkinds[i]]);
       _weapons.push(weapon);
     }
-    var headW = Rs.uis["head"].width;
+    var headW = Rs.uis["head1"].width;
     var weapW = Rs.uis["axe"].width;
     var fix = Math.floor((headW - weapW)/2);
     for (i in 0..._heads.length) {
@@ -47,7 +50,12 @@ class Ui extends Sprite {
       }
     }
   }
-
-
-
+  public function everyFrame() {
+    for (i in 0..._island.humans.length) {
+      if (Std.string(_island.humans[i].currentTool.kind) != _wkinds[i]) {
+        _wkinds[i] = Std.string(_island.humans[i].currentTool.kind);
+        _weapons[i] = new Bitmap(Rs.uis[_wkinds[i]]);
+      }
+    }
+  }
 }

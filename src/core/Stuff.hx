@@ -4,6 +4,7 @@ import openfl.display.Sprite;
 import openfl.display.BitmapData;
 import openfl.display.Bitmap;
 
+import core.SoundHandler;
 import core.Progress;
 import core.Material;
 import core.Human;
@@ -13,6 +14,7 @@ import core.Rs;
 enum SourceKind {
   tree;
   bush;
+  grass;
   rock;
   wave;
 }
@@ -27,10 +29,10 @@ class Stuff extends Body {
 
   public var kind:SourceKind;
   private var _material:MaterialKind;
+  private var _hitPointsMax:Float;
   private var _hitPoints:Float;
   private var _timer:Float;
   private var _timeToRecover:Float;
-  private var _timeToExtract:Float;
   private var _progress:Progress;
   private var _agent:Human;
   private var _materialIcon:Material;
@@ -40,7 +42,6 @@ class Stuff extends Body {
 
   public function new(kd:SourceKind) {
 
-    _hitPoints = 100.0;
 
     kind = kd;
     var imgData:BitmapData;
@@ -48,22 +49,27 @@ class Stuff extends Body {
     switch ( kd ) {
       case tree:
         _material = wood;
+        _hitPointsMax = 20.0;
         _timeToRecover = 30 * 1000;
-        _timeToExtract = 2 * 1000;
       case bush:
-        _material = leaf;
+        _material = fruit;
+        _hitPointsMax = 6.0;
         _timeToRecover = 60 * 1000;
-        _timeToExtract = 1 * 1000;
+      case grass:
+        _material = leaf;
+        _hitPointsMax = 10.0;
+        _timeToRecover = 60 * 1000;
       case rock:
         _material = stone;
+        _hitPointsMax = 30.0;
         _timeToRecover = null;
-        _timeToExtract = 5 * 1000;
       case wave:
         _material = fish;
+        _hitPointsMax = 10.0;
         _timeToRecover = 120 * 1000;
-        _timeToExtract = 2 * 1000;
         reposition = true;
     }
+    _hitPoints = _hitPointsMax;
     super(Rs.stuffs[Std.string(kind)], false);
     if (reposition) {
       _bitMap.x = _bitMap.y = 0;
@@ -77,13 +83,10 @@ class Stuff extends Body {
   public function extract(agent:Human):Bool {
     if (state == idle) {
       addChild(_progress);
+      SoundHandler.randomSoundFromList(["axe0", "axe1", "axe2"],[33, 33, 34]);
       _agent = agent;
-
       _hitPoints -= _agent.useTool(this);
-
-      _progress.draw((100.0 - _hitPoints)/100.0);
-
-
+      _progress.draw((_hitPointsMax - _hitPoints)/_hitPointsMax);
       if(_hitPoints <= 0.0){
         if (_timeToRecover != null) {
           state = recovering;
@@ -91,18 +94,14 @@ class Stuff extends Body {
         } else {
           state = gone;
         }
-
         _agent.createMaterial(_material);
         removeChild(_bitMap);
         removeChild(_progress);
       }
-
-
       return true;
     }
     return false;
   }
-
 
   public function everyFrame(deltaTime:Float) {
     switch ( state ) {
@@ -116,7 +115,7 @@ class Stuff extends Body {
         removeChild(_materialIcon);
         _timer -= deltaTime;
         if (_timer < 0) {
-          _hitPoints = 100.0;
+          _hitPoints = _hitPointsMax;
           state = idle;
           addChild(_bitMap);
           targeted = false;

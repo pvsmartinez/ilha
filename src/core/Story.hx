@@ -10,11 +10,16 @@ class Story extends Sprite {
 
   private var _coolTime:Int;
   private var _endGameTime:Int;
+  private var _dayTime:Float;
+
+  public static var day:Int = 1;
+  public static var totalDays:Int = 12;
 
   public function new() {
     super();
     _coolTime = Math.floor(Constants.GAME_TIME / 5);
     _endGameTime = Constants.GAME_TIME;
+    _dayTime = _endGameTime/totalDays;
     temporaryEffect();
   }
 
@@ -25,7 +30,8 @@ class Story extends Sprite {
   }
 
   public function everyFrame(timeStarted:Int) {
-    this.alpha = Math.pow(Math.max((timeStarted - _coolTime),0)/_endGameTime, 2);
+    day = Math.ceil(timeStarted/_dayTime);
+    this.alpha = day/(totalDays + 1);
     if (timeStarted >= _endGameTime)
       Main.setGameState(gameOver);
   }

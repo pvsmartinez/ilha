@@ -67,6 +67,18 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		openfl.text.Font.registerFont (__ASSET__OPENFL__font_pixelart_ttf);
 		
 		
@@ -106,18 +118,42 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("img/screens/title.png", AssetType.IMAGE);
 		path.set ("img/stuff/bush.png", "img/stuff/bush.png");
 		type.set ("img/stuff/bush.png", AssetType.IMAGE);
+		path.set ("img/stuff/camp.png", "img/stuff/camp.png");
+		type.set ("img/stuff/camp.png", AssetType.IMAGE);
+		path.set ("img/stuff/grass.png", "img/stuff/grass.png");
+		type.set ("img/stuff/grass.png", AssetType.IMAGE);
 		path.set ("img/stuff/rock.png", "img/stuff/rock.png");
 		type.set ("img/stuff/rock.png", AssetType.IMAGE);
+		path.set ("img/stuff/tent.png", "img/stuff/tent.png");
+		type.set ("img/stuff/tent.png", AssetType.IMAGE);
 		path.set ("img/stuff/tree.png", "img/stuff/tree.png");
 		type.set ("img/stuff/tree.png", AssetType.IMAGE);
 		path.set ("img/stuff/wave.png", "img/stuff/wave.png");
 		type.set ("img/stuff/wave.png", AssetType.IMAGE);
-		path.set ("img/ui/axe.png", "img/ui/axe.png");
-		type.set ("img/ui/axe.png", AssetType.IMAGE);
-		path.set ("img/ui/head.png", "img/ui/head.png");
-		type.set ("img/ui/head.png", AssetType.IMAGE);
-		path.set ("img/ui/mapa.png", "img/ui/mapa.png");
-		type.set ("img/ui/mapa.png", AssetType.IMAGE);
+		path.set ("img/ui/heads/head1.png", "img/ui/heads/head1.png");
+		type.set ("img/ui/heads/head1.png", AssetType.IMAGE);
+		path.set ("img/ui/heads/head2.png", "img/ui/heads/head2.png");
+		type.set ("img/ui/heads/head2.png", AssetType.IMAGE);
+		path.set ("img/ui/heads/head3.png", "img/ui/heads/head3.png");
+		type.set ("img/ui/heads/head3.png", AssetType.IMAGE);
+		path.set ("img/ui/heads/head4.png", "img/ui/heads/head4.png");
+		type.set ("img/ui/heads/head4.png", AssetType.IMAGE);
+		path.set ("img/ui/heads/head5.png", "img/ui/heads/head5.png");
+		type.set ("img/ui/heads/head5.png", AssetType.IMAGE);
+		path.set ("img/ui/heads/head6.png", "img/ui/heads/head6.png");
+		type.set ("img/ui/heads/head6.png", AssetType.IMAGE);
+		path.set ("img/ui/heads/head7.png", "img/ui/heads/head7.png");
+		type.set ("img/ui/heads/head7.png", AssetType.IMAGE);
+		path.set ("img/ui/map.png", "img/ui/map.png");
+		type.set ("img/ui/map.png", AssetType.IMAGE);
+		path.set ("img/ui/tools/axe.png", "img/ui/tools/axe.png");
+		type.set ("img/ui/tools/axe.png", AssetType.IMAGE);
+		path.set ("img/ui/tools/knife.png", "img/ui/tools/knife.png");
+		type.set ("img/ui/tools/knife.png", AssetType.IMAGE);
+		path.set ("img/ui/tools/pick.png", "img/ui/tools/pick.png");
+		type.set ("img/ui/tools/pick.png", AssetType.IMAGE);
+		path.set ("img/ui/tools/rod.png", "img/ui/tools/rod.png");
+		type.set ("img/ui/tools/rod.png", AssetType.IMAGE);
 		path.set ("font/pixelart.ttf", "font/pixelart.ttf");
 		type.set ("font/pixelart.ttf", AssetType.FONT);
 		path.set ("sfx/axe0.ogg", "sfx/axe0.ogg");
@@ -182,7 +218,16 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "img/stuff/bush.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
+		id = "img/stuff/camp.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/stuff/grass.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
 		id = "img/stuff/rock.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/stuff/tent.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/stuff/tree.png";
@@ -191,13 +236,40 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "img/stuff/wave.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/ui/axe.png";
+		id = "img/ui/heads/head1.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/ui/head.png";
+		id = "img/ui/heads/head2.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/ui/mapa.png";
+		id = "img/ui/heads/head3.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/ui/heads/head4.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/ui/heads/head5.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/ui/heads/head6.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/ui/heads/head7.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/ui/map.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/ui/tools/axe.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/ui/tools/knife.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/ui/tools/pick.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/ui/tools/rod.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "font/pixelart.ttf";
@@ -265,6 +337,18 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -1049,7 +1133,31 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 #elseif html5
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

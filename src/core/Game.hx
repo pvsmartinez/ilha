@@ -38,5 +38,6 @@ class Game extends Sprite {
     _lastTime = elapsed;
     _story.everyFrame(_lastTime);
     _island.everyFrame(deltaTime);
+    _ui.everyFrame();
   }
 }

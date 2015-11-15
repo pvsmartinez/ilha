@@ -55,7 +55,7 @@ class Main extends Sprite {
       case playing:
         if(menu != null)
           Lib.current.stage.removeChild(menu);
-          SoundHandler.setAndPlayMusic("memory");
+          //SoundHandler.setAndPlayMusic("memory");
         menu = null;
         game = new Game();
         Lib.current.stage.addChild(game);

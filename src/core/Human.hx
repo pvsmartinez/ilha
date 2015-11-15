@@ -2,6 +2,7 @@ package core;
 
 import openfl.display.Sprite;
 import openfl.geom.Point;
+import openfl.display.Bitmap;
 
 import core.TileSystem;
 import core.Constants;
@@ -14,6 +15,8 @@ import core.Tool;
 
 enum HumanState {
   free;
+  waitingToTalk;
+  trading;
   extracting;
   crafting;
 }
@@ -21,22 +24,35 @@ enum HumanState {
 class Human extends Body {
 
   private var _timer:Float;
-  private var _currentTool:Tool;
   private var _materials:Array<Material> = [];
   private var _state:HumanState = free;
+  private var _talkIcon:Bitmap;
+
+  public var currentTool:Tool;
 
   public function new(imgN:Int) {
-    _currentTool = new Tool(axe);
     super(Rs.humans[imgN], true, 4, 77, 110);
+    var weaponStarters = [axe, pick, spear, rod, knife, hand];
+    var rnd = Math.floor(Math.random() * weaponStarters.length);
+    currentTool = new Tool(weaponStarters[rnd]);
     this.speed = 0.1;
+
+    _talkIcon = new Bitmap(Rs.miscs["speech_ballon"]);
+    _talkIcon.x = -_talkIcon.width/2;
+    _talkIcon.y = -(this.sizeY + _talkIcon.height);
   }
 
   public function everyFrame(deltaTime:Float, act:Array<Bool>, mv:Array<Int>) {
-    if (_materials.length > Constants.HUMAN_MATERIALS_CARRY) {
-      releaseMaterial();
-    }
     switch ( _state ) {
       case free:
+        if(onFocus){
+          _state = waitingToTalk;
+          addChild(_talkIcon);
+          trace("TRADING TIME?!?!?");
+        }
+        else{
+          removeChild(_talkIcon);
+        }
         walk(deltaTime, mv);
         action(act);
         var animating:Bool = Math.abs(mv[0]) + Math.abs(mv[1]) > 0;
@@ -45,14 +61,19 @@ class Human extends Body {
           state = 3;
         _animation.animate(deltaTime, animating, state);
       case extracting:
-        //can't do anything
         _timer -= deltaTime;
-
         if(_timer <= 0.0){
           _state = free;
         }
-
       case crafting:
+      case waitingToTalk:
+        if(!onFocus){
+          _state = free;
+        } else {
+          action(act);
+        }
+      case trading:
+        action(act);
     }
   }
 
@@ -125,12 +146,24 @@ class Human extends Body {
             _timer = 250.0;
           }
         } else if (Type.getClass(target) == Human) {
-          trace("Hello human!");
+            trace("TARGET=HUMAN || STATE: " + _state);
+          switch(_state){
+            case free:
+              _state = trading;
+            case waitingToTalk:
+            trace("LETS TRADE!!!");
+              _state = trading;
+            case trading:
+              trace("Nice tool ;D");
+              tradeTool(target);
+              _state = free;
+            default:
+          }
         } else if (Type.getClass(target) == Material) {
           getMaterial(target);
         }
       } else {
-        releaseMaterial();
+        releaseMaterial(false);
       }
     } else if(act[1]) {
       var ingredients = [ wood=>2, stone=>1];
@@ -138,12 +171,19 @@ class Human extends Body {
     }
   }
 
-  public function releaseMaterial() {
+  public function releaseMaterial(force:Bool) {
     if (_materials.length > 0) {
       var mt:Material = _materials[_materials.length - 1];
-      _materials.pop();
-      mt.state = idle;
-      mt.selectable = true;
+      if (floor.canDrop(mt, this)) {
+        _materials.pop();
+        mt.state = idle;
+        mt.selectable = true;
+      } else if (force == true) {
+        _materials.pop();
+        floor.removeChild(mt);
+        floor.objs.remove(mt);
+        mt = null;
+      }
     }
   }
 
@@ -153,6 +193,9 @@ class Human extends Body {
     mt.state = following;
     mt.selectable = false;
     _materials.unshift(mt);
+    if (_materials.length > Constants.HUMAN_MATERIALS_CARRY) {
+      releaseMaterial(true);
+    }
   }
 
   public function displayMaterial(mt:Material):Void {
@@ -173,7 +216,7 @@ class Human extends Body {
         consumeMaterial(key, recipe._ingredientList.get(key));
       }
       if(Type.getClass(recipe._result) == Tool){
-        _currentTool = cast(recipe._result, Tool);
+        currentTool = cast(recipe._result, Tool);
       } else if(Type.getClass(recipe._result) == Material){
         displayMaterial(cast(recipe._result, Material));
       }
@@ -203,7 +246,20 @@ class Human extends Body {
 	}
 
   public function useTool(stf:Stuff):Float{
-    return _currentTool.howManyHitPointsWouldGetFromResource(stf);
+    return currentTool.howManyHitPointsWouldGetFromResource(stf);
+  }
+
+  public function tradeTool(trader:Human):Void{
+    var tempTool:Tool = currentTool;
+
+    currentTool = trader.currentTool;
+
+    trader.currentTool = tempTool;
+
+    trace("After trading:....");
+    trace("My tool: "  + currentTool.kind + "|| trader tool: " + trader.currentTool.kind );
+
+    return;
   }
 
   private function isAbleToCraft(recipe:Recipe):Bool{

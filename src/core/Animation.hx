@@ -43,26 +43,31 @@ class Animation extends Sprite {
   }
 
   public function animate(deltaTime:Float, animating:Bool, ?nextState:Int) {
-    _animating = animating;
-    if (animating && nextState != null && nextState > -1 && nextState != _currentState) {
-      _currentState = nextState;
-      _animationFrame = 0;
-      draw();
-    }
-    if (_animating) {
-      _animatingDelta += deltaTime;
-      if (_currentState < _states.length && _animatingDelta > _animatingSpeed) {
-        if (_animationFrame >= _states[_currentState].length - 1) {
-          _animationFrame = 0;
-        } else {
-          _animationFrame ++;
-        }
+    if (animating) {
+      if (nextState != null && nextState > -1 && nextState != _currentState) {
+        _currentState = nextState;
+        _animationFrame = 1;
         draw();
-        _animatingDelta -= _animatingSpeed;
+      } else {
+        _animatingDelta += deltaTime;
+        if (_currentState < _states.length && _animatingDelta > _animatingSpeed) {
+          if (_animationFrame >= _states[_currentState].length - 1) {
+            _animationFrame = 0;
+          } else {
+            _animationFrame ++;
+          }
+          draw();
+          _animatingDelta -= _animatingSpeed;
+        }
       }
     } else {
       _animatingDelta = 0;
+      if (animating != _animating) {
+        _animationFrame = 0;
+        draw();
+      }
     }
+    _animating = animating;
   }
 
   private function draw() {
