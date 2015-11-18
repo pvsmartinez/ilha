@@ -42,10 +42,10 @@ class Human extends Body {
     this.speed = 0.1;
 
     craftGoal = raft;
-    positionIcon("baloon");
   }
 
   public function positionIcon(img:String) {
+    removeChild(_icon);
     _icon = new Bitmap(Rs.miscs[img]);
     _icon.x = -_icon.width/2;
     _icon.y = -(this.sizeY + _icon.height);

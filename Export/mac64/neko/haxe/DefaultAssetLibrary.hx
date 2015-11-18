@@ -95,6 +95,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
 		openfl.text.Font.registerFont (__ASSET__OPENFL__font_pixelart_ttf);
 		
 		
@@ -160,6 +162,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("img/misc/baloon.png", AssetType.IMAGE);
 		path.set ("img/misc/space.png", "img/misc/space.png");
 		type.set ("img/misc/space.png", AssetType.IMAGE);
+		path.set ("img/misc/speech_balloon.png", "img/misc/speech_balloon.png");
+		type.set ("img/misc/speech_balloon.png", AssetType.IMAGE);
 		path.set ("img/screens/title.png", "img/screens/title.png");
 		type.set ("img/screens/title.png", AssetType.IMAGE);
 		path.set ("img/stuff/bush.png", "img/stuff/bush.png");
@@ -176,6 +180,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("img/stuff/tree.png", AssetType.IMAGE);
 		path.set ("img/stuff/wave.png", "img/stuff/wave.png");
 		type.set ("img/stuff/wave.png", AssetType.IMAGE);
+		path.set ("img/textures/areia.png", "img/textures/areia.png");
+		type.set ("img/textures/areia.png", AssetType.IMAGE);
 		path.set ("img/textures/sea.png", "img/textures/sea.png");
 		type.set ("img/textures/sea.png", AssetType.IMAGE);
 		path.set ("img/ui/heads/head1.png", "img/ui/heads/head1.png");
@@ -305,6 +311,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "img/misc/space.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
+		id = "img/misc/speech_balloon.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
 		id = "img/screens/title.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
@@ -327,6 +336,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/stuff/wave.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/textures/areia.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/textures/sea.png";
@@ -433,6 +445,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -1273,7 +1287,11 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
 #elseif html5
+
+
 
 
 
