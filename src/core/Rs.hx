@@ -8,12 +8,10 @@ class Rs {
 
   public static var screen:Map<String, BitmapData>;
   public static var uis:Map<String, BitmapData>;
-
+  public static var textures:Map<String, BitmapData>;
   public static var humans:Array<BitmapData>;
-  public static var tools:Map<String, BitmapData>;
-
-  public static var maters:Map<String, BitmapData>;
   public static var stuffs:Map<String, BitmapData>;
+  public static var maters:Map<String, BitmapData>;
   public static var miscs:Map<String, BitmapData>;
   public static var sounds:Map<String, Sound>;
   public static var musics:Map<String, Sound>;
@@ -25,7 +23,7 @@ class Rs {
     loadMaters();
     loadStuffs();
     loadMiscs();
-
+    loadTextures();
     loadSounds();
     loadMusics();
   }
@@ -59,7 +57,8 @@ class Rs {
   }
   private static function loadMiscs() {
     miscs = new Map<String, BitmapData>();
-    miscs.set("speech_ballon", Assets.getBitmapData("img/misc/speech_balloon.png"));
+    miscs.set("baloon", Assets.getBitmapData("img/misc/baloon.png"));
+    miscs.set("space", Assets.getBitmapData("img/misc/space.png"));
   }
   private static function loadUis() {
     uis = new Map<String, BitmapData>();
@@ -82,6 +81,11 @@ class Rs {
   private static function loadScreen() {
     screen = new Map<String, BitmapData>();
     screen.set("title", Assets.getBitmapData("img/screens/title.png"));
+  }
+
+  private static function loadTextures() {
+    textures = new Map<String, BitmapData>();
+    textures.set("sea", Assets.getBitmapData("img/textures/sea.png"));
   }
 
   private static function loadSounds() {

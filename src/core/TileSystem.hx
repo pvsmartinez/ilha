@@ -209,7 +209,7 @@ class TileSystem extends Sprite {
       var lmap:Array<Floor> = [];
       var lpass:Array<Bool> = [];
       floor = new Floor(tiles[i]);
-      addChildAt(floor, 0);
+      addChildAt(floor, i);
       floor.x = 0;
       floor.y = i * Constants.TILESIZE;
       _iMap.push(floor);

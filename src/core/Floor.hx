@@ -1,8 +1,11 @@
 package core;
 
+import openfl.display.BitmapData;
+import openfl.display.Bitmap;
 import openfl.display.Sprite;
 
 import core.Constants;
+import core.Rs;
 
 enum FloorKind {
   sandL;
@@ -26,6 +29,7 @@ class Floor extends Sprite {
     else
       walkable = true;
       var color:Int;
+    var texture:BitmapData = null;
     switch ( _kind ) {
       case sandL:
         color = 0xffaf49;
@@ -37,10 +41,20 @@ class Floor extends Sprite {
         color = 0xf5aa2e;
       case sea:
         color = 0x02256d;
+        texture = Rs.textures["sea"];
     }
     this.graphics.beginFill(color);
 		this.graphics.drawRect(0, 0, (Constants.TILESIZE + 1) * Constants.MAPWIDTH, Constants.TILESIZE);
 		this.graphics.endFill();
+    if ( texture != null ) {
+      var ntexts = Math.ceil(((Constants.TILESIZE + 1) * Constants.MAPWIDTH)/texture.width);
+      for (i in 0...ntexts) {
+        var bitmap:Bitmap = new Bitmap(texture);
+        addChild(bitmap);
+        bitmap.x = i * texture.width;
+        bitmap.y = Constants.TILESIZE - bitmap.height;
+      }
+    }
   }
 
 }

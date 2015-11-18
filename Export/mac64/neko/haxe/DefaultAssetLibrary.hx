@@ -83,6 +83,18 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		openfl.text.Font.registerFont (__ASSET__OPENFL__font_pixelart_ttf);
 		
 		
@@ -104,6 +116,24 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if flash
 		
+		path.set ("img/craft_menu/icon/fire.png", "img/craft_menu/icon/fire.png");
+		type.set ("img/craft_menu/icon/fire.png", AssetType.IMAGE);
+		path.set ("img/craft_menu/icon/fishing.png", "img/craft_menu/icon/fishing.png");
+		type.set ("img/craft_menu/icon/fishing.png", AssetType.IMAGE);
+		path.set ("img/craft_menu/icon/fishing2.png", "img/craft_menu/icon/fishing2.png");
+		type.set ("img/craft_menu/icon/fishing2.png", AssetType.IMAGE);
+		path.set ("img/craft_menu/icon/fishing3.png", "img/craft_menu/icon/fishing3.png");
+		type.set ("img/craft_menu/icon/fishing3.png", AssetType.IMAGE);
+		path.set ("img/craft_menu/icon/plank.png", "img/craft_menu/icon/plank.png");
+		type.set ("img/craft_menu/icon/plank.png", AssetType.IMAGE);
+		path.set ("img/craft_menu/icon/raft.png", "img/craft_menu/icon/raft.png");
+		type.set ("img/craft_menu/icon/raft.png", AssetType.IMAGE);
+		path.set ("img/craft_menu/icon/raft2.png", "img/craft_menu/icon/raft2.png");
+		type.set ("img/craft_menu/icon/raft2.png", AssetType.IMAGE);
+		path.set ("img/craft_menu/icon/rope.png", "img/craft_menu/icon/rope.png");
+		type.set ("img/craft_menu/icon/rope.png", AssetType.IMAGE);
+		path.set ("img/craft_menu/icon/sail.png", "img/craft_menu/icon/sail.png");
+		type.set ("img/craft_menu/icon/sail.png", AssetType.IMAGE);
 		path.set ("img/humans/char.png", "img/humans/char.png");
 		type.set ("img/humans/char.png", AssetType.IMAGE);
 		path.set ("img/materials/fish.png", "img/materials/fish.png");
@@ -126,6 +156,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("img/materials/water.png", AssetType.IMAGE);
 		path.set ("img/materials/wood.png", "img/materials/wood.png");
 		type.set ("img/materials/wood.png", AssetType.IMAGE);
+		path.set ("img/misc/baloon.png", "img/misc/baloon.png");
+		type.set ("img/misc/baloon.png", AssetType.IMAGE);
+		path.set ("img/misc/space.png", "img/misc/space.png");
+		type.set ("img/misc/space.png", AssetType.IMAGE);
 		path.set ("img/screens/title.png", "img/screens/title.png");
 		type.set ("img/screens/title.png", AssetType.IMAGE);
 		path.set ("img/stuff/bush.png", "img/stuff/bush.png");
@@ -142,6 +176,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("img/stuff/tree.png", AssetType.IMAGE);
 		path.set ("img/stuff/wave.png", "img/stuff/wave.png");
 		type.set ("img/stuff/wave.png", AssetType.IMAGE);
+		path.set ("img/textures/sea.png", "img/textures/sea.png");
+		type.set ("img/textures/sea.png", AssetType.IMAGE);
 		path.set ("img/ui/heads/head1.png", "img/ui/heads/head1.png");
 		type.set ("img/ui/heads/head1.png", AssetType.IMAGE);
 		path.set ("img/ui/heads/head2.png", "img/ui/heads/head2.png");
@@ -203,6 +239,33 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#elseif html5
 		
 		var id;
+		id = "img/craft_menu/icon/fire.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/craft_menu/icon/fishing.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/craft_menu/icon/fishing2.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/craft_menu/icon/fishing3.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/craft_menu/icon/plank.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/craft_menu/icon/raft.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/craft_menu/icon/raft2.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/craft_menu/icon/rope.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/craft_menu/icon/sail.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
 		id = "img/humans/char.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
@@ -236,6 +299,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "img/materials/wood.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
+		id = "img/misc/baloon.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/misc/space.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
 		id = "img/screens/title.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
@@ -258,6 +327,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/stuff/wave.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/textures/sea.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/ui/heads/head1.png";
@@ -361,6 +433,18 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -1177,7 +1261,31 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 #elseif html5
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

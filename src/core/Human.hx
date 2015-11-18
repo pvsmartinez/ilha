@@ -26,8 +26,8 @@ class Human extends Body {
 
   private var _timer:Float;
   private var _state:HumanState = free;
-  private var _talkIcon:Bitmap;
 
+  public var _icon:Bitmap;
   public var craftGoal:EnumValue;
   public var currentTool:Tool;
   public var direction:Int = 0;
@@ -42,9 +42,14 @@ class Human extends Body {
     this.speed = 0.1;
 
     craftGoal = raft;
-    _talkIcon = new Bitmap(Rs.miscs["speech_ballon"]);
-    _talkIcon.x = -_talkIcon.width/2;
-    _talkIcon.y = -(this.sizeY + _talkIcon.height);
+    positionIcon("baloon");
+  }
+
+  public function positionIcon(img:String) {
+    _icon = new Bitmap(Rs.miscs[img]);
+    _icon.x = -_icon.width/2;
+    _icon.y = -(this.sizeY + _icon.height);
+    addChild(_icon);
   }
 
   public function everyFrame(deltaTime:Float, act:Array<Bool>, mv:Array<Int>) {
@@ -52,11 +57,6 @@ class Human extends Body {
       case free:
         if(onFocus){
           _state = waitingToTalk;
-          addChild(_talkIcon);
-          trace("TRADING TIME?!?!?");
-        }
-        else{
-          removeChild(_talkIcon);
         }
         walk(deltaTime, mv);
         action(act);
