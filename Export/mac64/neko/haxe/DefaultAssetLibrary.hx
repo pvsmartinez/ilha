@@ -79,6 +79,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
 		openfl.text.Font.registerFont (__ASSET__OPENFL__font_pixelart_ttf);
 		
 		
@@ -108,6 +112,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("img/materials/fruit.png", AssetType.IMAGE);
 		path.set ("img/materials/leaf.png", "img/materials/leaf.png");
 		type.set ("img/materials/leaf.png", AssetType.IMAGE);
+		path.set ("img/materials/plank.png", "img/materials/plank.png");
+		type.set ("img/materials/plank.png", AssetType.IMAGE);
+		path.set ("img/materials/raft.png", "img/materials/raft.png");
+		type.set ("img/materials/raft.png", AssetType.IMAGE);
+		path.set ("img/materials/rope.png", "img/materials/rope.png");
+		type.set ("img/materials/rope.png", AssetType.IMAGE);
+		path.set ("img/materials/sail.png", "img/materials/sail.png");
+		type.set ("img/materials/sail.png", AssetType.IMAGE);
 		path.set ("img/materials/stone.png", "img/materials/stone.png");
 		type.set ("img/materials/stone.png", AssetType.IMAGE);
 		path.set ("img/materials/water.png", "img/materials/water.png");
@@ -201,6 +213,18 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/materials/leaf.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/materials/plank.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/materials/raft.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/materials/rope.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/materials/sail.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/materials/stone.png";
@@ -337,6 +361,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -1145,7 +1173,15 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
 #elseif html5
+
+
+
+
 
 
 

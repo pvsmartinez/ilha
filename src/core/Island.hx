@@ -22,7 +22,6 @@ class Island extends Sprite {
 
   public function new() {
     super();
-
     _map = new TileSystem();
     addChild(_map);
     _map.x = _map.y = 0;

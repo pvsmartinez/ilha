@@ -15,10 +15,8 @@ class Body extends Sprite {
   private var _bitMap:Bitmap;
   private var _border:Int = 10;
 
-  public var direction:Int = 0;
   public var sizeX:Float;
   public var sizeY:Float;
-  public var speed:Float = 0.1;
   public var floor:TileSystem;
   public var selectable:Bool = true;
   public var onFocus:Bool = false;

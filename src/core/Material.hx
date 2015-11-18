@@ -11,6 +11,10 @@ enum MaterialKind {
   fruit;
   fish;
   water;
+  raft;
+  rope;
+  sail;
+  plank;
 }
 
 enum MaterialState {
@@ -29,28 +33,20 @@ class Material extends Body {
     var pickedNumber:Int = Std.random(100);
     switch ( _kind ) {
       case wood:
-        imgUrl = "wood";
         SoundHandler.randomSoundFromList(["axe0", "axe1", "axe2", "wood0", "wood1", "wood2", "blip"] ,[25, 20, 15, 15, 15, 7, 3]);
       case fruit:
-        imgUrl = "fruit";
         SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
       case leaf:
-        imgUrl = "leaf";
         SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
       case stone:
-        imgUrl = "stone";
         SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
       case fish:
-        imgUrl = "fish";
         SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
       case water:
-        imgUrl = "water";
         SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
       default:
-        imgUrl = "fruit";
-        SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
     }
-    super(Rs.maters[imgUrl], false);
+    super(Rs.maters[Std.string(_kind)], false);
     this.selectable = false;
   }
 

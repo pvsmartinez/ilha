@@ -13,6 +13,8 @@ class Ui extends Sprite {
   private var _heads:Array<Bitmap>;
   private var _weapons:Array<Bitmap>;
   private var _wkinds:Array<String>;
+  private var _headW:Float;
+  private var _weapW:Float;
 
   private var _xBorder:Int = 30;
   private var _yBorder:Int = 20;
@@ -34,27 +36,32 @@ class Ui extends Sprite {
       var weapon:Bitmap = new Bitmap(Rs.uis[_wkinds[i]]);
       _weapons.push(weapon);
     }
-    var headW = Rs.uis["head1"].width;
-    var weapW = Rs.uis["axe"].width;
-    var fix = Math.floor((headW - weapW)/2);
+    _headW = Rs.uis["head1"].width;
+    _weapW = Rs.uis["axe"].width;
+    var fix = Math.floor((_headW - _weapW)/2);
     for (i in 0..._heads.length) {
       if (_heads[i] != null) {
         addChild(_heads[i]);
         _heads[i].y = _yBorder;
-        _heads[i].x = Lib.current.stage.stageWidth - (_xBorder + (headW + weapW + 5) * (i + 1));
+        _heads[i].x = Lib.current.stage.stageWidth - (_xBorder + (_headW + _weapW + 5) * (i + 1));
       }
       if (_weapons[i] != null) {
         addChild(_weapons[i]);
         _weapons[i].y = _yBorder + fix;
-        _weapons[i].x = Lib.current.stage.stageWidth - (_xBorder + (weapW * (i + 1)) + ((5 + headW) * i));
+        _weapons[i].x = Lib.current.stage.stageWidth - (_xBorder + (_weapW * (i + 1)) + ((5 + _headW) * i));
       }
     }
   }
   public function everyFrame() {
+    var fix = Math.floor((_headW - _weapW)/2);
     for (i in 0..._island.humans.length) {
       if (Std.string(_island.humans[i].currentTool.kind) != _wkinds[i]) {
         _wkinds[i] = Std.string(_island.humans[i].currentTool.kind);
+        removeChild(_weapons[i]);
         _weapons[i] = new Bitmap(Rs.uis[_wkinds[i]]);
+        _weapons[i].y = _yBorder + fix;
+        _weapons[i].x = Lib.current.stage.stageWidth - (_xBorder + (_weapW * (i + 1)) + ((5 + _headW) * i));
+        addChild(_weapons[i]);
       }
     }
   }

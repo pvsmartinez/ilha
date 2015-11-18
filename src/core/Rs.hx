@@ -41,6 +41,11 @@ class Rs {
     maters.set("stone", Assets.getBitmapData("img/materials/stone.png"));
     maters.set("water", Assets.getBitmapData("img/materials/water.png"));
     maters.set("leaf", Assets.getBitmapData("img/materials/leaf.png"));
+
+    maters.set("plank", Assets.getBitmapData("img/materials/plank.png"));
+    maters.set("rope", Assets.getBitmapData("img/materials/rope.png"));
+    maters.set("sail", Assets.getBitmapData("img/materials/sail.png"));
+    maters.set("raft", Assets.getBitmapData("img/materials/raft.png"));
   }
   private static function loadStuffs() {
     stuffs = new Map<String, BitmapData>();

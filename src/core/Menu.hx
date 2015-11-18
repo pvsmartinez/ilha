@@ -11,9 +11,14 @@ import Main.MainState;
 
 class Menu extends Sprite {
 
+  private var _bitMap:Bitmap;
+
   public function new () {
     super ();
-    addChild(new Bitmap(Rs.screen["title"]));
+    _bitMap = new Bitmap(Rs.screen["title"]);
+    addChild(_bitMap);
+    _bitMap.x = 0;
+    _bitMap.y = 0;
   }
 
   public function everyFrame() {

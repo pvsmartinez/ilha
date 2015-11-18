@@ -24,8 +24,8 @@ class TileSystem extends Sprite {
   private var _iMap:Array<Floor>;
   private var _passables:Array<Bool>;
   private var _startingPoint:Array<Int>;
-  private var _camp:Camp;
 
+  public var _camp:Camp;
   public var objs:Array<Body>;
 
   public function new() {

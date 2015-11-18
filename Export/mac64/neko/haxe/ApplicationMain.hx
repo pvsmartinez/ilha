@@ -90,7 +90,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "678",
+			build: "751",
 			company: "IlhaDesign",
 			file: "ilha",
 			fps: 30,
@@ -106,7 +106,7 @@ class ApplicationMain {
 					borderless: false,
 					depthBuffer: false,
 					display: 0,
-					fullscreen: false,
+					fullscreen: true,
 					hardware: true,
 					height: 768,
 					parameters: "{}",

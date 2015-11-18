@@ -27,8 +27,6 @@ enum SourceState {
 
 class Stuff extends Body {
 
-  public var kind:SourceKind;
-  private var _material:MaterialKind;
   private var _hitPointsMax:Float;
   private var _hitPoints:Float;
   private var _timer:Float;
@@ -37,6 +35,8 @@ class Stuff extends Body {
   private var _agent:Human;
   private var _materialIcon:Material;
 
+  public var _material:MaterialKind;
+  public var kind:SourceKind;
   public var state:SourceState = idle;
   public var targeted:Bool = false;
 

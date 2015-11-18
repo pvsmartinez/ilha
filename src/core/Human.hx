@@ -25,19 +25,23 @@ enum HumanState {
 class Human extends Body {
 
   private var _timer:Float;
-  private var _materials:Array<Material> = [];
   private var _state:HumanState = free;
   private var _talkIcon:Bitmap;
 
+  public var craftGoal:EnumValue;
   public var currentTool:Tool;
+  public var direction:Int = 0;
+  public var speed:Float = 0.1;
+  public var _materials:Array<Material> = [];
 
   public function new(imgN:Int) {
-    super(Rs.humans[imgN], true, 4, 77, 110);
+    super(Rs.humans[imgN], true, 4, 77, 113);
     var weaponStarters = [axe, pick, spear, rod, knife, hand];
     var rnd = Math.floor(Math.random() * weaponStarters.length);
     currentTool = new Tool(weaponStarters[rnd]);
     this.speed = 0.1;
 
+    craftGoal = raft;
     _talkIcon = new Bitmap(Rs.miscs["speech_ballon"]);
     _talkIcon.x = -_talkIcon.width/2;
     _talkIcon.y = -(this.sizeY + _talkIcon.height);
@@ -167,7 +171,7 @@ class Human extends Body {
         releaseMaterial(false);
       }
     } else if(act[1]) {
-      craft(pick);
+      craft(craftGoal);
     }
   }
 

@@ -3,14 +3,19 @@ package core;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 
+import core.RecipeBook;
+import core.Constants;
+import core.Material;
 import core.Stuff;
 import core.Human;
 import core.Story;
+import core.Camp;
 
 enum AiStates {
   thinking;
   going;
   talking;
+  doing;
 }
 
 enum AiGoal {
@@ -30,13 +35,18 @@ enum AiKinds {
   depressed;
 }
 
+enum DesperatePossibilities {
+  player;
+  random;
+}
+
 class Ai extends Sprite {
 
   // mind vars
   private var _kind:AiKinds;
   private var _mind:AiStates = thinking;
   private var _goal:AiGoal = null;
-  private var _goalSpecific:Dynamic;
+  private var _goalSpecific:EnumValue;
   // mind stats vars
   private var _timeNeedToThink:Float;
   private var _timeRandomWalking:Float;
@@ -54,7 +64,8 @@ class Ai extends Sprite {
   //auxiliar vars
   private var _timerA:Float = 0;
   private var _timerB:Float = 0;
-  private var _target:Body;
+  private var _target:Dynamic;
+  private var _aux:Map<MaterialKind,Int>;
 
   public function new(human:Human) {
     super();
@@ -94,17 +105,19 @@ class Ai extends Sprite {
         think(deltaTime);
       case going:
         go();
+      case doing:
+        doAction();
       case talking:
     }
     _puppet.setDirection(_dir);
     _puppet.everyFrame(deltaTime, _actionKeys, _movementKeys);
+    //trace(_mind, _goal, _goalSpecific, _target, _actionKeys, _movementKeys);
   }
 
   private function think(deltaTime:Float) {
     _timerA += deltaTime;
     if (_timerA > _timeNeedToThink) {
       decide();
-
     } else {
       randomWalk(deltaTime);
     }
@@ -117,10 +130,10 @@ class Ai extends Sprite {
         nextGoal = [craft, craft, collect];
       case emotional:
         nextGoal = [collect, neutral, neutral];
-        if (Story.totalDays - Story.day == 1) {
-          nextGoal.push(desperate);
-          nextGoal.push(desperate);
-        }
+        //if (Story.totalDays - Story.day == 1) {
+        //  nextGoal.push(desperate);
+        //  nextGoal.push(desperate);
+        //}
       case accelerated:
         nextGoal = [collect, collect, neutral];
       case focused:
@@ -131,9 +144,9 @@ class Ai extends Sprite {
         nextGoal = [collect, collect, neutral];
       case depressed:
         nextGoal = [neutral, neutral, neutral];
-        if (Story.totalDays - Story.day == 1) {
-          nextGoal.push(desperate);
-        }
+        //if (Story.totalDays - Story.day == 1) {
+        //  nextGoal.push(desperate);
+        //}
     }
     var tries:Int = 0;
     while(tries < 2) {
@@ -147,15 +160,92 @@ class Ai extends Sprite {
     }
     switch ( _goal ) {
       case craft:
-
+        var objs = [rope, sail, plank];
+        var rnd = Math.floor(Math.random() * objs.length);
+        _goalSpecific = objs[rnd];
+        _aux = RecipeBook.getRecipeFor(_goalSpecific)._ingredientList;
       case collect:
-
+        var objs = [wood, stone, leaf, fruit, fish];
+        var rnd = Math.floor(Math.random() * objs.length);
+        _goalSpecific = objs[rnd];
       case neutral:
-
+        var objs = [wood, stone, leaf, fruit, fish];
+        var rnd = Math.floor(Math.random() * objs.length);
+        _goalSpecific = objs[rnd];
       case desperate:
-
+        var objs = [wood, stone, leaf, fruit, fish];
+        //var objs = [player, random];
+        var rnd = Math.floor(Math.random() * objs.length);
+        _goalSpecific = objs[rnd];
     }
+    getTarget();
+  }
 
+  private function getTarget() {
+    switch ( _goalSpecific ) {
+      case rope, sail, plank:
+        var targ:MaterialKind = null;
+        for (mat in _aux.keys()) {
+          var x = _aux[mat];
+          for (m in _puppet._materials) {
+            if (m._kind == mat)
+              x --;
+          }
+          if (x > 0) {
+            targ = mat;
+            break;
+          }
+        }
+        if (targ != null) {
+          defineStuff(targ);
+        } else {
+          _target = null;
+          _mind = doing;
+        }
+      case wood, stone, leaf, fruit, fish:
+       var collectStuff = true;
+        switch ( _goal ) {
+          case collect:
+            if (_puppet._materials.length >= Constants.HUMAN_MATERIALS_CARRY)
+              collectStuff = false;
+          case normal:
+            var rnd = Math.floor(Math.random() * Constants.HUMAN_MATERIALS_CARRY);
+            if (_puppet._materials.length > rnd)
+              collectStuff = false;
+        }
+        if (collectStuff)
+          defineStuff(cast(_goalSpecific, MaterialKind));
+        else
+          _target = _puppet.floor._camp;
+          _mind = going;
+    }
+  }
+  private function defineStuff(mt:MaterialKind) {
+    var dumb:Bool = true;
+    if (doneASmartDecision())
+      dumb = false;
+    var st:Stuff = null;
+    var dist:Float = 10000;
+    for (obj in _puppet.floor.objs) {
+      if (Type.getClass(obj) == Stuff) {
+        var ob = cast(obj, Stuff);
+        if (ob._material == mt && ob.state == idle && !ob.targeted) {
+          if (dumb || st == null)
+            st = ob;
+          else if (st != null) {
+            var dx = ob.x - _puppet.x;
+            var dy = ob.y - _puppet.y;
+            var dt = Math.sqrt((dx*dx)+(dy*dy));
+            if (dt < dist) {
+              dist = dt;
+              st = ob;
+            }
+          }
+        }
+      }
+    }
+    _target = st;
+    _mind = going;
   }
 
   private function randomWalk(deltaTime:Float) {
@@ -175,60 +265,87 @@ class Ai extends Sprite {
   }
 
   private function go() {
-
-  }
-
-  /*private function think(deltaTime:Float) {
-    _timeThinking += deltaTime;
-    if (_timeThinking > _timeNeedToThink) {
-      var tryes = 0;
-      while (_target == null || tryes > 3) {
-        tryes ++;
-        var rnd = Math.floor(Math.random() * _puppet.floor.objs.length);
-        var obj:Body = _puppet.floor.objs[rnd];
-        if (Type.getClass(obj) != Stuff || cast(obj, Stuff).targeted)
-          _target = null;
-        else {
-          _target = cast(obj, Stuff);
-          _target.targeted = true;
-        }
-      }
-      _timeThinking = 0;
-      _mind = going;
-    } else {
-      if (_timeRandomWalking <= 0) {
-        _timeRandomWalking = Math.random() * 5 * 1000;
-        var xDir = Math.floor(Math.random() * 3) - 1;
-        var yDir = Math.floor(Math.random() * 3) - 1;
-        _randomWalk = [xDir, yDir];
-        if (xDir != 0)
-          _dir = xDir + 1;
-        if (yDir != 0)
-          _dir = -yDir;
+    if (_target == null) {
+      nextAction();
+      return;
+    }
+    if (Type.getClass(_target) == Stuff && _target.state != idle) {
+      if (doneASmartDecision()) {
+        defineStuff(_target._material);
       } else {
-        _movementKeys = _randomWalk;
-        _timeRandomWalking -= deltaTime;
+        nextAction();
       }
+      return;
+    }
+    var xx;
+    var yy;
+    if (Type.getClass(_target) == Stuff) {
+      xx = cast(_target, Sprite).x;
+      yy = cast(_target, Sprite).y;
+    } else {
+      xx = cast(_target, Camp).x + cast(_target, Camp).sizeX/2;
+      yy = cast(_target, Camp).y + cast(_target, Camp).sizeY/2;
+    }
+    var dx = _puppet.x - xx;
+    var dy = _puppet.y - yy;
+    _movementKeys[0] = (dx != 0 && Math.abs(dx) > _puppet.speed) ? -Math.floor(dx/Math.abs(dx)) : 0;
+    _movementKeys[1] = (dy != 0 && Math.abs(dy) > _puppet.speed) ? -Math.floor(dy/Math.abs(dy)) : 0;
+    if (Math.abs(dx) > Math.abs(dy))
+      _dir = -Math.floor(dx/Math.abs(dx)) + 1;
+    if (Math.abs(dx) < Math.abs(dy))
+      _dir = Math.floor(dy/Math.abs(dy));
+
+    if (Type.getClass(_target) == Stuff) {
+      var tg:Body = _puppet.getFocus();
+      if (tg != null && tg == _target)
+        _mind = doing;
+    } else if (Type.getClass(_target) == Camp) {
+      if (_puppet.x > cast(_target, Camp).x + 10 && _puppet.x < cast(_target, Camp).x + cast(_target, Camp).sizeX - 10 &&
+          _puppet.y > cast(_target, Camp).y + 10 && _puppet.y < cast(_target, Camp).y + cast(_target, Camp).sizeY - 10)
+        _mind = doing;
     }
   }
 
-  private function go() {
-    if (_target != null && _target.state == idle) {
-      var dx = _puppet.x - _target.x;
-      var dy = _puppet.y - _target.y;
-      _movementKeys[0] = (dx != 0 && Math.abs(dx) > _puppet.speed) ? -Math.floor(dx/Math.abs(dx)) : 0;
-      _movementKeys[1] = (dy != 0 && Math.abs(dy) > _puppet.speed) ? -Math.floor(dy/Math.abs(dy)) : 0;
-      var target:Body = _puppet.getFocus();
-      if (target != null && target == _target) {
-        _actionKeys = [true];
-      }
-      if (Math.abs(dx) > Math.abs(dy))
-        _dir = -Math.floor(dx/Math.abs(dx)) + 1;
-      if (Math.abs(dx) < Math.abs(dy))
-        _dir = Math.floor(dy/Math.abs(dy));
-    } else {
-      _target = null;
-      _mind = thinking;
+  private function doAction() {
+    switch ( Type.getClass(_target) ) {
+      case Stuff:
+        _actionKeys[0] = true;
+        if (_target.state != idle) {
+          nextAction();
+        }
+      case Camp:
+        _puppet.releaseMaterial(false);
+        if (_puppet._materials.length == 0) {
+          nextAction();
+        }
+      case null:
+        _puppet.craftGoal = _goalSpecific;
+        _actionKeys[1] = true;
+        if(Lambda.exists(_puppet._materials, function (ii){return ii._kind == _goalSpecific;})) {
+          nextAction();
+        }
     }
-  }*/
+  }
+
+  private function nextAction() {
+    switch ( Type.getClass(_target) ) {
+      case Stuff:
+        getTarget();
+      case Camp:
+        _timerA = 0;
+        _mind = thinking;
+        _goal = null;
+        _goalSpecific = null;
+        _aux = null;
+        _target = null;
+      case null:
+        _target = _puppet.floor._camp;
+        _mind = going;
+    }
+  }
+
+  private function doneASmartDecision():Bool {
+    return _smartDecisionRatio > Math.random();
+  }
+
 }

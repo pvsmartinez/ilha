@@ -52,6 +52,9 @@ class Main extends Sprite {
         end = null;
         menu = new Menu();
         Lib.current.stage.addChild(menu);
+        menu.x = menu.y = 0;
+        menu.width = Lib.current.stage.stageWidth;
+        menu.height = Lib.current.stage.stageHeight;
       case playing:
         if(menu != null)
           Lib.current.stage.removeChild(menu);
@@ -67,4 +70,5 @@ class Main extends Sprite {
         Lib.current.stage.addChild(end);
     }
   }
+
 }
