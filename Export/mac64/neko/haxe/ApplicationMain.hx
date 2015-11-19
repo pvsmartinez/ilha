@@ -90,7 +90,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "761",
+			build: "829",
 			company: "IlhaDesign",
 			file: "ilha",
 			fps: 30,

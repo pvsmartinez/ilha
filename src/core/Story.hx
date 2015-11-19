@@ -12,7 +12,7 @@ class Story extends Sprite {
   private var _endGameTime:Int;
   private var _dayTime:Float;
 
-  public static var day:Int = 1;
+  public static var day:Int = 0;
   public static var totalDays:Int = 12;
 
   public function new() {
@@ -30,7 +30,7 @@ class Story extends Sprite {
   }
 
   public function everyFrame(timeStarted:Int) {
-    day = Math.ceil(timeStarted/_dayTime);
+    day = Math.floor(timeStarted/_dayTime);
     this.alpha = day/(totalDays + 1);
     if (timeStarted >= _endGameTime)
       Main.setGameState(gameOver);

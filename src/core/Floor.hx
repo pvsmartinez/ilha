@@ -29,16 +29,16 @@ class Floor extends Sprite {
     else
       walkable = true;
       var color:Int;
-    var texture:BitmapData = null;
+    var texture:BitmapData = Rs.textures["sand"];
     switch ( _kind ) {
       case sandL:
-        color = 0xffaf49;
+        color = 0xffc451;
       case sandM:
-        color = 0xffc069;
+        color = 0xffc451;
       case sandH:
-        color = 0xffb649;
+        color = 0xffc451;
       case sandT:
-        color = 0xf5aa2e;
+        color = 0xffc451;
       case sea:
         color = 0x02256d;
         texture = Rs.textures["sea"];
@@ -46,13 +46,22 @@ class Floor extends Sprite {
     this.graphics.beginFill(color);
 		this.graphics.drawRect(0, 0, (Constants.TILESIZE + 1) * Constants.MAPWIDTH, Constants.TILESIZE);
 		this.graphics.endFill();
-    if ( texture != null ) {
-      var ntexts = Math.ceil(((Constants.TILESIZE + 1) * Constants.MAPWIDTH)/texture.width);
+    var ntexts:Int;
+    if ( _kind == sea ) {
+      ntexts = Math.ceil(((Constants.TILESIZE + 1) * Constants.MAPWIDTH)/texture.width);
       for (i in 0...ntexts) {
         var bitmap:Bitmap = new Bitmap(texture);
         addChild(bitmap);
         bitmap.x = i * texture.width;
         bitmap.y = Constants.TILESIZE - bitmap.height;
+      }
+    } else {
+      ntexts = Math.ceil(Constants.MAPWIDTH / 4);
+      for (i in 0...ntexts) {
+        var bitmap:Bitmap = new Bitmap(texture);
+        addChild(bitmap);
+        bitmap.x = Math.random() * ((Constants.TILESIZE) * Constants.MAPWIDTH);
+        bitmap.y = 0.2 + (Math.random() * (Constants.TILESIZE - bitmap.height) * 0.6);
       }
     }
   }

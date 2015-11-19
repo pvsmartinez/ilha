@@ -97,6 +97,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
 		openfl.text.Font.registerFont (__ASSET__OPENFL__font_pixelart_ttf);
 		
 		
@@ -118,26 +126,44 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if flash
 		
-		path.set ("img/craft_menu/icon/fire.png", "img/craft_menu/icon/fire.png");
-		type.set ("img/craft_menu/icon/fire.png", AssetType.IMAGE);
-		path.set ("img/craft_menu/icon/fishing.png", "img/craft_menu/icon/fishing.png");
-		type.set ("img/craft_menu/icon/fishing.png", AssetType.IMAGE);
-		path.set ("img/craft_menu/icon/fishing2.png", "img/craft_menu/icon/fishing2.png");
-		type.set ("img/craft_menu/icon/fishing2.png", AssetType.IMAGE);
-		path.set ("img/craft_menu/icon/fishing3.png", "img/craft_menu/icon/fishing3.png");
-		type.set ("img/craft_menu/icon/fishing3.png", AssetType.IMAGE);
-		path.set ("img/craft_menu/icon/plank.png", "img/craft_menu/icon/plank.png");
-		type.set ("img/craft_menu/icon/plank.png", AssetType.IMAGE);
-		path.set ("img/craft_menu/icon/raft.png", "img/craft_menu/icon/raft.png");
-		type.set ("img/craft_menu/icon/raft.png", AssetType.IMAGE);
-		path.set ("img/craft_menu/icon/raft2.png", "img/craft_menu/icon/raft2.png");
-		type.set ("img/craft_menu/icon/raft2.png", AssetType.IMAGE);
-		path.set ("img/craft_menu/icon/rope.png", "img/craft_menu/icon/rope.png");
-		type.set ("img/craft_menu/icon/rope.png", AssetType.IMAGE);
-		path.set ("img/craft_menu/icon/sail.png", "img/craft_menu/icon/sail.png");
-		type.set ("img/craft_menu/icon/sail.png", AssetType.IMAGE);
-		path.set ("img/humans/char.png", "img/humans/char.png");
-		type.set ("img/humans/char.png", AssetType.IMAGE);
+		path.set ("img/craft/icon/fire.png", "img/craft/icon/fire.png");
+		type.set ("img/craft/icon/fire.png", AssetType.IMAGE);
+		path.set ("img/craft/icon/fishing.png", "img/craft/icon/fishing.png");
+		type.set ("img/craft/icon/fishing.png", AssetType.IMAGE);
+		path.set ("img/craft/icon/fishing2.png", "img/craft/icon/fishing2.png");
+		type.set ("img/craft/icon/fishing2.png", AssetType.IMAGE);
+		path.set ("img/craft/icon/fishing3.png", "img/craft/icon/fishing3.png");
+		type.set ("img/craft/icon/fishing3.png", AssetType.IMAGE);
+		path.set ("img/craft/icon/plank.png", "img/craft/icon/plank.png");
+		type.set ("img/craft/icon/plank.png", AssetType.IMAGE);
+		path.set ("img/craft/icon/raft.png", "img/craft/icon/raft.png");
+		type.set ("img/craft/icon/raft.png", AssetType.IMAGE);
+		path.set ("img/craft/icon/raft2.png", "img/craft/icon/raft2.png");
+		type.set ("img/craft/icon/raft2.png", AssetType.IMAGE);
+		path.set ("img/craft/icon/rope.png", "img/craft/icon/rope.png");
+		type.set ("img/craft/icon/rope.png", AssetType.IMAGE);
+		path.set ("img/craft/icon/sail.png", "img/craft/icon/sail.png");
+		type.set ("img/craft/icon/sail.png", AssetType.IMAGE);
+		path.set ("img/craft/title.png", "img/craft/title.png");
+		type.set ("img/craft/title.png", AssetType.IMAGE);
+		path.set ("img/humans/bodies/ashley.png", "img/humans/bodies/ashley.png");
+		type.set ("img/humans/bodies/ashley.png", AssetType.IMAGE);
+		path.set ("img/humans/bodies/john.png", "img/humans/bodies/john.png");
+		type.set ("img/humans/bodies/john.png", AssetType.IMAGE);
+		path.set ("img/humans/heads/ashley.png", "img/humans/heads/ashley.png");
+		type.set ("img/humans/heads/ashley.png", AssetType.IMAGE);
+		path.set ("img/humans/heads/john.png", "img/humans/heads/john.png");
+		type.set ("img/humans/heads/john.png", AssetType.IMAGE);
+		path.set ("img/humans/heads/kevin.png", "img/humans/heads/kevin.png");
+		type.set ("img/humans/heads/kevin.png", AssetType.IMAGE);
+		path.set ("img/humans/heads/miyagi.png", "img/humans/heads/miyagi.png");
+		type.set ("img/humans/heads/miyagi.png", AssetType.IMAGE);
+		path.set ("img/humans/heads/simone.png", "img/humans/heads/simone.png");
+		type.set ("img/humans/heads/simone.png", AssetType.IMAGE);
+		path.set ("img/humans/heads/susan.png", "img/humans/heads/susan.png");
+		type.set ("img/humans/heads/susan.png", AssetType.IMAGE);
+		path.set ("img/humans/heads/tina.png", "img/humans/heads/tina.png");
+		type.set ("img/humans/heads/tina.png", AssetType.IMAGE);
 		path.set ("img/materials/fish.png", "img/materials/fish.png");
 		type.set ("img/materials/fish.png", AssetType.IMAGE);
 		path.set ("img/materials/fruit.png", "img/materials/fruit.png");
@@ -162,42 +188,40 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("img/misc/baloon.png", AssetType.IMAGE);
 		path.set ("img/misc/space.png", "img/misc/space.png");
 		type.set ("img/misc/space.png", AssetType.IMAGE);
-		path.set ("img/misc/speech_balloon.png", "img/misc/speech_balloon.png");
-		type.set ("img/misc/speech_balloon.png", AssetType.IMAGE);
+		path.set ("img/misc/thinking.png", "img/misc/thinking.png");
+		type.set ("img/misc/thinking.png", AssetType.IMAGE);
 		path.set ("img/screens/title.png", "img/screens/title.png");
 		type.set ("img/screens/title.png", AssetType.IMAGE);
 		path.set ("img/stuff/bush.png", "img/stuff/bush.png");
 		type.set ("img/stuff/bush.png", AssetType.IMAGE);
-		path.set ("img/stuff/camp.png", "img/stuff/camp.png");
-		type.set ("img/stuff/camp.png", AssetType.IMAGE);
+		path.set ("img/stuff/camp/campRef.png", "img/stuff/camp/campRef.png");
+		type.set ("img/stuff/camp/campRef.png", AssetType.IMAGE);
+		path.set ("img/stuff/camp/fence.png", "img/stuff/camp/fence.png");
+		type.set ("img/stuff/camp/fence.png", AssetType.IMAGE);
+		path.set ("img/stuff/camp/floor.png", "img/stuff/camp/floor.png");
+		type.set ("img/stuff/camp/floor.png", AssetType.IMAGE);
+		path.set ("img/stuff/camp/tent1.png", "img/stuff/camp/tent1.png");
+		type.set ("img/stuff/camp/tent1.png", AssetType.IMAGE);
+		path.set ("img/stuff/camp/tent2.png", "img/stuff/camp/tent2.png");
+		type.set ("img/stuff/camp/tent2.png", AssetType.IMAGE);
+		path.set ("img/stuff/camp/tent3.png", "img/stuff/camp/tent3.png");
+		type.set ("img/stuff/camp/tent3.png", AssetType.IMAGE);
+		path.set ("img/stuff/camp/tent4.png", "img/stuff/camp/tent4.png");
+		type.set ("img/stuff/camp/tent4.png", AssetType.IMAGE);
 		path.set ("img/stuff/grass.png", "img/stuff/grass.png");
 		type.set ("img/stuff/grass.png", AssetType.IMAGE);
 		path.set ("img/stuff/rock.png", "img/stuff/rock.png");
 		type.set ("img/stuff/rock.png", AssetType.IMAGE);
-		path.set ("img/stuff/tent.png", "img/stuff/tent.png");
-		type.set ("img/stuff/tent.png", AssetType.IMAGE);
 		path.set ("img/stuff/tree.png", "img/stuff/tree.png");
 		type.set ("img/stuff/tree.png", AssetType.IMAGE);
 		path.set ("img/stuff/wave.png", "img/stuff/wave.png");
 		type.set ("img/stuff/wave.png", AssetType.IMAGE);
-		path.set ("img/textures/areia.png", "img/textures/areia.png");
-		type.set ("img/textures/areia.png", AssetType.IMAGE);
+		path.set ("img/textures/sand.png", "img/textures/sand.png");
+		type.set ("img/textures/sand.png", AssetType.IMAGE);
 		path.set ("img/textures/sea.png", "img/textures/sea.png");
 		type.set ("img/textures/sea.png", AssetType.IMAGE);
-		path.set ("img/ui/heads/head1.png", "img/ui/heads/head1.png");
-		type.set ("img/ui/heads/head1.png", AssetType.IMAGE);
-		path.set ("img/ui/heads/head2.png", "img/ui/heads/head2.png");
-		type.set ("img/ui/heads/head2.png", AssetType.IMAGE);
-		path.set ("img/ui/heads/head3.png", "img/ui/heads/head3.png");
-		type.set ("img/ui/heads/head3.png", AssetType.IMAGE);
-		path.set ("img/ui/heads/head4.png", "img/ui/heads/head4.png");
-		type.set ("img/ui/heads/head4.png", AssetType.IMAGE);
-		path.set ("img/ui/heads/head5.png", "img/ui/heads/head5.png");
-		type.set ("img/ui/heads/head5.png", AssetType.IMAGE);
-		path.set ("img/ui/heads/head6.png", "img/ui/heads/head6.png");
-		type.set ("img/ui/heads/head6.png", AssetType.IMAGE);
-		path.set ("img/ui/heads/head7.png", "img/ui/heads/head7.png");
-		type.set ("img/ui/heads/head7.png", AssetType.IMAGE);
+		path.set ("img/ui/days.png", "img/ui/days.png");
+		type.set ("img/ui/days.png", AssetType.IMAGE);
 		path.set ("img/ui/map.png", "img/ui/map.png");
 		type.set ("img/ui/map.png", AssetType.IMAGE);
 		path.set ("img/ui/tools/axe.png", "img/ui/tools/axe.png");
@@ -245,34 +269,61 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#elseif html5
 		
 		var id;
-		id = "img/craft_menu/icon/fire.png";
+		id = "img/craft/icon/fire.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/craft_menu/icon/fishing.png";
+		id = "img/craft/icon/fishing.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/craft_menu/icon/fishing2.png";
+		id = "img/craft/icon/fishing2.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/craft_menu/icon/fishing3.png";
+		id = "img/craft/icon/fishing3.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/craft_menu/icon/plank.png";
+		id = "img/craft/icon/plank.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/craft_menu/icon/raft.png";
+		id = "img/craft/icon/raft.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/craft_menu/icon/raft2.png";
+		id = "img/craft/icon/raft2.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/craft_menu/icon/rope.png";
+		id = "img/craft/icon/rope.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/craft_menu/icon/sail.png";
+		id = "img/craft/icon/sail.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/humans/char.png";
+		id = "img/craft/title.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/bodies/ashley.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/bodies/john.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/heads/ashley.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/heads/john.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/heads/kevin.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/heads/miyagi.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/heads/simone.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/heads/susan.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/heads/tina.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/materials/fish.png";
@@ -311,7 +362,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "img/misc/space.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/misc/speech_balloon.png";
+		id = "img/misc/thinking.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/screens/title.png";
@@ -320,7 +371,25 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "img/stuff/bush.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/stuff/camp.png";
+		id = "img/stuff/camp/campRef.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/stuff/camp/fence.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/stuff/camp/floor.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/stuff/camp/tent1.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/stuff/camp/tent2.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/stuff/camp/tent3.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/stuff/camp/tent4.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/stuff/grass.png";
@@ -329,40 +398,19 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "img/stuff/rock.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/stuff/tent.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
 		id = "img/stuff/tree.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/stuff/wave.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/textures/areia.png";
+		id = "img/textures/sand.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/textures/sea.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/ui/heads/head1.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/ui/heads/head2.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/ui/heads/head3.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/ui/heads/head4.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/ui/heads/head5.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/ui/heads/head6.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/ui/heads/head7.png";
+		id = "img/ui/days.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/ui/map.png";
@@ -445,6 +493,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -1289,7 +1345,23 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
+
+
 #elseif html5
+
+
+
+
+
+
+
+
 
 
 

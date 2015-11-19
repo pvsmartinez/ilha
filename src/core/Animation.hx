@@ -71,15 +71,17 @@ class Animation extends Sprite {
   }
 
   private function draw() {
-    this.removeChild(displayImage);
     if (_currentState < _states.length) {
       var point:Point = _states[_currentState][_animationFrame];
       _bitmapContainer.copyPixels(_spritesheet, new Rectangle(point.x, point.y, _bitmapContainer.width, _bitmapContainer.height), new Point(0, 0));
     }
-    displayImage = new Bitmap(_bitmapContainer);
-    displayImage.x = -displayImage.width/2;
-    displayImage.y = -displayImage.height;
-    this.addChild(displayImage);
+    if (displayImage != null) {
+      displayImage.bitmapData = _bitmapContainer;
+    } else {
+      displayImage = new Bitmap(_bitmapContainer);
+      displayImage.x = -displayImage.width/2;
+      displayImage.y = -displayImage.height;
+      this.addChild(displayImage);
+    }
   }
-
 }

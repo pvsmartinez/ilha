@@ -10,6 +10,7 @@ import core.Rs;
 
 import core.TileSystem;
 import core.Constants;
+import core.Camera;
 
 class Island extends Sprite {
 
@@ -30,8 +31,8 @@ class Island extends Sprite {
     _npcAis = [];
     var nHumans = 1 + Constants.CPU_UNITS;
     for(i in 0...nHumans) {
-      var rnd = Math.floor(Math.random() * Rs.humans.length);
-      humans.push(new Human(rnd));
+      var rnd = Math.floor(Math.random() * Rs.names.length);
+      humans.push(new Human(Rs.names[rnd]));
       _map.addHuman(humans[i]);
       if (i == 0) {
         _playerAi = new Player(humans[i]);
@@ -59,8 +60,8 @@ class Island extends Sprite {
 
   private function camera() {
     var safeZone:Int = 200;
-    var posX = humans[0].x + this.x;
-    var posY = humans[0].y + this.y;
+    var posX = this.humans[0].x + this.x;
+    var posY = this.humans[0].y + this.y;
     if (posX < safeZone)
       this.x += Math.abs(posX - safeZone);
     if (posX > Lib.current.stage.stageWidth - safeZone)

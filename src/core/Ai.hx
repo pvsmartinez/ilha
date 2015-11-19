@@ -71,6 +71,7 @@ class Ai extends Sprite {
     super();
     _puppet = human;
     _puppet.speed /= 2;
+    _puppet.positionIcon("thinking");
     var kinds:Array<AiKinds> = [thinker,emotional,accelerated,focused,leader,calm,depressed];
     var rnd = Math.floor(Math.random() * kinds.length);
     _kind = kinds[rnd];
@@ -178,6 +179,7 @@ class Ai extends Sprite {
         var rnd = Math.floor(Math.random() * objs.length);
         _goalSpecific = objs[rnd];
     }
+    _puppet.positionIcon("baloon", Std.string(_goalSpecific));
     getTarget();
   }
 
@@ -338,6 +340,7 @@ class Ai extends Sprite {
         _goalSpecific = null;
         _aux = null;
         _target = null;
+        _puppet.positionIcon("thinking");
       case null:
         _target = _puppet.floor._camp;
         _mind = going;

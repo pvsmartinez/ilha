@@ -3,9 +3,10 @@ package core;
 import openfl.display.Sprite;
 import openfl.ui.Keyboard;
 
-import core.Game;
-import core.Human;
+import core.CraftMenu;
 import core.KeyState;
+import core.Human;
+import core.Game;
 
 enum PlayerState {
   normal;
@@ -15,6 +16,8 @@ enum PlayerState {
 class Player extends Sprite {
 
   private var _puppet:Human;
+  private var _craftMenu:CraftMenu;
+
   private var _state:PlayerState = normal;
   private var _actionKeys:Array<Bool>;
   private var _movementKeys:Array<Int>;
@@ -22,6 +25,7 @@ class Player extends Sprite {
   public function new(human:Human) {
     super();
     _puppet = human;
+    _craftMenu = new CraftMenu();
   }
 
   public function everyFrame(deltaTime:Float) {
@@ -29,46 +33,55 @@ class Player extends Sprite {
     _actionKeys = [false, false];
     switch ( _state ) {
       case normal:
-        _actionKeys = [KeyState.isKeyDown(Keyboard.SPACE, true), false];
-        var dir:Int = null;
-        if (KeyState.isKeyDown(Keyboard.LEFT)) {
-          dir = 0;
-          _movementKeys[0] --;
-        }
-        if (KeyState.isKeyDown(Keyboard.UP)) {
-          dir = 1;
-          _movementKeys[1] --;
-        }
-        if (KeyState.isKeyDown(Keyboard.RIGHT)) {
-          dir = 2;
-          _movementKeys[0] ++;
-        }
-        if (KeyState.isKeyDown(Keyboard.DOWN)) {
-          dir = -1;
-          _movementKeys[1] ++;
-        }
-        if (KeyState.lastKey == Keyboard.LEFT && KeyState.isKeyDown(Keyboard.LEFT))
-          dir = 0;
-        if (KeyState.lastKey == Keyboard.UP && KeyState.isKeyDown(Keyboard.UP))
-          dir = 1;
-        if (KeyState.lastKey == Keyboard.RIGHT && KeyState.isKeyDown(Keyboard.RIGHT))
-          dir = 2;
-        if (KeyState.lastKey == Keyboard.DOWN && KeyState.isKeyDown(Keyboard.DOWN))
-          dir = -1;
-        var target:Body = _puppet.getFocus();
-        if (target != null) {
-          if (Type.getClass(target) == Stuff) {
-            _puppet.positionIcon("space");
-          } else {
-            _puppet.positionIcon("baloon");
-          }
-          target.onFocus = true;
+        if (KeyState.isKeyDown(Keyboard.CONTROL)) {
+          _state = craftMenu;
+          _puppet.addChild(_craftMenu);
+          _craftMenu.x = - _craftMenu.width/2;
+          _craftMenu.y = - 5 - _puppet.sizeY - _craftMenu.height;
         } else {
-          _puppet.removeChild(_puppet._icon);
+          _puppet.removeChild(_craftMenu);
+          _actionKeys = [KeyState.isKeyDown(Keyboard.SPACE, true), false];
+          var dir:Int = null;
+          if (KeyState.isKeyDown(Keyboard.LEFT)) {
+            dir = 0;
+            _movementKeys[0] --;
+          }
+          if (KeyState.isKeyDown(Keyboard.UP)) {
+            dir = 1;
+            _movementKeys[1] --;
+          }
+          if (KeyState.isKeyDown(Keyboard.RIGHT)) {
+            dir = 2;
+            _movementKeys[0] ++;
+          }
+          if (KeyState.isKeyDown(Keyboard.DOWN)) {
+            dir = -1;
+            _movementKeys[1] ++;
+          }
+          if (KeyState.lastKey == Keyboard.LEFT && KeyState.isKeyDown(Keyboard.LEFT))
+            dir = 0;
+          if (KeyState.lastKey == Keyboard.UP && KeyState.isKeyDown(Keyboard.UP))
+            dir = 1;
+          if (KeyState.lastKey == Keyboard.RIGHT && KeyState.isKeyDown(Keyboard.RIGHT))
+            dir = 2;
+          if (KeyState.lastKey == Keyboard.DOWN && KeyState.isKeyDown(Keyboard.DOWN))
+            dir = -1;
+          var target:Body = _puppet.getFocus();
+          if (target != null) {
+            if (Type.getClass(target) == Stuff) {
+              if (cast(target, Stuff).state == idle)
+                _puppet.positionIcon("space");
+            } else if (Type.getClass(target) == Human) {
+              _puppet.positionIcon("baloon");
+            }
+            target.onFocus = true;
+          } else {
+            _puppet.removeChild(_puppet._icon);
+          }
+          _puppet.setDirection(dir);
         }
-        _puppet.setDirection(dir);
       case craftMenu:
-
+        trace("craft!!!!!!!");
     }
     _puppet.everyFrame(deltaTime, _actionKeys, _movementKeys);
   }

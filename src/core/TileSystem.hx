@@ -197,7 +197,7 @@ class TileSystem extends Sprite {
     addChildAt(_camp, _iMap.length);
     _camp.x = ((xx[0] + xx[1]) * Constants.TILESIZE / 2) - _camp.sizeX/3;
     _camp.y = ((yy[0] + yy[1]) * Constants.TILESIZE / 2) - _camp.sizeY/3;
-    _camp.createTent(this);
+    _camp.createTents(this);
   }
   private function drawFloor() {
     _iMap = [];

@@ -26,7 +26,9 @@ class Human extends Body {
 
   private var _timer:Float;
   private var _state:HumanState = free;
+  private var _auxIcon:Bitmap;
 
+  public var charName:String;
   public var _icon:Bitmap;
   public var craftGoal:EnumValue;
   public var currentTool:Tool;
@@ -34,22 +36,32 @@ class Human extends Body {
   public var speed:Float = 0.1;
   public var _materials:Array<Material> = [];
 
-  public function new(imgN:Int) {
-    super(Rs.humans[imgN], true, 4, 77, 113);
+  public function new(cn:String) {
+    super(Rs.humans[cn], true, 4, 77, 113);
     var weaponStarters = [axe, pick, spear, rod, knife, hand];
     var rnd = Math.floor(Math.random() * weaponStarters.length);
     currentTool = new Tool(weaponStarters[rnd]);
     this.speed = 0.1;
-
+    this.charName = cn;
     craftGoal = raft;
   }
 
-  public function positionIcon(img:String) {
+  public function positionIcon(img:String, ?auxImg:String) {
     removeChild(_icon);
+    removeChild(_auxIcon);
     _icon = new Bitmap(Rs.miscs[img]);
     _icon.x = -_icon.width/2;
     _icon.y = -(this.sizeY + _icon.height);
     addChild(_icon);
+    if (auxImg != null) {
+      _auxIcon = new Bitmap(Rs.maters[auxImg]);
+      var ratio = 42/_auxIcon.height;
+      _auxIcon.scaleX = ratio;
+      _auxIcon.scaleY = ratio;
+      _auxIcon.x = _icon.x + _icon.width/2 - _auxIcon.width/2;
+      _auxIcon.y = _icon.y + _icon.height/2 - _auxIcon.height/2 - 4;
+      addChild(_auxIcon);
+    }
   }
 
   public function everyFrame(deltaTime:Float, act:Array<Bool>, mv:Array<Int>) {
@@ -117,6 +129,9 @@ class Human extends Body {
     var dist:Float = null;
     for (ob in floor.objs) {
       if (ob != this) {
+        if (Type.getClass(ob) == Stuff && cast(ob, Stuff).state != idle) {
+          continue;
+        }
         var dx = this.x - ob.x;
         var dy = this.y - ob.y;
         var dt = Math.sqrt((dx*dx)+(dy*dy));
