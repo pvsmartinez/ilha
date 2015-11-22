@@ -17,20 +17,20 @@ enum FloorKind {
 
 class Floor extends Sprite {
 
-  private var _kind:FloorKind;
+  private var kind:FloorKind;
 
   public var walkable:Bool;
 
   public function new(kd:FloorKind) {
     super();
-    _kind = kd;
-    if (_kind == sea)
+    kind = kd;
+    if (kind == sea)
       walkable = false;
     else
       walkable = true;
       var color:Int;
     var texture:BitmapData = Rs.textures["sand"];
-    switch ( _kind ) {
+    switch ( kind ) {
       case sandL:
         color = 0xffc451;
       case sandM:
@@ -47,7 +47,7 @@ class Floor extends Sprite {
 		this.graphics.drawRect(0, 0, (Constants.TILESIZE + 1) * Constants.MAPWIDTH, Constants.TILESIZE);
 		this.graphics.endFill();
     var ntexts:Int;
-    if ( _kind == sea ) {
+    if ( kind == sea ) {
       ntexts = Math.ceil(((Constants.TILESIZE + 1) * Constants.MAPWIDTH)/texture.width);
       for (i in 0...ntexts) {
         var bitmap:Bitmap = new Bitmap(texture);

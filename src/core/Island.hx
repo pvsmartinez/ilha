@@ -5,6 +5,7 @@ import openfl.Lib;
 
 import core.Player;
 import core.Human;
+import core.Story;
 import core.Ai;
 import core.Rs;
 
@@ -42,12 +43,6 @@ class Island extends Sprite {
     }
   }
 
-  /*
-   *  The order of everyFrame matters.
-   *  First, it need to reset conditional status, like focus
-   *  Then it does human actions, prioritizing the player
-   *  And finally it does the camera stuff
-   */
   public function everyFrame(deltaTime:Float) {
     _map.resetEveryFrame();
     _playerAi.everyFrame(deltaTime);

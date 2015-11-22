@@ -45,7 +45,7 @@ class Stuff extends Body {
 
     kind = kd;
     var imgData:BitmapData;
-    var reposition = false;
+    var animate = [];
     switch ( kd ) {
       case tree:
         _material = wood;
@@ -67,12 +67,14 @@ class Stuff extends Body {
         _material = fish;
         _hitPointsMax = 10.0;
         _timeToRecover = 120 * 1000;
-        reposition = true;
+        animate = [1, 129,81];
     }
     _hitPoints = _hitPointsMax;
-    super(Rs.stuffs[Std.string(kind)], false);
-    if (reposition) {
-      _bitMap.x = _bitMap.y = 0;
+    if (animate.length>0) {
+      super(Rs.stuffs[Std.string(kind)], true, animate[0], animate[1], animate[2]);
+      _animation.go12321 = true;
+    } else {
+      super(Rs.stuffs[Std.string(kind)], false);
     }
     _materialIcon = new Material(_material);
     _materialIcon.x = -_materialIcon.sizeX/2;
@@ -96,6 +98,8 @@ class Stuff extends Body {
         }
         _agent.createMaterial(_material);
         removeChild(_bitMap);
+        if (_animation != null)
+          removeChild(_animation.displayImage);
         removeChild(_progress);
       }
       return true;
@@ -111,6 +115,9 @@ class Stuff extends Body {
         } else {
           removeChild(_materialIcon);
         }
+        if (_animation != null) {
+          _animation.animate(deltaTime, true, 0);
+        }
       case recovering:
         removeChild(_materialIcon);
         _timer -= deltaTime;
@@ -118,6 +125,8 @@ class Stuff extends Body {
           _hitPoints = _hitPointsMax;
           state = idle;
           addChild(_bitMap);
+          if (_animation != null)
+            removeChild(_animation.displayImage);
           targeted = false;
         }
       case gone:

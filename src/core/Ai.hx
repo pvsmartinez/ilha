@@ -43,7 +43,7 @@ enum DesperatePossibilities {
 class Ai extends Sprite {
 
   // mind vars
-  private var _kind:AiKinds;
+  private var kind:AiKinds;
   private var _mind:AiStates = thinking;
   private var _goal:AiGoal = null;
   private var _goalSpecific:EnumValue;
@@ -74,9 +74,9 @@ class Ai extends Sprite {
     _puppet.positionIcon("thinking");
     var kinds:Array<AiKinds> = [thinker,emotional,accelerated,focused,leader,calm,depressed];
     var rnd = Math.floor(Math.random() * kinds.length);
-    _kind = kinds[rnd];
+    kind = kinds[rnd];
     var stats:Array<Float> = [1, 1, 1, 1];
-    switch ( _kind ) {
+    switch ( kind ) {
       case thinker:
         stats = [1, 1, 1, 1];
       case emotional:
@@ -126,7 +126,7 @@ class Ai extends Sprite {
 
   private function decide() {
     var nextGoal:Array<AiGoal>;
-    switch ( _kind ) {
+    switch ( kind ) {
       case thinker:
         nextGoal = [craft, craft, collect];
       case emotional:
@@ -190,7 +190,7 @@ class Ai extends Sprite {
         for (mat in _aux.keys()) {
           var x = _aux[mat];
           for (m in _puppet._materials) {
-            if (m._kind == mat)
+            if (m.kind == mat)
               x --;
           }
           if (x > 0) {
@@ -323,7 +323,7 @@ class Ai extends Sprite {
       case null:
         _puppet.craftGoal = _goalSpecific;
         _actionKeys[1] = true;
-        if(Lambda.exists(_puppet._materials, function (ii){return ii._kind == _goalSpecific;})) {
+        if(Lambda.exists(_puppet._materials, function (ii){return ii.kind == _goalSpecific;})) {
           nextAction();
         }
     }

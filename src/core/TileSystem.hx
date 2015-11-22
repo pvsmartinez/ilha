@@ -180,8 +180,8 @@ class TileSystem extends Sprite {
         var stuff:Stuff = new Stuff(sourceKind);
         stuffs.remove(sourceKind);
         addChild(stuff);
-        stuff.x = pt.x * Constants.TILESIZE;
-        stuff.y = pt.y * Constants.TILESIZE;
+        stuff.x = (pt.x + .5) * Constants.TILESIZE;
+        stuff.y = (pt.y + .5) * Constants.TILESIZE;
         if (reposition) {
           stuff.x += Constants.TILESIZE/2 + ((Math.floor(Math.random() * 3) - 1) * Constants.TILESIZE/6);
           stuff.y += Constants.TILESIZE/2 + ((Math.floor(Math.random() * 3) - 1) * Constants.TILESIZE/6);

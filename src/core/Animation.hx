@@ -16,8 +16,10 @@ class Animation extends Sprite {
   private var _animationFrame:Int = 0;
   private var _animating:Bool = false;
   private var _currentState:Int = 0;
+  private var _foward:Bool = true;
 
   public var displayImage:Bitmap;
+  public var go12321:Bool = false;
 
   public function new (imgData:BitmapData, sts:Int, w:Int, h:Int) {
     super();
@@ -52,9 +54,23 @@ class Animation extends Sprite {
         _animatingDelta += deltaTime;
         if (_currentState < _states.length && _animatingDelta > _animatingSpeed) {
           if (_animationFrame >= _states[_currentState].length - 1) {
-            _animationFrame = 0;
+            if (go12321) {
+              _foward = false;
+              _animationFrame --;
+            } else {
+              _animationFrame = 0;
+            }
           } else {
-            _animationFrame ++;
+            if (go12321 && _foward == false) {
+              if (_animationFrame <= 0) {
+                _foward = true;
+                _animationFrame ++;
+              } else {
+                _animationFrame --;
+              }
+            } else {
+              _animationFrame ++;
+            }
           }
           draw();
           _animatingDelta -= _animatingSpeed;

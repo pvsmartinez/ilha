@@ -46,8 +46,8 @@ class Rs {
     textures.set("sand", Assets.getBitmapData("img/textures/sand.png"));
   }
   private static function loadHumans() {
-    names = ["ashley","john"];
-    //names = ["ashley","john","kevin","simone","susan","tina","miyagi"];
+    names = ["ashley","john", "tina"];
+    //names = [kevin","simone","susan",,"miyagi"];
     humans = new Map<String, BitmapData>();
     heads = new Map<String, BitmapData>();
     for (i in 0...names.length) {
@@ -67,6 +67,7 @@ class Rs {
     maters.set("rope", Assets.getBitmapData("img/materials/rope.png"));
     maters.set("sail", Assets.getBitmapData("img/materials/sail.png"));
     maters.set("raft", Assets.getBitmapData("img/materials/raft.png"));
+    maters.set("bonfire", Assets.getBitmapData("img/materials/bonfire.png"));
     stuffs = new Map<String, BitmapData>();
     stuffs.set("grass", Assets.getBitmapData("img/stuff/grass.png"));
     stuffs.set("tree", Assets.getBitmapData("img/stuff/tree.png"));
@@ -99,13 +100,9 @@ class Rs {
     tools.set("spear", Assets.getBitmapData("img/ui/tools/axe.png"));
     tools.set("hand", Assets.getBitmapData("img/ui/tools/axe.png"));
     craft = new Map<String, BitmapData>();
-    craft.set("title", Assets.getBitmapData("img/craft/title.png"));
-    craft.set("fire", Assets.getBitmapData("img/craft/icons/fire.png"));
-    craft.set("rod", Assets.getBitmapData("img/craft/icons/fishing.png"));
-    craft.set("plank", Assets.getBitmapData("img/craft/icons/plank.png"));
-    craft.set("raft", Assets.getBitmapData("img/craft/icons/raft.png"));
-    craft.set("rope", Assets.getBitmapData("img/craft/icons/rope.png"));
-    craft.set("sail", Assets.getBitmapData("img/craft/icons/sail.png"));
+    craft.set("header", Assets.getBitmapData("img/craft/header.png"));
+    craft.set("numbers", Assets.getBitmapData("img/craft/numbers.png"));
+    craft.set("crafts", Assets.getBitmapData("img/craft/crafts.png"));
   }
   private static function loadSounds() {
     sounds = new Map<String, Sound>();

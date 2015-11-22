@@ -25,7 +25,6 @@ class Player extends Sprite {
   public function new(human:Human) {
     super();
     _puppet = human;
-    _craftMenu = new CraftMenu();
   }
 
   public function everyFrame(deltaTime:Float) {
@@ -33,7 +32,8 @@ class Player extends Sprite {
     _actionKeys = [false, false];
     switch ( _state ) {
       case normal:
-        if (KeyState.isKeyDown(Keyboard.CONTROL)) {
+        if (KeyState.isKeyDown(Keyboard.CONTROL, true)) {
+          _craftMenu = new CraftMenu(_puppet._materials);
           _state = craftMenu;
           _puppet.addChild(_craftMenu);
           _craftMenu.x = - _craftMenu.width/2;
@@ -81,7 +81,31 @@ class Player extends Sprite {
           _puppet.setDirection(dir);
         }
       case craftMenu:
-        trace("craft!!!!!!!");
+        if (KeyState.isKeyDown(Keyboard.CONTROL, true)) {
+          _state = normal;
+          _puppet.removeChild(_craftMenu);
+          _craftMenu = null;
+        } else {
+          if (KeyState.isKeyDown(Keyboard.SPACE, true)) {
+            var craft = _craftMenu.chooseBtn();
+            if (craft != null) {
+              _puppet.craft(craft);
+              _state = normal;
+              _puppet.removeChild(_craftMenu);
+              _craftMenu = null;
+            }
+          } else {
+            var d:Int = 0;
+            if (KeyState.isKeyDown(Keyboard.UP, true)) {
+              d = -1;
+            }
+            if (KeyState.isKeyDown(Keyboard.DOWN, true)) {
+              d = 1;
+            }
+            _craftMenu.changeBtn(d);
+          }
+        }
+      case isCrafting:
     }
     _puppet.everyFrame(deltaTime, _actionKeys, _movementKeys);
   }

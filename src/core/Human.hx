@@ -255,7 +255,7 @@ class Human extends Body {
 		var i:Int = 0;
 		var found:Bool = false;
 		while (i < _materials.length && found == false) {
-			if(_materials[i]._kind == materialKind){
+			if(_materials[i].kind == materialKind){
 				var elem:Material = _materials[i];
 				found = _materials.remove(elem);
 				this.parent.removeChild(elem);
@@ -295,7 +295,7 @@ class Human extends Body {
   private function countIngredient(materialKind:MaterialKind):Int{
     var count:Int = 0;
     for(i in 0 ... _materials.length){
-      if(_materials[i]._kind == materialKind){
+      if(_materials[i].kind == materialKind){
         count++;
       }
     }

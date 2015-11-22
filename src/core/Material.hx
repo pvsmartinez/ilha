@@ -15,6 +15,7 @@ enum MaterialKind {
   rope;
   sail;
   plank;
+  bonfire;
 }
 
 enum MaterialState {
@@ -24,14 +25,14 @@ enum MaterialState {
 
 class Material extends Body {
 
-  public var _kind:MaterialKind;
+  public var kind:MaterialKind;
   public var state:MaterialState;
 
   public function new(matKind:MaterialKind) {
-    _kind = matKind;
+    kind = matKind;
     var imgUrl:String;
     var pickedNumber:Int = Std.random(100);
-    switch ( _kind ) {
+    switch ( kind ) {
       case wood:
         SoundHandler.randomSoundFromList(["axe0", "axe1", "axe2", "wood0", "wood1", "wood2", "blip"] ,[25, 20, 15, 15, 15, 7, 3]);
       case fruit:
@@ -46,7 +47,7 @@ class Material extends Body {
         SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
       default:
     }
-    super(Rs.maters[Std.string(_kind)], false);
+    super(Rs.maters[Std.string(kind)], false);
     this.selectable = false;
   }
 

@@ -101,10 +101,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
-		
-		
-		
-		
 		openfl.text.Font.registerFont (__ASSET__OPENFL__font_pixelart_ttf);
 		
 		
@@ -126,30 +122,18 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if flash
 		
-		path.set ("img/craft/icon/fire.png", "img/craft/icon/fire.png");
-		type.set ("img/craft/icon/fire.png", AssetType.IMAGE);
-		path.set ("img/craft/icon/fishing.png", "img/craft/icon/fishing.png");
-		type.set ("img/craft/icon/fishing.png", AssetType.IMAGE);
-		path.set ("img/craft/icon/fishing2.png", "img/craft/icon/fishing2.png");
-		type.set ("img/craft/icon/fishing2.png", AssetType.IMAGE);
-		path.set ("img/craft/icon/fishing3.png", "img/craft/icon/fishing3.png");
-		type.set ("img/craft/icon/fishing3.png", AssetType.IMAGE);
-		path.set ("img/craft/icon/plank.png", "img/craft/icon/plank.png");
-		type.set ("img/craft/icon/plank.png", AssetType.IMAGE);
-		path.set ("img/craft/icon/raft.png", "img/craft/icon/raft.png");
-		type.set ("img/craft/icon/raft.png", AssetType.IMAGE);
-		path.set ("img/craft/icon/raft2.png", "img/craft/icon/raft2.png");
-		type.set ("img/craft/icon/raft2.png", AssetType.IMAGE);
-		path.set ("img/craft/icon/rope.png", "img/craft/icon/rope.png");
-		type.set ("img/craft/icon/rope.png", AssetType.IMAGE);
-		path.set ("img/craft/icon/sail.png", "img/craft/icon/sail.png");
-		type.set ("img/craft/icon/sail.png", AssetType.IMAGE);
-		path.set ("img/craft/title.png", "img/craft/title.png");
-		type.set ("img/craft/title.png", AssetType.IMAGE);
+		path.set ("img/craft/crafts.png", "img/craft/crafts.png");
+		type.set ("img/craft/crafts.png", AssetType.IMAGE);
+		path.set ("img/craft/header.png", "img/craft/header.png");
+		type.set ("img/craft/header.png", AssetType.IMAGE);
+		path.set ("img/craft/numbers.png", "img/craft/numbers.png");
+		type.set ("img/craft/numbers.png", AssetType.IMAGE);
 		path.set ("img/humans/bodies/ashley.png", "img/humans/bodies/ashley.png");
 		type.set ("img/humans/bodies/ashley.png", AssetType.IMAGE);
 		path.set ("img/humans/bodies/john.png", "img/humans/bodies/john.png");
 		type.set ("img/humans/bodies/john.png", AssetType.IMAGE);
+		path.set ("img/humans/bodies/tina.png", "img/humans/bodies/tina.png");
+		type.set ("img/humans/bodies/tina.png", AssetType.IMAGE);
 		path.set ("img/humans/heads/ashley.png", "img/humans/heads/ashley.png");
 		type.set ("img/humans/heads/ashley.png", AssetType.IMAGE);
 		path.set ("img/humans/heads/john.png", "img/humans/heads/john.png");
@@ -164,6 +148,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("img/humans/heads/susan.png", AssetType.IMAGE);
 		path.set ("img/humans/heads/tina.png", "img/humans/heads/tina.png");
 		type.set ("img/humans/heads/tina.png", AssetType.IMAGE);
+		path.set ("img/materials/bonfire.png", "img/materials/bonfire.png");
+		type.set ("img/materials/bonfire.png", AssetType.IMAGE);
 		path.set ("img/materials/fish.png", "img/materials/fish.png");
 		type.set ("img/materials/fish.png", AssetType.IMAGE);
 		path.set ("img/materials/fruit.png", "img/materials/fruit.png");
@@ -208,6 +194,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("img/stuff/camp/tent3.png", AssetType.IMAGE);
 		path.set ("img/stuff/camp/tent4.png", "img/stuff/camp/tent4.png");
 		type.set ("img/stuff/camp/tent4.png", AssetType.IMAGE);
+		path.set ("img/stuff/fish129x81.png", "img/stuff/fish129x81.png");
+		type.set ("img/stuff/fish129x81.png", AssetType.IMAGE);
 		path.set ("img/stuff/grass.png", "img/stuff/grass.png");
 		type.set ("img/stuff/grass.png", AssetType.IMAGE);
 		path.set ("img/stuff/rock.png", "img/stuff/rock.png");
@@ -269,40 +257,22 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#elseif html5
 		
 		var id;
-		id = "img/craft/icon/fire.png";
+		id = "img/craft/crafts.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/craft/icon/fishing.png";
+		id = "img/craft/header.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "img/craft/icon/fishing2.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/craft/icon/fishing3.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/craft/icon/plank.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/craft/icon/raft.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/craft/icon/raft2.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/craft/icon/rope.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/craft/icon/sail.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "img/craft/title.png";
+		id = "img/craft/numbers.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/humans/bodies/ashley.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/humans/bodies/john.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/humans/bodies/tina.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/humans/heads/ashley.png";
@@ -324,6 +294,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/humans/heads/tina.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/materials/bonfire.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/materials/fish.png";
@@ -390,6 +363,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/stuff/camp/tent4.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/stuff/fish129x81.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/stuff/grass.png";
@@ -493,10 +469,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
-		useManifest = true;
-		useManifest = true;
-		useManifest = true;
-		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -1349,15 +1321,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
-
-
-
-
 #elseif html5
-
-
-
-
 
 
 
