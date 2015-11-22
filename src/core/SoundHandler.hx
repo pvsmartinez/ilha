@@ -19,7 +19,7 @@ class SoundHandler{
 
   public static function playSound(soundID: String){
     if(Rs.sounds.exists(soundID)){
-      //Rs.sounds[soundID].play(0, 1, fxTransform);
+      Rs.sounds[soundID].play(0, 1, fxTransform);
     }
     else{
       trace("The sound ID " + soundID + " is not set.");
@@ -47,10 +47,10 @@ class SoundHandler{
     return;
   }
 
-  public static function setAndPlayMusic(musicID:String) {
+  public static function setAndPlayMusic(musicID:String, loopCount:Int) {
     if(Rs.musics.exists(musicID) && (musicID != currentMusic && isMusicPlaying == false)){
       currentMusic = musicID;
-      musicChannel = Rs.musics[musicID].play();
+      musicChannel = Rs.musics[musicID].play(0, loopCount);
     }
     else{
       trace("The music ID " + musicID + " is not set.");

@@ -13,6 +13,7 @@ import core.Rs;
 import core.Recipe;
 import core.Tool;
 import core.RecipeBook;
+import core.SoundHandler;
 
 enum HumanState {
   free;
@@ -235,6 +236,7 @@ class Human extends Body {
       for (key in recipe._ingredientList.keys()) {
         consumeMaterial(key, recipe._ingredientList.get(key));
       }
+      SoundHandler.playSound("craft");
       if(recipe._resultKind == tool){
         currentTool = (new Tool(cast(recipe._result, ToolKind)));
       } else if(recipe._resultKind == material){
@@ -275,6 +277,8 @@ class Human extends Body {
     currentTool = trader.currentTool;
 
     trader.currentTool = tempTool;
+
+    SoundHandler.playSound("trade");
 
     trace("After trading:....");
     trace("My tool: "  + currentTool.kind + "|| trader tool: " + trader.currentTool.kind );

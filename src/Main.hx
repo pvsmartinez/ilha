@@ -56,13 +56,16 @@ class Main extends Sprite {
         menu.width = Lib.current.stage.stageWidth;
         menu.height = Lib.current.stage.stageHeight;
       case playing:
+        SoundHandler.setAndPlayMusic("island", 7);
+        SoundHandler.setAndPlayMusic("beach", 1);
         if(menu != null)
           Lib.current.stage.removeChild(menu);
-          //SoundHandler.setAndPlayMusic("memory");
         menu = null;
         game = new Game();
         Lib.current.stage.addChild(game);
       case gameOver:
+        SoundHandler.stopMusic();
+        SoundHandler.playSound("game_over");
         if(game != null)
           Lib.current.stage.removeChild(game);
         game = null;

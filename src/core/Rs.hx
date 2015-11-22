@@ -110,6 +110,7 @@ class Rs {
   private static function loadSounds() {
     sounds = new Map<String, Sound>();
     sounds.set("bell", Assets.getSound("sfx/bell.wav"));
+    sounds.set("game_over", Assets.getSound("sfx/game_over.ogg"));
 
     sounds.set("axe0", Assets.getSound("sfx/axe0.ogg"));
     sounds.set("axe1", Assets.getSound("sfx/axe1.ogg"));
@@ -120,6 +121,41 @@ class Rs {
     sounds.set("wood1", Assets.getSound("sfx/wood1.ogg"));
     sounds.set("wood2", Assets.getSound("sfx/wood2.ogg"));
 
+    sounds.set("melee0", Assets.getSound("sfx/melee0.ogg"));
+    sounds.set("melee1", Assets.getSound("sfx/melee1.ogg"));
+    sounds.set("melee2", Assets.getSound("sfx/melee2.ogg"));
+
+    sounds.set("melee+beat0", Assets.getSound("sfx/melee+beat0.ogg"));
+    sounds.set("melee+beat1", Assets.getSound("sfx/melee+beat1.ogg"));
+    sounds.set("melee+beat2", Assets.getSound("sfx/melee+beat2.ogg"));
+
+    sounds.set("leaves0", Assets.getSound("sfx/leaves0.ogg"));
+    sounds.set("leaves1", Assets.getSound("sfx/leaves1.ogg"));
+    sounds.set("leaves2", Assets.getSound("sfx/leaves2.ogg"));
+    sounds.set("leaves3", Assets.getSound("sfx/leaves3.ogg"));
+
+    sounds.set("pick0", Assets.getSound("sfx/pick0.ogg"));
+    sounds.set("pick1", Assets.getSound("sfx/pick1.ogg"));
+    sounds.set("pick2", Assets.getSound("sfx/pick2.ogg"));
+
+    sounds.set("water0", Assets.getSound("sfx/water0.ogg"));
+    sounds.set("water1", Assets.getSound("sfx/water1.ogg"));
+    sounds.set("water2", Assets.getSound("sfx/water2.ogg"));
+    sounds.set("water3", Assets.getSound("sfx/water3.ogg"));
+
+    sounds.set("punch0", Assets.getSound("sfx/punch0.ogg"));
+    sounds.set("punch1", Assets.getSound("sfx/punch1.ogg"));
+    sounds.set("punch2", Assets.getSound("sfx/punch2.ogg"));
+    sounds.set("punch3", Assets.getSound("sfx/punch3.ogg"));
+    sounds.set("punch4", Assets.getSound("sfx/punch4.ogg"));
+    sounds.set("punch5", Assets.getSound("sfx/punch5.ogg"));
+
+    sounds.set("rock", Assets.getSound("sfx/rock.ogg"));
+
+    sounds.set("craft", Assets.getSound("sfx/craft.ogg"));
+    sounds.set("trade", Assets.getSound("sfx/trade.ogg"));
+
+
     sounds.set("goo", Assets.getSound("sfx/goo.ogg"));
     sounds.set("cherry", Assets.getSound("sfx/cherry.ogg"));
     sounds.set("smash", Assets.getSound("sfx/smash.ogg"));
@@ -127,6 +163,8 @@ class Rs {
   private static function loadMusics() {
     musics = new Map<String, Sound>();
     musics.set("memory", Assets.getMusic("audio/AMemoryAway.ogg"));
+    musics.set("island", Assets.getMusic("audio/monkeyIslandBand_main.ogg"));
+    musics.set("beach", Assets.getMusic("audio/beach_seagulls.ogg"));
   }
 
 }
