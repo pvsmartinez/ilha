@@ -18,6 +18,7 @@ class Animation extends Sprite {
   private var _currentState:Int = 0;
   private var _foward:Bool = true;
 
+  public var show:Bool = true;
   public var displayImage:Bitmap;
   public var go12321:Bool = false;
 
@@ -45,45 +46,52 @@ class Animation extends Sprite {
   }
 
   public function animate(deltaTime:Float, animating:Bool, ?nextState:Int) {
-    if (animating) {
-      if (nextState != null && nextState > -1 && nextState != _currentState) {
-        _currentState = nextState;
-        _animationFrame = 1;
-        draw();
-      } else {
-        _animatingDelta += deltaTime;
-        if (_currentState < _states.length && _animatingDelta > _animatingSpeed) {
-          if (_animationFrame >= _states[_currentState].length - 1) {
-            if (go12321) {
-              _foward = false;
-              _animationFrame --;
-            } else {
-              _animationFrame = 0;
-            }
-          } else {
-            if (go12321 && _foward == false) {
-              if (_animationFrame <= 0) {
-                _foward = true;
-                _animationFrame ++;
-              } else {
+    if (show) {
+      if (animating) {
+        if (nextState != null && nextState > -1 && nextState != _currentState) {
+          _currentState = nextState;
+          _animationFrame = 1;
+          draw();
+        } else {
+          _animatingDelta += deltaTime;
+          if (_currentState < _states.length && _animatingDelta > _animatingSpeed) {
+            if (_animationFrame >= _states[_currentState].length - 1) {
+              if (go12321) {
+                _foward = false;
                 _animationFrame --;
+              } else {
+                _animationFrame = 0;
               }
             } else {
-              _animationFrame ++;
+              if (go12321 && _foward == false) {
+                if (_animationFrame <= 0) {
+                  _foward = true;
+                  _animationFrame ++;
+                } else {
+                  _animationFrame --;
+                }
+              } else {
+                _animationFrame ++;
+              }
             }
+            draw();
+            _animatingDelta -= _animatingSpeed;
           }
+        }
+      } else {
+        _animatingDelta = 0;
+        if (animating != _animating) {
+          _animationFrame = 0;
           draw();
-          _animatingDelta -= _animatingSpeed;
         }
       }
+      _animating = animating;
     } else {
-      _animatingDelta = 0;
-      if (animating != _animating) {
-        _animationFrame = 0;
-        draw();
+      if (displayImage != null) {
+        this.removeChild(displayImage);
+        displayImage = null;
       }
     }
-    _animating = animating;
   }
 
   private function draw() {

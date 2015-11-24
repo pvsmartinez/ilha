@@ -32,21 +32,6 @@ class Material extends Body {
     kind = matKind;
     var imgUrl:String;
     var pickedNumber:Int = Std.random(100);
-    switch ( kind ) {
-      case wood:
-        SoundHandler.randomSoundFromList(["axe0", "axe1", "axe2", "wood0", "wood1", "wood2", "blip"] ,[25, 20, 15, 15, 15, 7, 3]);
-      case fruit:
-        SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
-      case leaf:
-        SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
-      case stone:
-        SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
-      case fish:
-        SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
-      case water:
-        SoundHandler.randomSoundFromList(["axe0", "axe2", "wood2", "cherry", "smash"] ,[25, 20, 30, 15, 10]);
-      default:
-    }
     super(Rs.maters[Std.string(kind)], false);
     this.selectable = false;
   }

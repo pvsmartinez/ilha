@@ -41,8 +41,6 @@ class Stuff extends Body {
   public var targeted:Bool = false;
 
   public function new(kd:SourceKind) {
-
-
     kind = kd;
     var imgData:BitmapData;
     var animate = [];
@@ -85,7 +83,6 @@ class Stuff extends Body {
   public function extract(agent:Human):Bool {
     if (state == idle) {
       addChild(_progress);
-      SoundHandler.randomSoundFromList(["axe0", "axe1", "axe2"],[33, 33, 34]);
       _agent = agent;
       _hitPoints -= _agent.useTool(this);
       _progress.draw((_hitPointsMax - _hitPoints)/_hitPointsMax);
@@ -97,9 +94,11 @@ class Stuff extends Body {
           state = gone;
         }
         _agent.createMaterial(_material);
+        creationSound();
         removeChild(_bitMap);
-        if (_animation != null)
-          removeChild(_animation.displayImage);
+        if (_animation != null) {
+          _animation.show = false;
+        }
         removeChild(_progress);
       }
       return true;
@@ -115,9 +114,6 @@ class Stuff extends Body {
         } else {
           removeChild(_materialIcon);
         }
-        if (_animation != null) {
-          _animation.animate(deltaTime, true, 0);
-        }
       case recovering:
         removeChild(_materialIcon);
         _timer -= deltaTime;
@@ -125,12 +121,34 @@ class Stuff extends Body {
           _hitPoints = _hitPointsMax;
           state = idle;
           addChild(_bitMap);
-          if (_animation != null)
-            removeChild(_animation.displayImage);
+          if (_animation != null){
+            _animation.show = true;
+          }
           targeted = false;
         }
       case gone:
         removeChild(_materialIcon);
+    }
+    if (_animation != null) {
+      _animation.animate(deltaTime, true, 0);
+    }
+  }
+
+  public function creationSound(){
+    switch ( _material ) {
+      case wood:
+        SoundHandler.randomSoundFromList(["wood0", "wood1", "wood2", "blip"] ,[33, 33, 33, 1]);
+      case fruit:
+        SoundHandler.randomSoundFromList(["cherry", "smash"] ,[90, 10]);
+      case leaf:
+        SoundHandler.playSound("leaves3");
+      case stone:
+        SoundHandler.playSound("rock");
+      case fish:
+        SoundHandler.playSound("water3");
+      case water:
+        SoundHandler.playSound("water3");
+      default:
     }
   }
 
